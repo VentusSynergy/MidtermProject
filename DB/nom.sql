@@ -27,10 +27,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(16) NOT NULL,
   `first_name` VARCHAR(100) NOT NULL,
   `last_name` VARCHAR(100) NOT NULL,
-  `date_created` DATE NULL,
-  `date_updated` DATE NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `admin` TINYINT NOT NULL DEFAULT 0,
+  `date_created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_updated` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `avatar_url` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -51,6 +52,30 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `category` ;
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `recipe_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `recipe_type` ;
+
+CREATE TABLE IF NOT EXISTS `recipe_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `recipe`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `recipe` ;
@@ -60,33 +85,49 @@ CREATE TABLE IF NOT EXISTS `recipe` (
   `name` VARCHAR(200) NOT NULL,
   `date_created` DATE NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
-  `public` TINYINT NOT NULL DEFAULT 1,
-  `rating` INT(1) NULL DEFAULT NULL,
-  `ease_of_prep` VARCHAR(50) NULL DEFAULT NULL,
+  `creator_id` INT NOT NULL DEFAULT 1,
+  `is_public` TINYINT NOT NULL DEFAULT 1,
   `prep_time` VARCHAR(45) NULL DEFAULT NULL,
   `instructions` TEXT NULL DEFAULT NULL,
   `photo_link` VARCHAR(5000) NULL DEFAULT NULL,
   `cookbook` VARCHAR(100) NULL DEFAULT NULL,
   `cookbook_page_number` VARCHAR(45) NULL DEFAULT NULL,
   `web_link` VARCHAR(5000) NULL DEFAULT NULL,
-  `date_last_made` DATE NULL DEFAULT NULL,
   `category_id` INT NULL,
   `type_id` INT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  INDEX `id_idx` (`category_id` ASC),
+  INDEX `fk_recipe_creator_idx` (`creator_id` ASC),
+  CONSTRAINT `fk_recipe_category`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recipe_type`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `recipe_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recipe_creator`
+    FOREIGN KEY (`creator_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `recipe_ingredients`
+-- Table `recipe_ingredient`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `recipe_ingredients` ;
+DROP TABLE IF EXISTS `recipe_ingredient` ;
 
-CREATE TABLE IF NOT EXISTS `recipe_ingredients` (
+CREATE TABLE IF NOT EXISTS `recipe_ingredient` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ingredient_id` INT NOT NULL,
   `recipe_id` INT NOT NULL,
   `quantity` DOUBLE NOT NULL,
   `measurement_unit` VARCHAR(100) NULL,
+  `remarks` VARCHAR(300) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_recipe_ingredients_recipe1_idx` (`recipe_id` ASC),
   INDEX `fk_recipe_ingredients_ingredient1_idx` (`ingredient_id` ASC),
@@ -113,7 +154,8 @@ CREATE TABLE IF NOT EXISTS `user_recipe` (
   `user_id` INT NOT NULL,
   `recipe_id` INT NOT NULL,
   `user_favorite` TINYINT NULL DEFAULT 0,
-  `user_created` TINYINT NULL DEFAULT 0,
+  `comment` TEXT NULL,
+  `date_last_made` DATE NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_recipe_user1_idx` (`user_id` ASC),
   INDEX `fk_user_recipe_recipe1_idx` (`recipe_id` ASC),
@@ -140,7 +182,9 @@ CREATE TABLE IF NOT EXISTS `recipe_review` (
   `user_id` INT NOT NULL,
   `recipe_id` INT NOT NULL,
   `rating` INT(1) NOT NULL,
+  `review_date` DATE NOT NULL,
   `comment` TEXT NULL DEFAULT NULL,
+  `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_recipe_review_recipe1_idx` (`recipe_id` ASC),
   INDEX `fk_recipe_review_user1_idx` (`user_id` ASC),
@@ -158,20 +202,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `grocery_list`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `grocery_list` ;
-
-CREATE TABLE IF NOT EXISTS `grocery_list` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `meal_plan_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  `purchased` TINYINT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `meal_plan`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `meal_plan` ;
@@ -179,36 +209,35 @@ DROP TABLE IF EXISTS `meal_plan` ;
 CREATE TABLE IF NOT EXISTS `meal_plan` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `grocery_list_id` INT NULL,
+  `plan_name` VARCHAR(100) NULL,
+  `description` TEXT NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_meal_plan_user1_idx` (`user_id` ASC),
-  INDEX `fk_meal_plan_grocery_list1_idx` (`grocery_list_id` ASC),
-  CONSTRAINT `fk_meal_plan_user1`
+  CONSTRAINT `fk_meal_plan_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_meal_plan_grocery_list1`
-    FOREIGN KEY (`grocery_list_id`)
-    REFERENCES `grocery_list` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `week`
+-- Table `meal_plan_recipe`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `week` ;
+DROP TABLE IF EXISTS `meal_plan_recipe` ;
 
-CREATE TABLE IF NOT EXISTS `week` (
+CREATE TABLE IF NOT EXISTS `meal_plan_recipe` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `day_name` ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NOT NULL,
-  `meal_plan_id` INT NULL,
-  `recipe_id` INT NULL,
+  `meal_plan_id` INT NOT NULL,
+  `recipe_id` INT NOT NULL,
+  `sequence_number` INT NOT NULL,
+  `day_name` ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NULL,
+  `type_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_week_recipe1_idx` (`recipe_id` ASC),
   INDEX `fk_week_meal_plan1_idx` (`meal_plan_id` ASC),
+  INDEX `fk_meal_plan_recipe_type_idx` (`type_id` ASC),
   CONSTRAINT `fk_week_recipe1`
     FOREIGN KEY (`recipe_id`)
     REFERENCES `recipe` (`id`)
@@ -218,31 +247,31 @@ CREATE TABLE IF NOT EXISTS `week` (
     FOREIGN KEY (`meal_plan_id`)
     REFERENCES `meal_plan` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_meal_plan_recipe_type`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `recipe_type` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `category`
+-- Table `grocery_list`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `category` ;
+DROP TABLE IF EXISTS `grocery_list` ;
 
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE IF NOT EXISTS `grocery_list` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `type` ;
-
-CREATE TABLE IF NOT EXISTS `type` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`))
+  `meal_plan_id` INT NOT NULL,
+  `purchased` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `fk_grocery_list_meal_plan_idx` (`meal_plan_id` ASC),
+  CONSTRAINT `fk_grocery_list_meal_plan`
+    FOREIGN KEY (`meal_plan_id`)
+    REFERENCES `meal_plan` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -261,7 +290,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `nom`;
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `first_name`, `last_name`, `date_created`, `date_updated`, `active`, `admin`) VALUES (1, 'marthaStewart', 'marthaStewart@gmail.com', 'marthaStewart', 'Martha', 'Stewart', NULL, NULL, DEFAULT, DEFAULT);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `first_name`, `last_name`, `active`, `admin`, `date_created`, `date_updated`, `avatar_url`) VALUES (1, 'marthaStewart', 'marthaStewart@gmail.com', 'marthaStewart', 'Martha', 'Stewart', DEFAULT, DEFAULT, NULL, NULL, NULL);
 
 COMMIT;
 
