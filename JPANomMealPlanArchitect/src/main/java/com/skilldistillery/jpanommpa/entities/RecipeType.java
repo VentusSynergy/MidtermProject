@@ -1,9 +1,6 @@
 package com.skilldistillery.jpanommpa.entities;
 
-import javax.persistence.Entity;
-
-@Entity
-public class Category {
+public class RecipeType {
 	private int id;
 	private String name;
 
@@ -40,7 +37,7 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		RecipeType other = (RecipeType) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -54,11 +51,12 @@ public class Category {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Category [id=");
+		builder.append("RecipeType [id=");
 		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append("]");
 		return builder.toString();
 	}
+
 }
