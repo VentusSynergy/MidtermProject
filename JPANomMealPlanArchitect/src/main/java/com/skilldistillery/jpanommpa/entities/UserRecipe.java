@@ -28,10 +28,10 @@ public class UserRecipe {
 	@Column(name = "date_last_made")
 	private LocalDate dateLastMade;
 
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User user;
-
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
 	public UserRecipe() {
 		super();
 	}
@@ -84,6 +84,14 @@ public class UserRecipe {
 		this.dateLastMade = dateLastMade;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -108,8 +116,23 @@ public class UserRecipe {
 
 	@Override
 	public String toString() {
-		return "UserRecipe [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", userFavorite="
-				+ userFavorite + ", comment=" + comment + ", dateLastMade=" + dateLastMade + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserRecipe [id=");
+		builder.append(id);
+		builder.append(", userId=");
+		builder.append(userId);
+		builder.append(", recipeId=");
+		builder.append(recipeId);
+		builder.append(", userFavorite=");
+		builder.append(userFavorite);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", dateLastMade=");
+		builder.append(dateLastMade);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	

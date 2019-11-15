@@ -13,27 +13,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
 
-//	+--------------+---------------+------+-----+-------------------+----------------+
-//	| Field        | Type          | Null | Key | Default           | Extra          |
-//	+--------------+---------------+------+-----+-------------------+----------------+
-//	| id           | int(11)       | NO   | PRI | NULL              | auto_increment |
-//	| username     | varchar(200)  | NO   |     | NULL              |                |
-//	| email        | varchar(200)  | NO   |     | NULL              |                |
-//	| password     | varchar(16)   | NO   |     | NULL              |                |
-//	| first_name   | varchar(100)  | NO   |     | NULL              |                |
-//	| last_name    | varchar(100)  | NO   |     | NULL              |                |
-//	| active       | tinyint(4)    | NO   |     | 1                 |                |
-//	| admin        | tinyint(4)    | NO   |     | 0                 |                |
-//	| date_created | datetime      | YES  |     | CURRENT_TIMESTAMP |                |
-//	| date_updated | datetime      | YES  |     | CURRENT_TIMESTAMP |                |
-//	| avatar_url   | varchar(1000) | YES  |     | NULL              |                |
-//	+--------------+---------------+------+-----+-------------------+----------------+
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private String username;
 	private String email;
 	private String password;
@@ -50,20 +32,28 @@ public class User {
 	@Column(name="avatar_url")
 	private String avatarURL;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<UserRecipe> userRecipies;
+	@OneToMany(mappedBy = "user")
+	private List<UserRecipe> userRecipies;
 
 //	@OneToMany(mappedBy = "user")
 //	private List<Recipe> recipies;
-
+//
 //	@OneToMany(mappedBy = "user")
 //	private List<RecipeReview> recipeReview;
-
+//
 //	@OneToMany(mappedBy = "user")
 //	private List<MealPlan> mealPlans;
 
 	public User() {
 		super();
+	}
+
+	public List<UserRecipe> getUserRecipies() {
+		return userRecipies;
+	}
+
+	public void setUserRecipies(List<UserRecipe> userRecipies) {
+		this.userRecipies = userRecipies;
 	}
 
 	public int getId() {
