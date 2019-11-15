@@ -16,17 +16,30 @@ public class RecipeIngredient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "ingredient_id")
-	private int ingredientId;
 	private double quantity;
 	@Column(name = "measurement_unit")
 	private String measurementUnit;
 	private String remarks;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
+
+	@ManyToOne
+	@JoinColumn(name = "ingredient_id")
+	private Ingredient ingredient;
+
+	public RecipeIngredient() {
+		super();
+	}
+
+	public Ingredient getIngredient() {
+		return ingredient;
+	}
+
+	public void setIngredient(Ingredient ingredient) {
+		this.ingredient = ingredient;
+	}
 
 	public Recipe getRecipe() {
 		return recipe;
@@ -42,14 +55,6 @@ public class RecipeIngredient {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getIngredientId() {
-		return ingredientId;
-	}
-
-	public void setIngredientId(int ingredientId) {
-		this.ingredientId = ingredientId;
 	}
 
 	public double getQuantity() {
@@ -111,14 +116,16 @@ public class RecipeIngredient {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RecipeIngredient [id=");
 		builder.append(id);
-		builder.append(", ingredientId=");
-		builder.append(ingredientId);
 		builder.append(", quantity=");
 		builder.append(quantity);
 		builder.append(", measurementUnit=");
 		builder.append(measurementUnit);
 		builder.append(", remarks=");
 		builder.append(remarks);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append(", ingredient=");
+		builder.append(ingredient);
 		builder.append("]");
 		return builder.toString();
 	}

@@ -1,5 +1,5 @@
 package com.skilldistillery.jpanommpa.entities;
 
 public enum Days {
-	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+	Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
 }

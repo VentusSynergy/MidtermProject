@@ -1,10 +1,14 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,11 +21,25 @@ public class GroceryList {
 	private int mealPlan;
 	private boolean purchased;
 
+	@OneToMany
+	@JoinColumn(name="id")
+	private List<GroceryList> groceryLists;
+	
+	public GroceryList() {
+		super();
+	}
+
+	public List<GroceryList> getGroceryLists() {
+		return groceryLists;
+	}
+
+	public void setGroceryLists(List<GroceryList> groceryLists) {
+		this.groceryLists = groceryLists;
+	}
+
 	public int getId() {
 		return id;
 	}
-
-
 
 	public int getMealPlan() {
 		return mealPlan;

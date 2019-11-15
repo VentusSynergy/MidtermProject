@@ -58,5 +58,11 @@ class RecipeReviewTest {
 	void test1() {
 		assertEquals(1, rr.getUser().getId());
 	}
+	@Test
+	@DisplayName ("testing relationship with recipe")
+	void test2() {
+		assertEquals(1, rr.getRecipe().getId());
+		assertEquals("Peanut Butter and Jelly Sandwich", rr.getRecipe().getName());
+	}
 
 }

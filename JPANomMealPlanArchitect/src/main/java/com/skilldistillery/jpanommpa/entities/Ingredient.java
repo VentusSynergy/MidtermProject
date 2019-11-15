@@ -1,11 +1,14 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Ingredient {
@@ -17,6 +20,17 @@ public class Ingredient {
 	private String size;
 	private String category;
 	
+	@OneToMany(mappedBy = "recipe")
+	private List<RecipeIngredient> recipeIngredients;
+	
+	public List<RecipeIngredient> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+
+	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -21,6 +21,10 @@ public class MealPlan {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@ManyToOne
+	@JoinColumn(name = "meal_plan_id")
+	private MealPlan plan;
+
 	@Column(name = "plan_name")
 	private String planName;
 	private String description;
@@ -28,6 +32,14 @@ public class MealPlan {
 
 	public MealPlan() {
 		super();
+	}
+
+	public MealPlan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(MealPlan plan) {
+		this.plan = plan;
 	}
 
 	public int getId() {
@@ -94,8 +106,21 @@ public class MealPlan {
 
 	@Override
 	public String toString() {
-		return "MealPlan [id=" + id + ", user=" + user + ", planName=" + planName + ", description=" + description
-				+ ", active=" + active + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("MealPlan [id=");
+		builder.append(id);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", plan=");
+		builder.append(plan);
+		builder.append(", planName=");
+		builder.append(planName);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", active=");
+		builder.append(active);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

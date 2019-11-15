@@ -94,5 +94,13 @@ class RecipeTest {
 		//select * from recipe_type rt join recipe r on r.type_id = rt.id where r.id = 1;
 		assertEquals("Lunch", recipe.getRecipeType().getName());
 	}
+	
+	@Test
+	@DisplayName(" test recipe_review relationship")
+	void test6() {
+		//select * from recipe_type rt join recipe r on r.type_id = rt.id where r.id = 1;
+		assertEquals(1, recipe.getReviews().get(0).getId());
+		assertEquals(4, recipe.getReviews().get(0).getRating());
+	}
 
 }
