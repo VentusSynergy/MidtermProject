@@ -67,10 +67,10 @@ class UserTest {
 		assertEquals(1, user.getUserRecipies().get(0).getUser().getId());
 	}
 
-//	@Test
-//	@DisplayName("testing relationship user_Recipe")
-//	void Test3() {
-//		assertEquals("Peanut Butter and Jelly Sandwich", user.getRecipies().get(0).getName());
-//	}
+	@Test
+	@DisplayName("testing relationship user_Recipe")
+	void Test3() {
+		assertEquals(1, user.getRecipies().get(0).getId());
+	}
 
 }

@@ -20,8 +20,11 @@ public class Recipe {
 	@Column(name = "date_created")
 	private LocalDate dateCreated;
 	private boolean active;
-	@Column(name = "creator_id")
-	private int creatorId;
+
+	@ManyToOne
+	@JoinColumn(name = "creator_id")
+	private User user;
+
 	@Column(name = "is_public")
 	private boolean isPublic;
 	@Column(name = "prep_time")
@@ -35,21 +38,9 @@ public class Recipe {
 	@Column(name = "web_link")
 	private String webLink;
 	@Column(name = "category_id")
-	private int categoryId;
+	private Integer categoryId;
 	@Column(name = "type_id")
-	private int typeId;
-
-//	@ManyToOne
-//	@JoinColumn(name = "creator_id")
-//	private User user;
-//
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	private Integer typeId;
 
 	public Recipe() {
 		super();
@@ -87,12 +78,12 @@ public class Recipe {
 		this.active = active;
 	}
 
-	public int getCreatorId() {
-		return creatorId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCreatorId(int creatorId) {
-		this.creatorId = creatorId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public boolean isPublic() {
@@ -151,19 +142,19 @@ public class Recipe {
 		this.webLink = webLink;
 	}
 
-	public int getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 
-	public int getTypeId() {
+	public Integer getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(int typeId) {
+	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
 
@@ -191,12 +182,10 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", name=" + name + ", dateCreated=" + dateCreated + ", active=" + active
-				+ ", creatorId=" + creatorId + ", isPublic=" + isPublic + ", prepTime=" + prepTime + ", instructions="
-				+ instructions + ", photoLink=" + photoLink + ", cookbook=" + cookbook + ", cookbookPageNumber="
-				+ cookbookPageNumber + ", webLink=" + webLink + ", categoryId=" + categoryId + ", typeId=" + typeId
-				+ "]";
+		return "Recipe [id=" + id + ", name=" + name + ", dateCreated=" + dateCreated + ", active=" + active + ", user="
+				+ user + ", isPublic=" + isPublic + ", prepTime=" + prepTime + ", instructions=" + instructions
+				+ ", photoLink=" + photoLink + ", cookbook=" + cookbook + ", cookbookPageNumber=" + cookbookPageNumber
+				+ ", webLink=" + webLink + ", categoryId=" + categoryId + ", typeId=" + typeId + "]";
 	}
 
-	
 }

@@ -51,9 +51,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<UserRecipe> userRecipies;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<Recipe> recipies;
-//
+	@OneToMany(mappedBy = "user")
+	private List<Recipe> recipies;
+
 //	@OneToMany(mappedBy = "user")
 //	private List<RecipeReview> recipeReview;
 //
@@ -78,6 +78,14 @@ public class User {
 
 	public void setUserRecipies(List<UserRecipe> userRecipies) {
 		this.userRecipies = userRecipies;
+	}
+
+	public List<Recipe> getRecipies() {
+		return recipies;
+	}
+
+	public void setRecipies(List<Recipe> recipies) {
+		this.recipies = recipies;
 	}
 
 	public int getId() {

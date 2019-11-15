@@ -1,9 +1,12 @@
 package com.skilldistillery.jpanommpa.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.JoinColumn;
 import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterAll;
@@ -44,7 +47,24 @@ class RecipeTest {
 	@DisplayName("Testing recipe id")
 	@Test
 	void test() {
+//		select *  from recipe where id = 1 \G;
 		assertEquals(1, recipe.getId());
+		assertEquals("Peanut Butter and Jelly Sandwich", recipe.getName());
+		assertEquals("2019-11-14", recipe.getDateCreated().toString());
+		assertEquals(true, recipe.isActive());
+		assertEquals(true, recipe.isPublic());
+		assertEquals("5", recipe.getPrepTime());
+		assertTrue(recipe.getInstructions().contains("peanut butter"));
+		assertTrue(recipe.getPhotoLink().contains("https"));
+		assertEquals("The Bachelor’s Cookbook", recipe.getCookbook());
+		assertEquals("1", recipe.getCookbookPageNumber());
+		assertEquals("",recipe.getWebLink());
 	}
-
+	
+	@Test
+	@DisplayName ( " test @JoinColumn(name = creator_id")
+	void test1() {
+		assertEquals(1, recipe.getUser().getId());
+	}
+	
 }
