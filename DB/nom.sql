@@ -339,7 +339,7 @@ CREATE TABLE `user_recipe` (
   KEY `fk_user_recipe_recipe1_idx` (`recipe_id`),
   CONSTRAINT `fk_user_recipe_recipe1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_recipe_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,6 +348,7 @@ CREATE TABLE `user_recipe` (
 
 LOCK TABLES `user_recipe` WRITE;
 /*!40000 ALTER TABLE `user_recipe` DISABLE KEYS */;
+INSERT INTO `user_recipe` VALUES (1,1,5,1,'Soooo gooooood',NULL);
 /*!40000 ALTER TABLE `user_recipe` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -360,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-15 10:19:46
+-- Dump completed on 2019-11-15 10:38:05
