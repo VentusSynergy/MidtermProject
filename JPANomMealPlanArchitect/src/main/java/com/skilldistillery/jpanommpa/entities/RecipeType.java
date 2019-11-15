@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Category {
+@Table(name = "recipe_type")
+public class RecipeType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -45,7 +47,7 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		RecipeType other = (RecipeType) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -59,11 +61,12 @@ public class Category {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Category [id=");
+		builder.append("RecipeType [id=");
 		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append("]");
 		return builder.toString();
 	}
+
 }
