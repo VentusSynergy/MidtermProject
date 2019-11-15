@@ -13,7 +13,7 @@ public class GroceryList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "meal_plan")
+	@Column(name = "meal_plan_id")
 	private int mealPlan;
 	private boolean purchased;
 
@@ -21,9 +21,7 @@ public class GroceryList {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+
 
 	public int getMealPlan() {
 		return mealPlan;
