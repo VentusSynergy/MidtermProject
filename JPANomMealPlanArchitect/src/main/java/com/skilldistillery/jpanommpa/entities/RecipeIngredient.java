@@ -28,6 +28,14 @@ public class RecipeIngredient {
 	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
 
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
 	public int getId() {
 		return id;
 	}

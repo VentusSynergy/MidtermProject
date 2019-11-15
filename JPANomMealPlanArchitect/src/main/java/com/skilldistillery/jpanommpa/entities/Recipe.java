@@ -3,14 +3,18 @@ package com.skilldistillery.jpanommpa.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Recipe {
@@ -26,15 +30,20 @@ public class Recipe {
 	@ManyToOne
 	@JoinColumn(name = "creator_id")
 	private User user;
-	
+
 	@OneToMany(mappedBy = "recipe")
 	private List<UserRecipe> userRecipies;
-	
-	
+
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeIngredient> recipeIngredients;
 
-
+	@OneToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+	
+	@OneToOne
+	@JoinColumn(name = "type_id")
+	private RecipeType recipeType;
 
 	@Column(name = "is_public")
 	private boolean isPublic;
@@ -48,13 +57,17 @@ public class Recipe {
 	private String cookbookPageNumber;
 	@Column(name = "web_link")
 	private String webLink;
-	@Column(name = "category_id")
-	private Integer categoryId;
-	@Column(name = "type_id")
-	private Integer typeId;
 
 	public Recipe() {
 		super();
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public List<RecipeIngredient> getRecipeIngredients() {
@@ -72,8 +85,6 @@ public class Recipe {
 	public void setUserRecipies(List<UserRecipe> userRecipies) {
 		this.userRecipies = userRecipies;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -171,29 +182,14 @@ public class Recipe {
 		this.webLink = webLink;
 	}
 
-	public Integer getCategoryId() {
-		return categoryId;
+
+	public RecipeType getRecipeType() {
+		return recipeType;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setRecipeType(RecipeType recipeType) {
+		this.recipeType = recipeType;
 	}
-
-	public Integer getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
-	}
-
-//	public List<RecipeIngredient> getRecipeIngredients() {
-//		return recipeIngredients;
-//	}
-//
-//	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-//		this.recipeIngredients = recipeIngredients;
-//	}
 
 	@Override
 	public int hashCode() {
@@ -230,6 +226,10 @@ public class Recipe {
 		builder.append(active);
 		builder.append(", user=");
 		builder.append(user);
+		builder.append(", category=");
+		builder.append(category);
+		builder.append(", recipeType=");
+		builder.append(recipeType);
 		builder.append(", isPublic=");
 		builder.append(isPublic);
 		builder.append(", prepTime=");
@@ -244,10 +244,6 @@ public class Recipe {
 		builder.append(cookbookPageNumber);
 		builder.append(", webLink=");
 		builder.append(webLink);
-		builder.append(", categoryId=");
-		builder.append(categoryId);
-		builder.append(", typeId=");
-		builder.append(typeId);
 		builder.append("]");
 		return builder.toString();
 	}

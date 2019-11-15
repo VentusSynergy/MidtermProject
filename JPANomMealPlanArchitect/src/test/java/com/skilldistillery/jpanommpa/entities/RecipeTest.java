@@ -44,6 +44,7 @@ class RecipeTest {
 		em.close();
 		recipe = null;
 	}
+
 	@Disabled
 	@DisplayName("Testing recipe id")
 	@Test
@@ -59,25 +60,39 @@ class RecipeTest {
 		assertTrue(recipe.getPhotoLink().contains("https"));
 		assertEquals("The Bachelor’s Cookbook", recipe.getCookbook());
 		assertEquals("1", recipe.getCookbookPageNumber());
-		assertEquals("",recipe.getWebLink());
+		assertEquals("", recipe.getWebLink());
 	}
+
 	@Disabled
 	@Test
-	@DisplayName ( " test @JoinColumn(name = creator_id")
+	@DisplayName(" test @JoinColumn(name = creator_id")
 	void test1() {
 		assertEquals(1, recipe.getUser().getId());
 	}
-	
+
 	@Test
-	@DisplayName ( " test recipe_userRecipe relationship")
+	@DisplayName(" test recipe_userRecipe relationship")
 	void test2() {
 		assertEquals(1, recipe.getUserRecipies().size());
 	}
-	
+
 	@Test
-	@DisplayName ( " test recipe_recipeIngredient relationship")
+	@DisplayName(" test recipe_recipeIngredient relationship")
 	void test3() {
 		assertEquals(1, recipe.getRecipeIngredients().get(0).getId());
 	}
-	
+
+	@Test
+	@DisplayName(" test recipe_category relationship")
+	void test4() {
+		assertEquals("American", recipe.getCategory().getName());
+	}
+
+	@Test
+	@DisplayName(" test recipe_type relationship")
+	void test5() {
+		//select * from recipe_type rt join recipe r on r.type_id = rt.id where r.id = 1;
+		assertEquals("Lunch", recipe.getRecipeType().getName());
+	}
+
 }
