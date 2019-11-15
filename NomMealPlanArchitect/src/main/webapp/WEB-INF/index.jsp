@@ -7,6 +7,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<jsp:include page="nav.jsp"/>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -18,44 +19,13 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+
 <title>Home: Nom! Meal Plan Architect</title>
 </head>
 <body>
-<!-- NAVBAR -->
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.do">NOM! Meal Plan Architect</a>  
-        <a class="nav-link" href="index.do">Home <span class="sr-only">(current)</span></a>
-    <div class="navbar-nav mr-auto">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Recipes
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="recipeSearch.do" style="background-color: light gray">Search</a>
-          <a class="dropdown-item" href="recipeCreate.do" style="background-color: light gray">Create New</a>
-        </div>
-    </div>
-    <form class="form-inline my-2 my-lg-0" action="login.do">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
-    </form>
-    <form class="form-inline my-2 my-lg-0" action="register.do">
-      <button class="btn btn-info my-2 my-sm-0" type="submit">Register</button>
-    </form>
-</nav>
 <br>
 <br>
-<br>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col col-lg-10">
-			<h1 style="text-align: center">NOM!</h1>
-			<h2 style="text-align: center">The Meal Plan Architect</h2>
-			</div>
-			<div class="col-sm-1"></div>
-		</div>
-	</div>
-
-
+	<h1> HOME</h1>
 
 
 	<!-- Optional JavaScript -->
