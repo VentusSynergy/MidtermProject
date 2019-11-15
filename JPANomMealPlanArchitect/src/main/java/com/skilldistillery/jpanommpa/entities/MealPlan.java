@@ -16,16 +16,16 @@ public class MealPlan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private int userId;
-	@Column(name="plan_name")
+	@Column(name = "plan_name")
 	private String planName;
 	private String description;
 	private boolean active;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
 	public MealPlan() {
 		super();
@@ -33,6 +33,10 @@ public class MealPlan {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getUserId() {
@@ -71,11 +75,7 @@ public class MealPlan {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((planName == null) ? 0 : planName.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -88,40 +88,15 @@ public class MealPlan {
 		if (getClass() != obj.getClass())
 			return false;
 		MealPlan other = (MealPlan) obj;
-		if (active != other.active)
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (id != other.id)
-			return false;
-		if (planName == null) {
-			if (other.planName != null)
-				return false;
-		} else if (!planName.equals(other.planName))
-			return false;
-		if (userId != other.userId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MealPlan [id=");
-		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", planName=");
-		builder.append(planName);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append(", active=");
-		builder.append(active);
-		builder.append("]");
-		return builder.toString();
+		return "MealPlan [id=" + id + ", userId=" + userId + ", planName=" + planName + ", description=" + description
+				+ ", active=" + active + "]";
 	}
 
 }

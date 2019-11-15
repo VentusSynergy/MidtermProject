@@ -28,16 +28,12 @@ public class UserRecipe {
 	@Column(name = "date_last_made")
 	private LocalDate dateLastMade;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
 	public UserRecipe() {
 		super();
-	}
-
-	public User getUser() {
-		return user;
 	}
 
 	public int getId() {
@@ -113,6 +109,8 @@ public class UserRecipe {
 	@Override
 	public String toString() {
 		return "UserRecipe [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", userFavorite="
-				+ userFavorite + ", comment=" + comment + ", dateLastMade=" + dateLastMade + ", user=" + user + "]";
+				+ userFavorite + ", comment=" + comment + ", dateLastMade=" + dateLastMade + "]";
 	}
+
+	
 }

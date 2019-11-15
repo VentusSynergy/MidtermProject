@@ -28,16 +28,12 @@ public class RecipeReview {
 	private String comment;
 	private boolean active;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
 	public RecipeReview() {
 		super();
-	}
-
-	public User getUser() {
-		return user;
 	}
 
 	public int getId() {
@@ -121,7 +117,7 @@ public class RecipeReview {
 	@Override
 	public String toString() {
 		return "RecipeReview [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", rating=" + rating
-				+ ", reviewDate=" + reviewDate + ", comment=" + comment + ", active=" + active + ", user=" + user + "]";
+				+ ", reviewDate=" + reviewDate + ", comment=" + comment + ", active=" + active + "]";
 	}
 
 }
