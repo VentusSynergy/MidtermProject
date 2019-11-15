@@ -42,17 +42,17 @@ class CategoryTest {
 		cat = null;
 	}
 
-	@DisplayName("Testing category id field")
-	@Test
-	void test1() {
-		assertEquals(1, cat.getId());
-		
-	}
-	@DisplayName("Testing category name field")
-	@Test
-	void test2() {
-		assertEquals("Other", cat.getName());
-		
-	}
+//	@DisplayName("Testing category id field")
+//	@Test
+//	void test1() {
+//		assertEquals(1, cat.getId());
+//		
+//	}
+//	@DisplayName("Testing category name field")
+//	@Test
+//	void test2() {
+//		assertEquals("Other", cat.getName());
+//		
+//	}
 
 }
