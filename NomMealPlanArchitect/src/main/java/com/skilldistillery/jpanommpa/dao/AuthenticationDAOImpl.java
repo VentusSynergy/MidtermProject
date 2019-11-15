@@ -51,7 +51,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public boolean isValidUser(User u) {
-		if (getUserByEmail(u.getEmail()) == null) {
+//		if (getUserByEmail(u.getEmail()) == null) {
 //			return false;
 //		}
 //		if (users.get(u.getEmail()).getPassword().equals(u.getPassword())) {
@@ -62,9 +62,12 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public Recipe create(Recipe recipe) {
+		
+		// needs to be aquainted with the user as well
+		
 		em.persist(recipe);
         em.flush();
-		return recipe;
+		return null;
 	}
 
 	@Override
@@ -77,7 +80,6 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public Ingredient create(Ingredient ing) {
-		if()
 		return null;
 	}
 	
