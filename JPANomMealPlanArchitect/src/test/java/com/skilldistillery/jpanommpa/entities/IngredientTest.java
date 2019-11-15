@@ -1,5 +1,6 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class IngredientTest {
@@ -40,9 +42,33 @@ class IngredientTest {
 		ing = null;
 	}
 
+	@DisplayName("Testing Ingredient id field")
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void test1() {
+		assertEquals(1, ing.getId());
 	}
+	@DisplayName("Testing Ingredient name field")
+	@Test
+	void test2() {
+		assertEquals("Sandwich Bread", ing.getName());
+	}
+//	@DisplayName("Testing Ingredient brand field")
+//	@Test
+//	void test3() {
+//		assertEquals(expected, actual);
+//		id 1 brand is null
+//	}
+//	@DisplayName("Testing Ingredient size field")
+//	@Test
+//	void test4() {
+//		assertEquals(expected, actual);
+//		id 1 size is null
+//
+//	}
+//	@DisplayName("Testing Ingredient category field")
+//	@Test
+//	void test5() {
+//		assertEquals(expected, actual);
+//	}
 
 }
