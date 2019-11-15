@@ -1,6 +1,7 @@
 package com.skilldistillery.jpanommpa.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -42,20 +43,16 @@ class GroceryListTest {
 		gc = null;
 	}
 
-//	@DisplayName("Testing GroceryList id field")
-//	@Test
-//	void test1() {
-//		assertEquals(1, gc.getId());
-//	}
-//	@DisplayName("Testing GroceryList mealPlan field")
-//	@Test
-//	void test2() {
-//		assertEquals(1, gc.getMealPlan());
-//	}
-//	@DisplayName("Testing GroceryList purchased field")
-//	@Test
-//	void test3() {
-//		assertEquals(0, gc.getId());
-//	}
+	@DisplayName("Testing GroceryList fields")
+	@Test
+	void test1() {
+		assertNotNull(gc.getId());
+		assertNotNull(gc.getMealPlan());
+		assertNotNull(gc.isPurchased());
+		assertEquals(1, gc.getId());
+		assertEquals(1, gc.getMealPlan());
+		assertEquals(false, gc.isPurchased());
+	}
+
 
 }
