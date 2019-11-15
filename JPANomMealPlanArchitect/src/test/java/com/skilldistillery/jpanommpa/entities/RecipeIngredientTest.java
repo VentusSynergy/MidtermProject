@@ -1,5 +1,6 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -42,7 +43,7 @@ class RecipeIngredientTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		assertEquals("Peanut Butter and Jelly Sandwich", ri.getRecipe().getName());
 	}
 
 }
