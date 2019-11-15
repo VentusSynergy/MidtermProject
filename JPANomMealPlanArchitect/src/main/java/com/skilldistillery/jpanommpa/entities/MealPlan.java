@@ -16,16 +16,15 @@ public class MealPlan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_id")
-	private int userId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	@Column(name = "plan_name")
 	private String planName;
 	private String description;
 	private boolean active;
-
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User user;
 
 	public MealPlan() {
 		super();
@@ -37,14 +36,6 @@ public class MealPlan {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getPlanName() {
@@ -71,6 +62,14 @@ public class MealPlan {
 		this.active = active;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,7 +94,7 @@ public class MealPlan {
 
 	@Override
 	public String toString() {
-		return "MealPlan [id=" + id + ", userId=" + userId + ", planName=" + planName + ", description=" + description
+		return "MealPlan [id=" + id + ", user=" + user + ", planName=" + planName + ", description=" + description
 				+ ", active=" + active + "]";
 	}
 

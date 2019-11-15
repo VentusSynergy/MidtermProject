@@ -62,15 +62,26 @@ class UserTest {
 	}
 
 	@Test
-	@DisplayName("testing relationship user_userRecipe")
-	void Test2() {
+	@DisplayName("testing relationship user and userRecipe")
+	void test2() {
 		assertEquals(1, user.getUserRecipies().get(0).getUser().getId());
 	}
 
 	@Test
-	@DisplayName("testing relationship user_Recipe")
-	void Test3() {
+	@DisplayName("testing relationship user and Recipe")
+	void test3() {
 		assertEquals(1, user.getRecipies().get(0).getId());
+	}
+	
+	@Test
+	@DisplayName("testing relationship user and RecipeReview ")
+	void test4() {
+		assertEquals(1, user.getRecipeReview().get(0).getId());
+	}
+	@Test
+	@DisplayName("testing relationship user and Meal Plan")
+	void test5() {
+		assertEquals(1, user.getMealPlans().get(0).getId());
 	}
 
 }
