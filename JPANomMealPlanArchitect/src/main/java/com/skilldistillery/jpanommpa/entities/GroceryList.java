@@ -1,7 +1,17 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class GroceryList {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "meal_plan")
 	private int mealPlan;
 	private boolean purchased;
 

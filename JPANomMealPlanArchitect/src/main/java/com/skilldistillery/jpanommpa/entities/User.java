@@ -13,21 +13,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
 
-//	+--------------+--------------+------+-----+---------+----------------+
-//	| Field        | Type         | Null | Key | Default | Extra          |
-//	+--------------+--------------+------+-----+---------+----------------+
-//	| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
-//	| username     | varchar(200) | NO   |     | NULL    |                |
-//	| email        | varchar(200) | NO   |     | NULL    |                |
-//	| password     | varchar(16)  | NO   |     | NULL    |                |
-//	| first_name   | varchar(100) | NO   |     | NULL    |                |
-//	| last_name    | varchar(100) | NO   |     | NULL    |                |
-//	| date_created | date         | YES  |     | NULL    |                |
-//	| date_updated | date         | YES  |     | NULL    |                |
-//	| active       | tinyint(4)   | NO   |     | 1       |                |
-//	| admin        | tinyint(4)   | NO   |     | 0       |                |
-//	+--------------+--------------+------+-----+---------+----------------+
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

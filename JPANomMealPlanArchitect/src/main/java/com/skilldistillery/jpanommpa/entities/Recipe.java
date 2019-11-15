@@ -2,6 +2,7 @@ package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,18 +17,27 @@ public class Recipe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	@Column(name = "date_created")
 	private LocalDate dateCreated;
 	private boolean active;
+	@Column(name = "creator_id")
 	private int creatorId;
+	@Column(name = "is_public")
 	private boolean isPublic;
+	@Column(name = "prep_time")
 	private String prepTime;
 	private String instructions;
+	@Column(name = "photo_link")
 	private String photoLink;
 	private String cookbook;
+	@Column(name = "cookbook_page_number")
 	private String cookbookPageNumber;
+	@Column(name = "web_link")
 	private String webLink;
+	@Column(name = "category_id")
 	private int categoryId;
-	private int type_id;
+	@Column(name = "type_id")
+	private int typeId;
 
 	@ManyToOne
 	@JoinColumn(name = "creator_id")
@@ -137,32 +147,11 @@ public class Recipe {
 		this.categoryId = categoryId;
 	}
 
-	public int getType_id() {
-		return type_id;
-	}
-
-	public void setType_id(int type_id) {
-		this.type_id = type_id;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + categoryId;
-		result = prime * result + ((cookbook == null) ? 0 : cookbook.hashCode());
-		result = prime * result + ((cookbookPageNumber == null) ? 0 : cookbookPageNumber.hashCode());
-		result = prime * result + creatorId;
-		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((instructions == null) ? 0 : instructions.hashCode());
-		result = prime * result + (isPublic ? 1231 : 1237);
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((photoLink == null) ? 0 : photoLink.hashCode());
-		result = prime * result + ((prepTime == null) ? 0 : prepTime.hashCode());
-		result = prime * result + type_id;
-		result = prime * result + ((webLink == null) ? 0 : webLink.hashCode());
 		return result;
 	}
 
@@ -175,57 +164,7 @@ public class Recipe {
 		if (getClass() != obj.getClass())
 			return false;
 		Recipe other = (Recipe) obj;
-		if (active != other.active)
-			return false;
-		if (categoryId != other.categoryId)
-			return false;
-		if (cookbook == null) {
-			if (other.cookbook != null)
-				return false;
-		} else if (!cookbook.equals(other.cookbook))
-			return false;
-		if (cookbookPageNumber == null) {
-			if (other.cookbookPageNumber != null)
-				return false;
-		} else if (!cookbookPageNumber.equals(other.cookbookPageNumber))
-			return false;
-		if (creatorId != other.creatorId)
-			return false;
-		if (dateCreated == null) {
-			if (other.dateCreated != null)
-				return false;
-		} else if (!dateCreated.equals(other.dateCreated))
-			return false;
 		if (id != other.id)
-			return false;
-		if (instructions == null) {
-			if (other.instructions != null)
-				return false;
-		} else if (!instructions.equals(other.instructions))
-			return false;
-		if (isPublic != other.isPublic)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (photoLink == null) {
-			if (other.photoLink != null)
-				return false;
-		} else if (!photoLink.equals(other.photoLink))
-			return false;
-		if (prepTime == null) {
-			if (other.prepTime != null)
-				return false;
-		} else if (!prepTime.equals(other.prepTime))
-			return false;
-		if (type_id != other.type_id)
-			return false;
-		if (webLink == null) {
-			if (other.webLink != null)
-				return false;
-		} else if (!webLink.equals(other.webLink))
 			return false;
 		return true;
 	}
@@ -259,10 +198,32 @@ public class Recipe {
 		builder.append(webLink);
 		builder.append(", categoryId=");
 		builder.append(categoryId);
-		builder.append(", type_id=");
-		builder.append(type_id);
+		builder.append(", typeId=");
+		builder.append(typeId);
+		builder.append(", user=");
+		builder.append(user);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
