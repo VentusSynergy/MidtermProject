@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Category {
@@ -12,10 +13,13 @@ public class Category {
 	private int id;
 	private String name;
 
+	public Category() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}
-
 
 	public String getName() {
 		return name;

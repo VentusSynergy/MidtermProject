@@ -47,8 +47,6 @@ class CategoryTest {
 	@DisplayName("Testing Category fields")
 	@Test
 	void test1() {
-		assertNotNull(cat.getId());
-		assertNotNull(cat.getName());
 		assertEquals(1, cat.getId());
 		assertEquals("Other", cat.getName());
 	}
