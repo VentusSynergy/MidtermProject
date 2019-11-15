@@ -2,7 +2,18 @@ package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Recipe {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private LocalDate dateCreated;
@@ -18,12 +29,16 @@ public class Recipe {
 	private int categoryId;
 	private int type_id;
 
-	public int getId() {
-		return id;
+	@ManyToOne
+	@JoinColumn(name = "creator_id")
+	private User user;
+
+	public Recipe() {
+		super();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return id;
 	}
 
 	public String getName() {

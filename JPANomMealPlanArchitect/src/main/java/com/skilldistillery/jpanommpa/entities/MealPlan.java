@@ -1,18 +1,33 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class MealPlan {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int userId;
 	private String planName;
 	private String description;
 	private boolean active;
 
-	public int getId() {
-		return id;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public MealPlan() {
+		super();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return id;
 	}
 
 	public int getUserId() {

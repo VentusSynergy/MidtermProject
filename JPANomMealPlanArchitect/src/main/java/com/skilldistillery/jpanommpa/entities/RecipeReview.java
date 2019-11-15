@@ -2,7 +2,18 @@ package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class RecipeReview {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int userId;
 	private int recipeId;
@@ -10,6 +21,18 @@ public class RecipeReview {
 	private LocalDate reviewDate;
 	private String comment;
 	private boolean active;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public RecipeReview() {
+		super();
+	}
+
+	public User getUser() {
+		return user;
+	}
 
 	public int getId() {
 		return id;
@@ -71,13 +94,7 @@ public class RecipeReview {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + id;
-		result = prime * result + rating;
-		result = prime * result + recipeId;
-		result = prime * result + ((reviewDate == null) ? 0 : reviewDate.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -90,48 +107,15 @@ public class RecipeReview {
 		if (getClass() != obj.getClass())
 			return false;
 		RecipeReview other = (RecipeReview) obj;
-		if (active != other.active)
-			return false;
-		if (comment == null) {
-			if (other.comment != null)
-				return false;
-		} else if (!comment.equals(other.comment))
-			return false;
 		if (id != other.id)
-			return false;
-		if (rating != other.rating)
-			return false;
-		if (recipeId != other.recipeId)
-			return false;
-		if (reviewDate == null) {
-			if (other.reviewDate != null)
-				return false;
-		} else if (!reviewDate.equals(other.reviewDate))
-			return false;
-		if (userId != other.userId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("RecipeReview [id=");
-		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", recipeId=");
-		builder.append(recipeId);
-		builder.append(", rating=");
-		builder.append(rating);
-		builder.append(", reviewDate=");
-		builder.append(reviewDate);
-		builder.append(", comment=");
-		builder.append(comment);
-		builder.append(", active=");
-		builder.append(active);
-		builder.append("]");
-		return builder.toString();
+		return "RecipeReview [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", rating=" + rating
+				+ ", reviewDate=" + reviewDate + ", comment=" + comment + ", active=" + active + ", user=" + user + "]";
 	}
 
 }
