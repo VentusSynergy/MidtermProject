@@ -1,6 +1,6 @@
 package com.skilldistillery.jpanommpa.entities;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RecipeTest {
@@ -20,7 +21,7 @@ class RecipeTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("NomMPA");
 	}
 
 	@AfterAll
@@ -40,9 +41,10 @@ class RecipeTest {
 		recipe = null;
 	}
 
+	@DisplayName("Testing recipe id")
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		assertEquals(1, recipe.getId());
 	}
 
 }
