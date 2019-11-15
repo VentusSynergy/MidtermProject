@@ -44,6 +44,14 @@ public class User {
 //	@OneToMany(mappedBy = "user")
 //	private List<MealPlan> mealPlans;
 
+//	public List<Recipe> getRecipies() {
+//		return recipies;
+//	}
+//
+//	public void setRecipies(List<Recipe> recipies) {
+//		this.recipies = recipies;
+//	}
+
 	public User() {
 		super();
 	}

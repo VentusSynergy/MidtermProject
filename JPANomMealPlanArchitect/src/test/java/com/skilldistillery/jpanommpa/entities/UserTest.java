@@ -66,5 +66,11 @@ class UserTest {
 	void Test2() {
 		assertEquals(1, user.getUserRecipies().get(0).getUserId());
 	}
+	
+//	@Test
+//	@DisplayName("testing relationship user_Recipe")
+//	void Test3() {
+//		assertEquals("Peanut Butter and Jelly Sandwich", user.getRecipies().get(0).getName());
+//	}
 
 }
