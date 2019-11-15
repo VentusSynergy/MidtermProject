@@ -54,19 +54,11 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Recipe> recipies;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<RecipeReview> recipeReview;
-//
-//	@OneToMany(mappedBy = "user")
-//	private List<MealPlan> mealPlans;
+	@OneToMany(mappedBy = "user")
+	private List<RecipeReview> recipeReview;
 
-//	public List<Recipe> getRecipies() {
-//		return recipies;
-//	}
-//
-//	public void setRecipies(List<Recipe> recipies) {
-//		this.recipies = recipies;
-//	}
+	@OneToMany(mappedBy = "user")
+	private List<MealPlan> mealPlans;
 
 	public User() {
 		super();
@@ -106,6 +98,22 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<RecipeReview> getRecipeReview() {
+		return recipeReview;
+	}
+
+	public void setRecipeReview(List<RecipeReview> recipeReview) {
+		this.recipeReview = recipeReview;
+	}
+
+	public List<MealPlan> getMealPlans() {
+		return mealPlans;
+	}
+
+	public void setMealPlans(List<MealPlan> mealPlans) {
+		this.mealPlans = mealPlans;
 	}
 
 	@Override

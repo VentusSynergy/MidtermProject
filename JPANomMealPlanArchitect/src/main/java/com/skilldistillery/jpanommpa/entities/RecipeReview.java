@@ -15,11 +15,26 @@ import javax.persistence.Table;
 @Table(name = "recipe_review")
 public class RecipeReview {
 
+//	+-------------+------------+------+-----+---------+----------------+
+//	| Field       | Type       | Null | Key | Default | Extra          |
+//	+-------------+------------+------+-----+---------+----------------+
+//	| id          | int(11)    | NO   | PRI | NULL    | auto_increment |
+//	| user_id     | int(11)    | NO   | MUL | NULL    |                |
+//	| recipe_id   | int(11)    | NO   | MUL | NULL    |                |
+//	| rating      | int(1)     | NO   |     | NULL    |                |
+//	| review_date | date       | NO   |     | NULL    |                |
+//	| comment     | text       | YES  |     | NULL    |                |
+//	| active      | tinyint(4) | YES  |     | 1       |                |
+//	+-------------+------------+------+-----+---------+----------------+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_id")
-	private int userId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	@Column(name = "recipe_id")
 	private int recipeId;
 	private int rating;
@@ -27,10 +42,6 @@ public class RecipeReview {
 	private LocalDate reviewDate;
 	private String comment;
 	private boolean active;
-
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User user;
 
 	public RecipeReview() {
 		super();
@@ -42,14 +53,6 @@ public class RecipeReview {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public int getRecipeId() {
@@ -92,6 +95,14 @@ public class RecipeReview {
 		this.active = active;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -116,7 +127,7 @@ public class RecipeReview {
 
 	@Override
 	public String toString() {
-		return "RecipeReview [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", rating=" + rating
+		return "RecipeReview [id=" + id + ", user=" + user + ", recipeId=" + recipeId + ", rating=" + rating
 				+ ", reviewDate=" + reviewDate + ", comment=" + comment + ", active=" + active + "]";
 	}
 
