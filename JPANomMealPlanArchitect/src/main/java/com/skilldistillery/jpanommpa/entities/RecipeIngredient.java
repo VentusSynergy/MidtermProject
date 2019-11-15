@@ -1,10 +1,20 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class RecipeIngredient {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "ingredient_id")
 	private int ingredientId;
+	@Column(name = "recipe_id")
 	private int recipeId;
 	private double quantity;
+	@Column(name = "measurement_unit")
 	private String measurementUnit;
 	private String remarks;
 

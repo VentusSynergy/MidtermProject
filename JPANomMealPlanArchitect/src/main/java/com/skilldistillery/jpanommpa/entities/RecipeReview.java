@@ -2,6 +2,7 @@ package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,12 @@ public class RecipeReview {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "user_id")
 	private int userId;
+	@Column(name = "recipe_id")
 	private int recipeId;
 	private int rating;
+	@Column(name = "review_date")
 	private LocalDate reviewDate;
 	private String comment;
 	private boolean active;
