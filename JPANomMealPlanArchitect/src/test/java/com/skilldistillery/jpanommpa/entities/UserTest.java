@@ -70,7 +70,7 @@ class UserTest {
 	@Test
 	@DisplayName("testing relationship user and Recipe")
 	void test3() {
-		assertEquals(1, user.getRecipies().get(0).getId());
+		assertEquals(1, user.getRecipes().get(0).getId());
 	}
 	
 	@Test
