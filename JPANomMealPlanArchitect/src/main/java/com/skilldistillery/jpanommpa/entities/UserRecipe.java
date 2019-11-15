@@ -2,13 +2,36 @@ package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class UserRecipe {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int userId;
 	private int recipeId;
 	private boolean userFavorite;
 	private String comment;
 	private LocalDate dateLastMade;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public UserRecipe() {
+		super();
+	}
+
+	public User getUser() {
+		return user;
+	}
 
 	public int getId() {
 		return id;
@@ -62,12 +85,7 @@ public class UserRecipe {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
-		result = prime * result + ((dateLastMade == null) ? 0 : dateLastMade.hashCode());
 		result = prime * result + id;
-		result = prime * result + recipeId;
-		result = prime * result + (userFavorite ? 1231 : 1237);
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -80,43 +98,14 @@ public class UserRecipe {
 		if (getClass() != obj.getClass())
 			return false;
 		UserRecipe other = (UserRecipe) obj;
-		if (comment == null) {
-			if (other.comment != null)
-				return false;
-		} else if (!comment.equals(other.comment))
-			return false;
-		if (dateLastMade == null) {
-			if (other.dateLastMade != null)
-				return false;
-		} else if (!dateLastMade.equals(other.dateLastMade))
-			return false;
 		if (id != other.id)
-			return false;
-		if (recipeId != other.recipeId)
-			return false;
-		if (userFavorite != other.userFavorite)
-			return false;
-		if (userId != other.userId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserRecipe [id=");
-		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", recipeId=");
-		builder.append(recipeId);
-		builder.append(", userFavorite=");
-		builder.append(userFavorite);
-		builder.append(", comment=");
-		builder.append(comment);
-		builder.append(", dateLastMade=");
-		builder.append(dateLastMade);
-		builder.append("]");
-		return builder.toString();
+		return "UserRecipe [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", userFavorite="
+				+ userFavorite + ", comment=" + comment + ", dateLastMade=" + dateLastMade + ", user=" + user + "]";
 	}
 }

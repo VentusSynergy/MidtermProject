@@ -1,14 +1,31 @@
 package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
+
+//	+--------------+--------------+------+-----+---------+----------------+
+//	| Field        | Type         | Null | Key | Default | Extra          |
+//	+--------------+--------------+------+-----+---------+----------------+
+//	| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+//	| username     | varchar(200) | NO   |     | NULL    |                |
+//	| email        | varchar(200) | NO   |     | NULL    |                |
+//	| password     | varchar(16)  | NO   |     | NULL    |                |
+//	| first_name   | varchar(100) | NO   |     | NULL    |                |
+//	| last_name    | varchar(100) | NO   |     | NULL    |                |
+//	| date_created | date         | YES  |     | NULL    |                |
+//	| date_updated | date         | YES  |     | NULL    |                |
+//	| active       | tinyint(4)   | NO   |     | 1       |                |
+//	| admin        | tinyint(4)   | NO   |     | 0       |                |
+//	+--------------+--------------+------+-----+---------+----------------+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +41,24 @@ public class User {
 	private LocalDateTime dateUpdated;
 	private String avatarURL;
 
+	@OneToMany(mappedBy = "user")
+	private List<UserRecipe> userRecipies;
+
+	@OneToMany(mappedBy = "user")
+	private List<Recipe> recipies;
+
+	@OneToMany(mappedBy = "user")
+	private List<RecipeReview> recipeReview;
+
+	@OneToMany(mappedBy = "user")
+	private List<MealPlan> mealPlans;
+
 	public User() {
 		super();
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUsername() {
