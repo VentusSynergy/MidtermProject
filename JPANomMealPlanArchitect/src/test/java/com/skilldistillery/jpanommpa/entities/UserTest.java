@@ -2,6 +2,7 @@ package com.skilldistillery.jpanommpa.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,8 +45,18 @@ class UserTest {
 
 	@Test
 	void test() {
+//		select * from user where id = 1;
 		assertNotNull(user.getUsername());
 		assertEquals("marthaStewart", user.getUsername());
+		assertEquals("marthaStewart@gmail.com", user.getEmail());
+		assertEquals("marthaStewart", user.getPassword());
+		assertEquals("Martha", user.getFirstName());
+		assertEquals("Stewart", user.getLastName());
+		assertEquals(true, user.getActive());
+		assertEquals(false, user.getAdmin());
+		assertNull(user.getDateCreated());
+		assertNull(user.getDateUpdated());
+		assertNull(user.getAvatarURL());
 	}
 
 }
