@@ -14,10 +14,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>User Profile: Nom! Meal Plan Architect</title>
+    <title>Create Recipe: Nom! Meal Plan Architect</title>
   </head>
   <body>
-    <h1>User Profile Page</h1>
+    <h1>Create Recipe Page</h1>
     
     
     
