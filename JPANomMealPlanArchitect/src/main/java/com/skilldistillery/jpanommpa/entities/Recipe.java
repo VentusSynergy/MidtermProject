@@ -1,6 +1,7 @@
 package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Recipe {
@@ -24,6 +26,15 @@ public class Recipe {
 	@ManyToOne
 	@JoinColumn(name = "creator_id")
 	private User user;
+	
+	@OneToMany(mappedBy = "recipe")
+	private List<UserRecipe> userRecipies;
+	
+	
+	@OneToMany(mappedBy = "recipe")
+	private List<RecipeIngredient> recipeIngredients;
+
+
 
 	@Column(name = "is_public")
 	private boolean isPublic;
@@ -45,6 +56,24 @@ public class Recipe {
 	public Recipe() {
 		super();
 	}
+
+	public List<RecipeIngredient> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+
+	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
+	}
+
+	public List<UserRecipe> getUserRecipies() {
+		return userRecipies;
+	}
+
+	public void setUserRecipies(List<UserRecipe> userRecipies) {
+		this.userRecipies = userRecipies;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -158,6 +187,14 @@ public class Recipe {
 		this.typeId = typeId;
 	}
 
+//	public List<RecipeIngredient> getRecipeIngredients() {
+//		return recipeIngredients;
+//	}
+//
+//	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+//		this.recipeIngredients = recipeIngredients;
+//	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,10 +219,37 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", name=" + name + ", dateCreated=" + dateCreated + ", active=" + active + ", user="
-				+ user + ", isPublic=" + isPublic + ", prepTime=" + prepTime + ", instructions=" + instructions
-				+ ", photoLink=" + photoLink + ", cookbook=" + cookbook + ", cookbookPageNumber=" + cookbookPageNumber
-				+ ", webLink=" + webLink + ", categoryId=" + categoryId + ", typeId=" + typeId + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Recipe [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", dateCreated=");
+		builder.append(dateCreated);
+		builder.append(", active=");
+		builder.append(active);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", isPublic=");
+		builder.append(isPublic);
+		builder.append(", prepTime=");
+		builder.append(prepTime);
+		builder.append(", instructions=");
+		builder.append(instructions);
+		builder.append(", photoLink=");
+		builder.append(photoLink);
+		builder.append(", cookbook=");
+		builder.append(cookbook);
+		builder.append(", cookbookPageNumber=");
+		builder.append(cookbookPageNumber);
+		builder.append(", webLink=");
+		builder.append(webLink);
+		builder.append(", categoryId=");
+		builder.append(categoryId);
+		builder.append(", typeId=");
+		builder.append(typeId);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
