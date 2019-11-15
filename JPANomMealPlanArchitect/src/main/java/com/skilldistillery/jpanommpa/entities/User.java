@@ -3,6 +3,7 @@ package com.skilldistillery.jpanommpa.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,15 +31,22 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="user_name")
 	private String username;
 	private String email;
 	private String password;
+	@Column(name="first_name")
 	private String firstName;
+	@Column(name="lst_name")
 	private String lastName;
 	private Boolean active;
 	private Boolean admin;
+	@Column(name="date_created")
 	private LocalDateTime dateCreated;
+	@Column(name="date_updated")
 	private LocalDateTime dateUpdated;
+	@Column(name="avatar_url")
 	private String avatarURL;
 
 	@OneToMany(mappedBy = "user")
