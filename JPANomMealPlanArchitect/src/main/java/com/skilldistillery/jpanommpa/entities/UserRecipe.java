@@ -34,8 +34,10 @@ public class UserRecipe {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@Column(name = "recipe_id")
-	private int recipeId;
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
+	
 
 	@Column(name = "user_favorite")
 	private boolean userFavorite;
@@ -58,12 +60,12 @@ public class UserRecipe {
 		this.id = id;
 	}
 
-	public int getRecipeId() {
-		return recipeId;
+	public Recipe getRecipe() {
+		return recipe;
 	}
 
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	public boolean isUserFavorite() {
@@ -122,8 +124,21 @@ public class UserRecipe {
 
 	@Override
 	public String toString() {
-		return "UserRecipe [id=" + id + ", recipeId=" + recipeId + ", userFavorite=" + userFavorite + ", comment="
-				+ comment + ", dateLastMade=" + dateLastMade + ", user=" + user + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserRecipe [id=");
+		builder.append(id);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append(", userFavorite=");
+		builder.append(userFavorite);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", dateLastMade=");
+		builder.append(dateLastMade);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

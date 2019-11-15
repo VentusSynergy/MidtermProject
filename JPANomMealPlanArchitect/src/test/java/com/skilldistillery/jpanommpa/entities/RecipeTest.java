@@ -13,6 +13,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +44,7 @@ class RecipeTest {
 		em.close();
 		recipe = null;
 	}
-
+	@Disabled
 	@DisplayName("Testing recipe id")
 	@Test
 	void test() {
@@ -60,11 +61,23 @@ class RecipeTest {
 		assertEquals("1", recipe.getCookbookPageNumber());
 		assertEquals("",recipe.getWebLink());
 	}
-	
+	@Disabled
 	@Test
 	@DisplayName ( " test @JoinColumn(name = creator_id")
 	void test1() {
 		assertEquals(1, recipe.getUser().getId());
+	}
+	
+	@Test
+	@DisplayName ( " test recipe_userRecipe relationship")
+	void test2() {
+		assertEquals(1, recipe.getUserRecipies().size());
+	}
+	
+	@Test
+	@DisplayName ( " test recipe_recipeIngredient relationship")
+	void test3() {
+		assertEquals(1, recipe.getRecipeIngredients().get(0).getId());
 	}
 	
 }
