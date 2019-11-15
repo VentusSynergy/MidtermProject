@@ -46,7 +46,6 @@ class UserRecipeTest {
 	@DisplayName("testing primary fields")
 	void Test2() {
 		assertEquals(1, ur.getId());
-		assertEquals(1, ur.getUserId());
 		assertEquals(1, ur.getRecipeId());
 		assertEquals(1, ur.isUserFavorite());
 		assertEquals(1, ur.getComment());

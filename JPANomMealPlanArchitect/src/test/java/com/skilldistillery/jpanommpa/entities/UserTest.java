@@ -60,13 +60,13 @@ class UserTest {
 		assertNull(user.getDateUpdated());
 		assertNull(user.getAvatarURL());
 	}
-	
+
 	@Test
 	@DisplayName("testing relationship user_userRecipe")
 	void Test2() {
-		assertEquals(1, user.getUserRecipies().get(0).getUserId());
+		assertEquals(1, user.getUserRecipies().get(0).getUser().getId());
 	}
-	
+
 //	@Test
 //	@DisplayName("testing relationship user_Recipe")
 //	void Test3() {

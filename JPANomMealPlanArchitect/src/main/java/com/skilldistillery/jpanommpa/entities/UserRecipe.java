@@ -15,23 +15,37 @@ import javax.persistence.Table;
 @Table(name = "user_recipe")
 public class UserRecipe {
 
+//	+----------------+------------+------+-----+---------+----------------+
+//	| Field          | Type       | Null | Key | Default | Extra          |
+//	+----------------+------------+------+-----+---------+----------------+
+//	| id             | int(11)    | NO   | PRI | NULL    | auto_increment |
+//	| user_id        | int(11)    | NO   | MUL | NULL    |                |
+//	| recipe_id      | int(11)    | NO   | MUL | NULL    |                |
+//	| user_favorite  | tinyint(4) | YES  |     | 0       |                |
+//	| comment        | text       | YES  |     | NULL    |                |
+//	| date_last_made | date       | YES  |     | NULL    |                |
+//	+----------------+------------+------+-----+---------+----------------+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_id")
-	private int userId;
-	@Column(name = "recipe_id")
-	private int recipeId;
-	@Column(name = "user_favorite")
-	private boolean userFavorite;
-	private String comment;
-	@Column(name = "date_last_made")
-	private LocalDate dateLastMade;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@Column(name = "recipe_id")
+	private int recipeId;
+
+	@Column(name = "user_favorite")
+	private boolean userFavorite;
+
+	private String comment;
+
+	@Column(name = "date_last_made")
+	private LocalDate dateLastMade;
+
+
 	public UserRecipe() {
 		super();
 	}
@@ -42,14 +56,6 @@ public class UserRecipe {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public int getRecipeId() {
@@ -116,24 +122,8 @@ public class UserRecipe {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserRecipe [id=");
-		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", recipeId=");
-		builder.append(recipeId);
-		builder.append(", userFavorite=");
-		builder.append(userFavorite);
-		builder.append(", comment=");
-		builder.append(comment);
-		builder.append(", dateLastMade=");
-		builder.append(dateLastMade);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append("]");
-		return builder.toString();
+		return "UserRecipe [id=" + id + ", recipeId=" + recipeId + ", userFavorite=" + userFavorite + ", comment="
+				+ comment + ", dateLastMade=" + dateLastMade + ", user=" + user + "]";
 	}
 
-	
 }
