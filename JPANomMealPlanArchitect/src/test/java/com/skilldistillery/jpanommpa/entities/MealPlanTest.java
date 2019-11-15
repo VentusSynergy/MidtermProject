@@ -51,10 +51,16 @@ class MealPlanTest {
 		assertTrue(mp.isActive());
 	}
 	
+//	@Test
+//	@DisplayName ("test the user relationship")
+//	void test1() {
+//		assertEquals(1, mp.getUser().getId());
+//	}
+	
 	@Test
-	@DisplayName ("test the user relationship")
-	void test1() {
-		assertEquals(1, mp.getUser().getId());
+	@DisplayName ("test the GL_MP relationship")
+	void test2() {
+		assertEquals("", mp.getPlan().getPlanName());
 	}
 
 }

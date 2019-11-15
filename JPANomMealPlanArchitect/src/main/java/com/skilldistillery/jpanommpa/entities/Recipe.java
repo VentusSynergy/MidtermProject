@@ -33,6 +33,9 @@ public class Recipe {
 
 	@OneToMany(mappedBy = "recipe")
 	private List<UserRecipe> userRecipies;
+	
+	@OneToMany(mappedBy = "recipe")
+	private List<RecipeReview> reviews;
 
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeIngredient> recipeIngredients;
@@ -60,6 +63,14 @@ public class Recipe {
 
 	public Recipe() {
 		super();
+	}
+
+	public List<RecipeReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<RecipeReview> reviews) {
+		this.reviews = reviews;
 	}
 
 	public Category getCategory() {
