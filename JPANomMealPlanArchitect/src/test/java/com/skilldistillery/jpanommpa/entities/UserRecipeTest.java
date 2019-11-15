@@ -56,7 +56,7 @@ class UserRecipeTest {
 	@DisplayName("testing relationship recipe_userRecipe")
 	void test3() {
 		//select * from recipe r join user_recipe ur on ur.recipe_id = r.id;
-		assertEquals("Ramen", ur.getRecipe().getName());
+		assertEquals("Peanut Butter and Jelly Sandwich", ur.getRecipe().getName());
 	}
 
 }
