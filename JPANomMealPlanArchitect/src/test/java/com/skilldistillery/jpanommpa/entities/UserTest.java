@@ -12,6 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
@@ -44,6 +45,7 @@ class UserTest {
 	}
 
 	@Test
+	@DisplayName("testing primary fields")
 	void test() {
 //		select * from user where id = 1;
 		assertNotNull(user.getUsername());
@@ -57,6 +59,12 @@ class UserTest {
 		assertNull(user.getDateCreated());
 		assertNull(user.getDateUpdated());
 		assertNull(user.getAvatarURL());
+	}
+	
+	@Test
+	@DisplayName("testing relationship user_userRecipe")
+	void Test2() {
+		assertEquals(1, user.getUserRecipies().get(0).getUserId());
 	}
 
 }
