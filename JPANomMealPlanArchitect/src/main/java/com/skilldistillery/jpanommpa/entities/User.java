@@ -52,7 +52,7 @@ public class User {
 	private List<UserRecipe> userRecipies;
 
 	@OneToMany(mappedBy = "user")
-	private List<Recipe> recipies;
+	private List<Recipe> recipes;
 
 	@OneToMany(mappedBy = "user")
 	private List<RecipeReview> recipeReview;
@@ -64,24 +64,12 @@ public class User {
 		super();
 	}
 
-	public List<UserRecipe> getUserRecipies() {
-		return userRecipies;
-	}
-
-	public void setUserRecipies(List<UserRecipe> userRecipies) {
-		this.userRecipies = userRecipies;
-	}
-
-	public List<Recipe> getRecipies() {
-		return recipies;
-	}
-
-	public void setRecipies(List<Recipe> recipies) {
-		this.recipies = recipies;
-	}
-
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -98,6 +86,22 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<UserRecipe> getUserRecipies() {
+		return userRecipies;
+	}
+
+	public void setUserRecipies(List<UserRecipe> userRecipies) {
+		this.userRecipies = userRecipies;
+	}
+
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
 	}
 
 	public List<RecipeReview> getRecipeReview() {
