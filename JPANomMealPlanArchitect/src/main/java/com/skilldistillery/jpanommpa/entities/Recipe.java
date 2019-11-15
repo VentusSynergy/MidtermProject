@@ -29,9 +29,9 @@ public class Recipe {
 	private int categoryId;
 	private int type_id;
 
-	@ManyToOne
-	@JoinColumn(name = "creator_id")
-	private User user;
+////	@ManyToOne
+//	@JoinColumn(name = "creator_id")
+//	private User user;
 
 	public Recipe() {
 		super();

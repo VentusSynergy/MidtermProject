@@ -9,8 +9,8 @@
     </provider>
 
 		<!-- Class Definitions -->
-		<class>com.skilldistillery.jpanommpa.entities.Category</class>
-		<class>com.skilldistillery.jpanommpa.entities.GroceryList</class>
+<!-- 		<class>com.skilldistillery.jpanommpa.entities.Category</class>
+ -->		<class>com.skilldistillery.jpanommpa.entities.GroceryList</class>
 		<class>com.skilldistillery.jpanommpa.entities.Ingredient</class>
 		<class>com.skilldistillery.jpanommpa.entities.MealPlan</class>
 		<class>com.skilldistillery.jpanommpa.entities.MealPlanRecipe</class>

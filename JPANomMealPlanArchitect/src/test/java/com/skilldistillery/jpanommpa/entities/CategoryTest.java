@@ -1,5 +1,6 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CategoryTest {
@@ -20,7 +22,7 @@ class CategoryTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("NomMPA");
 	}
 
 	@AfterAll
@@ -40,9 +42,11 @@ class CategoryTest {
 		cat = null;
 	}
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+//	@DisplayName("Testing category id field")
+//	@Test
+//	void test() {
+//		assertEquals(1, cat.getId());
+//		
+//	}
 
 }

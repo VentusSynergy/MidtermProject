@@ -20,7 +20,7 @@ class UserRecipeTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("NomMPA");
 	}
 
 	@AfterAll
