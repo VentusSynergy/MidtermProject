@@ -34,7 +34,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="user_name")
 	private String username;
 	private String email;
 	private String password;
@@ -53,13 +52,13 @@ public class User {
 
 //	@OneToMany(mappedBy = "user")
 //	private List<UserRecipe> userRecipies;
-//
+
 //	@OneToMany(mappedBy = "user")
 //	private List<Recipe> recipies;
-//
+
 //	@OneToMany(mappedBy = "user")
 //	private List<RecipeReview> recipeReview;
-//
+
 //	@OneToMany(mappedBy = "user")
 //	private List<MealPlan> mealPlans;
 

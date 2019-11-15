@@ -39,9 +39,9 @@ public class Recipe {
 	@Column(name = "type_id")
 	private int typeId;
 
-	@ManyToOne
-	@JoinColumn(name = "creator_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "creator_id")
+//	private User user;
 
 	public Recipe() {
 		super();
@@ -49,6 +49,10 @@ public class Recipe {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -147,6 +151,14 @@ public class Recipe {
 		this.categoryId = categoryId;
 	}
 
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -171,59 +183,12 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Recipe [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", dateCreated=");
-		builder.append(dateCreated);
-		builder.append(", active=");
-		builder.append(active);
-		builder.append(", creatorId=");
-		builder.append(creatorId);
-		builder.append(", isPublic=");
-		builder.append(isPublic);
-		builder.append(", prepTime=");
-		builder.append(prepTime);
-		builder.append(", instructions=");
-		builder.append(instructions);
-		builder.append(", photoLink=");
-		builder.append(photoLink);
-		builder.append(", cookbook=");
-		builder.append(cookbook);
-		builder.append(", cookbookPageNumber=");
-		builder.append(cookbookPageNumber);
-		builder.append(", webLink=");
-		builder.append(webLink);
-		builder.append(", categoryId=");
-		builder.append(categoryId);
-		builder.append(", typeId=");
-		builder.append(typeId);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append("]");
-		return builder.toString();
+		return "Recipe [id=" + id + ", name=" + name + ", dateCreated=" + dateCreated + ", active=" + active
+				+ ", creatorId=" + creatorId + ", isPublic=" + isPublic + ", prepTime=" + prepTime + ", instructions="
+				+ instructions + ", photoLink=" + photoLink + ", cookbook=" + cookbook + ", cookbookPageNumber="
+				+ cookbookPageNumber + ", webLink=" + webLink + ", categoryId=" + categoryId + ", typeId=" + typeId
+				+ "]";
 	}
 
-	public int getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(int typeId) {
-		this.typeId = typeId;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 }
