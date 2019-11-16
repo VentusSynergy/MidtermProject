@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
 body {
-	background-color: #0066ff;
+	background-image:url('https://i.pinimg.com/originals/fa/87/4f/fa874f786a550a7b50a00a08776c246b.gif'); 
+	background-repeat:no-repeat;
+	background-size: cover;
+	/* background-color: #0066ff; */
 	color: white;
 }
 
