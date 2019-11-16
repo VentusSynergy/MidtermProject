@@ -1,5 +1,6 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RecipeTypeTest {
@@ -41,8 +43,9 @@ class RecipeTypeTest {
 	}
 
 	@Test
+	@DisplayName ("primary fields")
 	void test() {
-		fail("Not yet implemented");
+		assertEquals("Breakfast", rt.getName());
 	}
 
 }
