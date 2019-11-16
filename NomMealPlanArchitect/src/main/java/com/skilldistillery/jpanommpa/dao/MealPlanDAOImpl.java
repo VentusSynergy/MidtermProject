@@ -45,16 +45,13 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 	public boolean deleteMealPlan(MealPlan m) {
 		MealPlan matchingMP = em.find(MealPlan.class, m.getId());
 
-		em.remove(matchingMP);
+		matchingMP.setActive(false);
+		
+		em.persist(matchingMP);
 
 		em.flush();
 
-		MealPlan stillInDB = em.find(MealPlan.class, m.getId());
-		if (stillInDB == null) {
-			return true;
-		} else {
-			return false;
-		}
+		return true;
 	}
 
 	@Override
