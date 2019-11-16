@@ -34,19 +34,19 @@
 			<div class="col-3"></div>
 			<div class="col-6">
 				<h1>Login</h1>
-				<form>
-					<div class="form-group">
+				<form:form action="loginAction.do" method="GET">
+					<div class="form-group" >
 						<label for="exampleInputEmail1">Email address</label> <input
 							type="email" class="form-control" id="exampleInputEmail1"
-							aria-describedby="emailHelp" placeholder="Enter email">
+							aria-describedby="emailHelp" placeholder="Enter email" name="email">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label> <input
 							type="password" class="form-control" id="exampleInputPassword1"
-							placeholder="Password">
+							placeholder="Password" name="password">
 					</div>
 					<button type="submit" class="btn btn-light">Submit</button>
-				</form>
+				</form:form>
 			</div>
 			<div class="col-3"></div>
 		</div>

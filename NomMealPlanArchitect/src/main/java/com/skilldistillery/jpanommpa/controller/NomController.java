@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
@@ -37,12 +38,29 @@ public class NomController {
 
 		return "index";
 	}
-
-	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+	
+	@RequestMapping(path = "login.do")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
+		mv.setViewName("login");
+		return mv;
+	}
+
+	@RequestMapping(path = "loginAction.do", method = RequestMethod.GET)
+	public ModelAndView loginDo(@RequestParam("email") String email, @RequestParam("password") String password) {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		u.setEmail(email);
+		u.setPassword(password);
+
+		if (userDao.isValidUser(u)) {
+			mv.addObject("user", u);
+			mv.setViewName("userProfile");
+			return mv;
+		}
+
 		mv.setViewName("login");
 		return mv;
 	}
@@ -79,33 +97,27 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
-		
-		
-		
+
 		mv.setViewName("recipeSearch");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.POST)
 	public ModelAndView searchRecipeResults() {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
-		
-		
-		
+
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
 	public ModelAndView createRecipe() {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
-		
-		
-		
+
 		mv.setViewName("createRecipe");
 		return mv;
 	}
