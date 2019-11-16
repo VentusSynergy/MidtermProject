@@ -45,11 +45,23 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 	}
 
 	@Override
-	public boolean isValidUser(User u) {
-		if (getUserByEmail(u.getEmail()) == null) {
+	public boolean isValidUser(User user) {
+		
+		System.out.println("************************************");
+		System.out.println(user);
+		
+		if (getUserByEmail(user.getEmail()) == null) {
+			
+			System.out.println("************************************");
+			System.out.println(false);
+			
 			return false;
 		}
-		if (users.get(u.getEmail()).getPassword().equals(u.getPassword())) {
+		if (users.get(user.getEmail()).getPassword().equals(user.getPassword())) {
+			
+			System.out.println("************************************");
+			System.out.println(true);
+			
 			return true;
 		}
 		return false;
