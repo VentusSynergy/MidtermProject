@@ -153,44 +153,65 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectAllPublicRecipe() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.isPublic = :public";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).getResultList();
+
+		return results;
 	}
 
 	@Override
 	public List<Recipe> selectPublicRecipeByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.name = :name and r.isPublic = :public";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("name", name).setParameter("public", true).getResultList();
+
+		return results;
 	}
 
 	@Override
 	public List<Recipe> selectPublicRecipeByKeyword(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.isPublic = :public and r.name like '%:word%' or r.cookbook like '%:word%' or r.category.name like '%:word%' or r.type.name like '%:word%'";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("word", keyword).setParameter("public", true).getResultList();
+
+		return results;
 	}
 
 	@Override
 	public List<Recipe> selectPublicRecipeByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.isPublic = :public and r.category.name like '%:word%'";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("word", category).setParameter("public", true).getResultList();
+
+		return results;
 	}
 
 	@Override
 	public List<Recipe> selectPublicRecipeByIngredient(String ingredient) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.isPublic = :public and r.recipeIngredients.ingredient.name = :name";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("name", ingredient).getResultList();
+
+		return results;
 	}
 
 	@Override
 	public List<Recipe> selectPublicRecipeByType(String type) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.isPublic = :public and r.type.name like '%:word%'";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("word", type).getResultList();
+
+		return results;
 	}
 
 	@Override
 	public List<Recipe> selectPublicRecipeByCookbook(String cookbook) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Recipe where r.isPublic = :public and r.cookbook like '%:word%'";
+
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("word", cookbook).getResultList();
+
+		return results;
 	}
 
 }
