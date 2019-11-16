@@ -82,7 +82,7 @@ public class IngredientDAOImpl implements IngredientDAO{
 	public boolean deleteIngredient(Ingredient i) {
 		Ingredient matchingIngredient = em.find(Ingredient.class, i.getId());
 		
-		em.remove(i);
+		em.remove(matchingIngredient);
 		
 		em.flush();
 		

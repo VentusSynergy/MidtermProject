@@ -1,5 +1,7 @@
 package com.skilldistillery.jpanommpa.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -10,39 +12,67 @@ import com.skilldistillery.jpanommpa.entities.MealPlan;
 
 @Transactional
 @Service
-public class MealPlanDAOImpl implements MealPlanDAO{
+public class MealPlanDAOImpl implements MealPlanDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
-	
+
 	@Override
 	public MealPlan createMealPlan(MealPlan m) {
-		return null;
+		em.persist(m);
+
+		em.flush();
+
+		return m;
 	}
 
 	@Override
 	public MealPlan updateMealPlan(MealPlan m) {
+		MealPlan matchingMP = em.find(MealPlan.class, m.getId());
+
+		matchingMP.setUser(m.getUser());
+		matchingMP.setPlanName(m.getPlanName());
+		matchingMP.setDescription(m.getDescription());
+		matchingMP.setActive(true);
+
 		em.persist(m);
-		
-		return null;
+
+		em.flush();
+
+		return m;
 	}
 
 	@Override
 	public boolean deleteMealPlan(MealPlan m) {
-		// TODO Auto-generated method stub
-		return false;
+		MealPlan matchingMP = em.find(MealPlan.class, m.getId());
+
+		em.remove(matchingMP);
+
+		em.flush();
+
+		MealPlan stillInDB = em.find(MealPlan.class, m.getId());
+		if (stillInDB == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public MealPlan selectAllMealPlan(MealPlan m) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MealPlan> selectAllMealPlan(MealPlan m) {
+		String query = "Select m from MealPlan";
+
+		List<MealPlan> results = em.createQuery(query, MealPlan.class).getResultList();
+
+		return results;
 	}
 
 	@Override
-	public MealPlan selectMealPlanByKeyword(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MealPlan> selectMealPlanByKeyword(String keyword) {
+		String query = "Select m from MealPlan where planName like '%word%' or description like '%word%'";
+
+		List<MealPlan> results = em.createQuery(query, MealPlan.class).setParameter("word", keyword).getResultList();
+
+		return results;
 	}
 
 }
