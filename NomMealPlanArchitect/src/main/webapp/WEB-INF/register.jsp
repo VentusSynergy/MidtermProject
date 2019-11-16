@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="nav.jsp"/>
+<jsp:include page="publicNavbar.jsp" />
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -20,7 +20,8 @@
 	crossorigin="anonymous">
 <title>Register: new user</title>
 </head>
-<body><br>
+<body>
+	<br>
 	<form:form action="register.do" method="POST" modelAttribute="user">
 		<form:label path="username">UserName:</form:label>
 		<form:input path="username" />
@@ -45,11 +46,11 @@
 
 		<input type="submit" value="Register" />
 	</form:form>
-	
-	
-	
-	
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script

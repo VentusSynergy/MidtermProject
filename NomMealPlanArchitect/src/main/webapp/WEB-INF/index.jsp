@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<jsp:include page="nav.jsp"/>
+<jsp:include page="publicNavbar.jsp"/>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
