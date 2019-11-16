@@ -29,11 +29,11 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> Recipes </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="searchRecipe.do">Search</a> <a
+					<a class="dropdown-item" href="recipeSearch.do">Search</a> <a
 						class="dropdown-item" href="createRecipe.do">Create</a>
 				</div></li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0" action="#" method="GET">
+		<form class="form-inline my-2 my-lg-0" action="searchRecipe.do" method="GET">
 			<input class="form-control mr-sm-2" type="search"
 				placeholder="Search Recipes" aria-label="Search">
 			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
