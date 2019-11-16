@@ -9,8 +9,8 @@
     </provider>
 
 		<!-- Class Definitions -->
-<!-- 		<class>com.skilldistillery.jpanommpa.entities.Category</class>
- -->		<class>com.skilldistillery.jpanommpa.entities.GroceryList</class>
+		<class>com.skilldistillery.jpanommpa.entities.Category</class>
+		<class>com.skilldistillery.jpanommpa.entities.GroceryList</class>
 		<class>com.skilldistillery.jpanommpa.entities.Ingredient</class>
 		<class>com.skilldistillery.jpanommpa.entities.MealPlan</class>
 		<class>com.skilldistillery.jpanommpa.entities.MealPlanRecipe</class>
@@ -24,7 +24,8 @@
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/nom?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
-			<property name="javax.persistence.jdbc.user" value="marthastewart" />
+			<property name="javax.persistence.jdbc.user"
+				value="marthastewart" />
 			<property name="javax.persistence.jdbc.password"
 				value="marthastewart" />
 			<property name="javax.persistence.jdbc.driver"
