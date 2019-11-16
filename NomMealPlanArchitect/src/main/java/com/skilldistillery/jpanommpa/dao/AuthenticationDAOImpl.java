@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpanommpa.entities.User;
 
-
 @Transactional
 @Service
 public class AuthenticationDAOImpl implements AuthenticationDAO {
@@ -23,10 +22,12 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public User create(User user) {
-//		if (isEmailUnique(user.getEmail())) {
-//			users.put(user.getEmail(), user);
-//			return user;
-//		}
+		if (isEmailUnique(user.getEmail())) {
+			users.put(user.getEmail(), user);
+			em.persist(user);
+			em.flush();
+			return user;
+		}
 		return null;
 	}
 
@@ -45,12 +46,13 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public boolean isValidUser(User u) {
-//		if (getUserByEmail(u.getEmail()) == null) {
-//			return false;
-//		}
-//		if (users.get(u.getEmail()).getPassword().equals(u.getPassword())) {
-//			return true;
-//		}
+		if (getUserByEmail(u.getEmail()) == null) {
+			return false;
+		}
+		if (users.get(u.getEmail()).getPassword().equals(u.getPassword())) {
+			return true;
+		}
 		return false;
 	}
+
 }

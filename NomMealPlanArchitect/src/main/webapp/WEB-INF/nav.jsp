@@ -9,7 +9,6 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
-​
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.do">NOM! The Meal Plan
@@ -26,12 +25,16 @@
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
+					<form action="register.do" method="GET">
+		<input type="submit" value="register" />
+	</form>
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> Dropdown </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					
 						<a class="dropdown-item" href="#">Action</a> <a
 							class="dropdown-item" href="#">Another action</a>
 						<div class="dropdown-divider"></div>
@@ -44,6 +47,7 @@
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				
 			</form>
 		</div>
 	</nav>
