@@ -10,4 +10,6 @@ public interface AuthenticationDAO {
 	public User getUserByEmail(String email);
 
 	public boolean isValidUser(User u);
+	
+	
 }
