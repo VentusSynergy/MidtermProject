@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
+import com.skilldistillery.jpanommpa.dao.GroceryListDAO;
+import com.skilldistillery.jpanommpa.dao.IngredientDAO;
+import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
+import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.entities.User;
 
 @Controller
@@ -19,9 +23,23 @@ public class NomController {
 
 	@Autowired
 	private AuthenticationDAO userDao;
+	@Autowired
+	private GroceryListDAO groceryDao;
+	@Autowired
+	private IngredientDAO ingredientDao;
+	@Autowired
+	private MealPlanDAO mealPlanDao;
+	@Autowired
+	private RecipeDAO recipeDao;
 
 	@RequestMapping(path = "/")
 	public String index(Model model) {
+
+		return "index";
+	}
+
+	@RequestMapping(path = "index.do")
+	public String indexDo(Model model) {
 
 		return "index";
 	}
