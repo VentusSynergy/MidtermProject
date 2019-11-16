@@ -21,8 +21,10 @@ public class MealPlanRecipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	@Column(name = "meal_plan_id")
 	private int mealPlanId;
+
 	@Column(name = "sequence_number")
 	private Integer sequenceNumber;
 	@Column(name = "type_id")
@@ -38,7 +40,7 @@ public class MealPlanRecipe {
 	@OneToMany
 	@JoinColumn(name = "id")
 	private List<MealPlan> mealPlan;
-	
+
 	@OneToMany
 	@JoinColumn(name = "id")
 	private List<RecipeType> types;
@@ -69,14 +71,6 @@ public class MealPlanRecipe {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getMealPlanId() {
-		return mealPlanId;
-	}
-
-	public void setMealPlanId(int mealPlanId) {
-		this.mealPlanId = mealPlanId;
 	}
 
 	public Integer getSequenceNumber() {
@@ -111,6 +105,14 @@ public class MealPlanRecipe {
 		this.recipes = recipes;
 	}
 
+	public int getMealPlanId() {
+		return mealPlanId;
+	}
+
+	public void setMealPlanId(int mealPlanId) {
+		this.mealPlanId = mealPlanId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -135,18 +137,7 @@ public class MealPlanRecipe {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MealPlanRecipe [id=");
-		builder.append(id);
-		builder.append(", mealPlanId=");
-		builder.append(mealPlanId);
-		builder.append(", sequenceNumber=");
-		builder.append(sequenceNumber);
-		builder.append(", typeId=");
-		builder.append(typeId);
-		builder.append(", day=");
-		builder.append(day);
-		builder.append("]");
-		return builder.toString();
+		return "MealPlanRecipe [id=" + id + ", sequenceNumber=" + sequenceNumber + ", typeId=" + typeId + ", day=" + day
+				+ ", mealPlan=" + mealPlan + ", types=" + types + "]";
 	}
 }
