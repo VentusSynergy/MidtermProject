@@ -55,20 +55,20 @@ class MealPlanRecipeTest {
 	void test2() {
 		// select * from meal_plan_recipe mpr join recipe r on r.type_id = mpr.recipe_id
 		// where r.id = 1;
-		assertEquals(1, mpr.getRecipes().get(0).getId());
-		assertEquals("Peanut Butter and Jelly Sandwich", mpr.getRecipes().get(0).getName());
+		assertEquals(2, mpr.getRecipe().getId());
+		assertEquals("Spaghetti ", mpr.getRecipe().getName());
 	}
 
 	@Test
 	@DisplayName("testing mealPlanRecipe_mealPlan relationship")
 	void test3() {
-		assertEquals("Test Plan", mpr.getMealPlan().get(0).getPlanName());
+		assertEquals("Test Plan", mpr.getMealPlan().getPlanName());
 	}
 
 	@Test
 	@DisplayName("testing mealPlanRecipe_types relationship")
 	void test4() {
-		assertEquals("Breakfast", mpr.getTypes().get(0).getName());
+		assertEquals("Breakfast", mpr.getType().getName());
 	}
 
 }
