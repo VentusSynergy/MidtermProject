@@ -35,16 +35,26 @@ public class RecipeReview {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@Column(name = "recipe_id")
-	private int recipeId;
 	private int rating;
 	@Column(name = "review_date")
 	private LocalDate reviewDate;
 	private String comment;
 	private boolean active;
+	
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
 
 	public RecipeReview() {
 		super();
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	public int getId() {
@@ -53,14 +63,6 @@ public class RecipeReview {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
 	}
 
 	public int getRating() {
@@ -127,8 +129,23 @@ public class RecipeReview {
 
 	@Override
 	public String toString() {
-		return "RecipeReview [id=" + id + ", user=" + user + ", recipeId=" + recipeId + ", rating=" + rating
-				+ ", reviewDate=" + reviewDate + ", comment=" + comment + ", active=" + active + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("RecipeReview [id=");
+		builder.append(id);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", rating=");
+		builder.append(rating);
+		builder.append(", reviewDate=");
+		builder.append(reviewDate);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", active=");
+		builder.append(active);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
