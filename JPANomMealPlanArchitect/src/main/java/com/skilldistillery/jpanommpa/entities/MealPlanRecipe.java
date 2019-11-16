@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,51 +23,60 @@ public class MealPlanRecipe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "meal_plan_id")
-	private int mealPlanId;
-
 	@Column(name = "sequence_number")
 	private Integer sequenceNumber;
-	@Column(name = "type_id")
-	private Integer typeId;
 	@Column(name = "day_name")
 	@Enumerated(EnumType.STRING)
 	private Days day;
 
-	@OneToMany
-	@JoinColumn(name = "id")
-	private List<Recipe> recipes;
+	@OneToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
 
-	@OneToMany
-	@JoinColumn(name = "id")
-	private List<MealPlan> mealPlan;
+	
 
-	@OneToMany
-	@JoinColumn(name = "id")
-	private List<RecipeType> types;
+	@ManyToOne
+	@JoinColumn(name = "meal_plan_id")
+	private MealPlan mealPlan;
 
-	public List<RecipeType> getTypes() {
-		return types;
+	@OneToOne
+	@JoinColumn(name = "type_id")
+	private RecipeType type;
+
+
+	public RecipeType getType() {
+		return type;
 	}
 
-	public void setTypes(List<RecipeType> types) {
-		this.types = types;
+
+	public void setType(RecipeType types) {
+		this.type = types;
 	}
+
 
 	public MealPlanRecipe() {
 		super();
 	}
 
-	public List<MealPlan> getMealPlan() {
+
+	public MealPlan getMealPlan() {
 		return mealPlan;
 	}
 
-	public void setMealPlan(List<MealPlan> mealPlan) {
+	public void setMealPlan(MealPlan mealPlan) {
 		this.mealPlan = mealPlan;
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	public void setId(int id) {
@@ -81,36 +91,12 @@ public class MealPlanRecipe {
 		this.sequenceNumber = sequenceNumber;
 	}
 
-	public Integer getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
-	}
-
 	public Days getDay() {
 		return day;
 	}
 
 	public void setDay(Days day) {
 		this.day = day;
-	}
-
-	public List<Recipe> getRecipes() {
-		return recipes;
-	}
-
-	public void setRecipes(List<Recipe> recipes) {
-		this.recipes = recipes;
-	}
-
-	public int getMealPlanId() {
-		return mealPlanId;
-	}
-
-	public void setMealPlanId(int mealPlanId) {
-		this.mealPlanId = mealPlanId;
 	}
 
 	@Override
@@ -137,7 +123,20 @@ public class MealPlanRecipe {
 
 	@Override
 	public String toString() {
-		return "MealPlanRecipe [id=" + id + ", sequenceNumber=" + sequenceNumber + ", typeId=" + typeId + ", day=" + day
-				+ ", mealPlan=" + mealPlan + ", types=" + types + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("MealPlanRecipe [id=");
+		builder.append(id);
+		builder.append(", sequenceNumber=");
+		builder.append(sequenceNumber);
+		builder.append(", day=");
+		builder.append(day);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append(", mealPlan=");
+		builder.append(mealPlan);
+		builder.append(", types=");
+		builder.append(type);
+		builder.append("]");
+		return builder.toString();
 	}
 }

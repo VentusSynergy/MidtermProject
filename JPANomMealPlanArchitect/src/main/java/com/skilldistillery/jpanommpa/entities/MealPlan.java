@@ -1,5 +1,7 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +24,8 @@ public class MealPlan {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "meal_plan_id")
-	private MealPlan plan;
+	@OneToMany(mappedBy = "mealPlan")
+	private List <MealPlanRecipe> mealPlanRecipes;
 
 	@Column(name = "plan_name")
 	private String planName;
@@ -34,13 +36,22 @@ public class MealPlan {
 		super();
 	}
 
-	public MealPlan getPlan() {
-		return plan;
+
+
+
+	public List<MealPlanRecipe> getMealPlanRecipes() {
+		return mealPlanRecipes;
 	}
 
-	public void setPlan(MealPlan plan) {
-		this.plan = plan;
+
+
+
+	public void setMealPlanRecipes(List<MealPlanRecipe> mealPlanRecipes) {
+		this.mealPlanRecipes = mealPlanRecipes;
 	}
+
+
+
 
 	public int getId() {
 		return id;
@@ -111,8 +122,6 @@ public class MealPlan {
 		builder.append(id);
 		builder.append(", user=");
 		builder.append(user);
-		builder.append(", plan=");
-		builder.append(plan);
 		builder.append(", planName=");
 		builder.append(planName);
 		builder.append(", description=");
