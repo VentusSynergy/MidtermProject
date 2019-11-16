@@ -32,24 +32,10 @@ public class NomController {
 	@Autowired
 	private RecipeDAO recipeDao;
 
-	@RequestMapping(path = "/")
+	@RequestMapping(path = { "/", "index.do" })
 	public String index(Model model) {
 
 		return "index";
-	}
-
-	@RequestMapping(path = "index.do")
-	public String indexDo(Model model) {
-
-		return "index";
-	}
-
-	@RequestMapping(path = "groceryList.do")
-	public ModelAndView viewGroceryList(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		// Needs work
-
-		return mv;
 	}
 
 	@RequestMapping(path = "register.do", method = RequestMethod.GET)
@@ -79,4 +65,14 @@ public class NomController {
 
 	}
 
+	@RequestMapping(path = "groceryList.do")
+	public ModelAndView viewGroceryList(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		mv.addObject("user", u);
+//		TODO needs grocery list to function
+
+		mv.setViewName("groceryList");
+		return mv;
+	}
 }
