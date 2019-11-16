@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<jsp:include page="publicNavbar.jsp"/>
+<jsp:include page="publicNavbar.jsp" />
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -21,12 +21,16 @@
 
 
 <title>Home: Nom! Meal Plan Architect</title>
+
+<!-- CSS -->
+<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+
 </head>
 <body>
 
-<br>
-<br>
-	<h1> HOME</h1>
+	<br>
+	<br>
+	<h1>HOME</h1>
 
 
 	<!-- Optional JavaScript -->

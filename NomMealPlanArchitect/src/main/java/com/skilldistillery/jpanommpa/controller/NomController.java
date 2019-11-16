@@ -38,6 +38,15 @@ public class NomController {
 		return "index";
 	}
 
+	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		mv.addObject("user", u);
+		mv.setViewName("login");
+		return mv;
+	}
+
 	@RequestMapping(path = "register.do", method = RequestMethod.GET)
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView();
@@ -63,6 +72,42 @@ public class NomController {
 
 		return "userProfile";
 
+	}
+
+	@RequestMapping(path = "recipeSearch.do", method = RequestMethod.GET)
+	public ModelAndView searchRecipe() {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		mv.addObject("user", u);
+		
+		
+		
+		mv.setViewName("recipeSearch");
+		return mv;
+	}
+	
+	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.POST)
+	public ModelAndView searchRecipeResults() {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		mv.addObject("user", u);
+		
+		
+		
+		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+	
+	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
+	public ModelAndView createRecipe() {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		mv.addObject("user", u);
+		
+		
+		
+		mv.setViewName("createRecipe");
+		return mv;
 	}
 
 	@RequestMapping(path = "groceryList.do")

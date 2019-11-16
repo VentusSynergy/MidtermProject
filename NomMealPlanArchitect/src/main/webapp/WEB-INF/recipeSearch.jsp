@@ -21,6 +21,10 @@
 	crossorigin="anonymous">
 
 <title>Recipe Search: Nom! Meal Plan Architect</title>
+
+<!-- CSS -->
+<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+
 </head>
 <body>
 	<h1>Recipe Search Page</h1>
