@@ -123,17 +123,13 @@ public class RecipeDAOImpl implements RecipeDAO {
 		//get a match from the database
 		Recipe matchingRecipe = em.find(Recipe.class, r.getId());
 		
-		em.remove(matchingRecipe);
+		matchingRecipe.setActive(false);
+		
+		em.persist(matchingRecipe);
 		
 		em.flush();
 		
-		Recipe stillInDB = em.find(Recipe.class, r.getId());
-		if(stillInDB == null) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return true;
 	}
 
 	@Override
