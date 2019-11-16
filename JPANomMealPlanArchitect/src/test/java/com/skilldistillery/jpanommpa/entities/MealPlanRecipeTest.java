@@ -56,11 +56,11 @@ class MealPlanRecipeTest {
 		assertEquals(1, mpr.getRecipes().get(0).getId());
 		assertEquals("Peanut Butter and Jelly Sandwich", mpr.getRecipes().get(0).getName());
 	}
-	@Test
-	@DisplayName("testing mealPlanRecipe_mealPlan relationship")
-	void test3() {
-		assertEquals("Test Plan", mpr.getMealPlan().get(0).getPlanName());
-	}
+//	@Test
+//	@DisplayName("testing mealPlanRecipe_mealPlan relationship")
+//	void test3() {
+//		assertEquals("Test Plan", mpr.getMealPlan().get(0).getPlanName());
+//	}
 	
 	@Test
 	@DisplayName("testing mealPlanRecipe_types relationship")
