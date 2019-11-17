@@ -38,7 +38,7 @@ public class NomController {
 
 		return "index";
 	}
-	
+
 	@RequestMapping(path = "login.do")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
@@ -51,18 +51,27 @@ public class NomController {
 	@RequestMapping(path = "loginAction.do", method = RequestMethod.GET)
 	public ModelAndView loginDo(@RequestParam("email") String email, @RequestParam("password") String password) {
 		ModelAndView mv = new ModelAndView();
-		User u = new User();
-		u.setEmail(email);
-		u.setPassword(password);
 
-		if (userDao.isValidUser(u)) {
-			mv.addObject("user", u);
-			mv.setViewName("userProfile");
+		User u = userDao.lookUp(email, password);
+		System.out.println("in controller: " + u);
+//		if (userDao.isValidUser(u)) {
+//			mv.addObject("user", u);
+//			mv.setViewName("userProfile");
+//			System.out.println("Valid user: " + u);
+//			return mv;
+//		}
+		if(u.getFirstName().equalsIgnoreCase("InvalidUser")) {
+			mv.setViewName("login");
 			return mv;
 		}
+		else {
+			mv.addObject("user", u);
+			mv.setViewName("userProfile");
+			System.out.println("Valid user: " + u);
+			return mv;
+			
+		}
 
-		mv.setViewName("login");
-		return mv;
 	}
 
 	@RequestMapping(path = "register.do", method = RequestMethod.GET)

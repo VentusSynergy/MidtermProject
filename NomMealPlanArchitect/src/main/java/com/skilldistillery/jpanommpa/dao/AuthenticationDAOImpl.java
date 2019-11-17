@@ -1,6 +1,8 @@
 package com.skilldistillery.jpanommpa.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -46,25 +48,46 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public boolean isValidUser(User user) {
-		
+
 		System.out.println("************************************");
 		System.out.println(user);
-		
+
 		if (getUserByEmail(user.getEmail()) == null) {
-			
+
 			System.out.println("************************************");
 			System.out.println(false);
-			
+
 			return false;
 		}
 		if (users.get(user.getEmail()).getPassword().equals(user.getPassword())) {
-			
+
 			System.out.println("************************************");
 			System.out.println(true);
-			
+
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public User lookUp(String email, String pass) {
+		List<User> result = new ArrayList<User>();
+
+		String jpql = "SELECT user FROM User user WHERE email = :email AND password = :pass";
+			result = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", pass)
+					.getResultList();
+			User user = new User();
+			user.setFirstName("InvalidUser");
+			if(result.size() < 1) {
+				result.add(user);
+			}
+			else{
+				user = result.get(0);
+			}
+
+
+		return user;
+
 	}
 
 }
