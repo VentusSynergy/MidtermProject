@@ -126,6 +126,7 @@ public class NomController {
 		User u = new User();
 		List<Recipe> recipeList = recipeDao.selectRecipeByKeyword(key);
 		mv.addObject("recipe", recipeList);
+		mv.addObject("key", key);
 		mv.addObject("deleteStatus", false);
 		mv.addObject("updateStatus", false);
 		mv.addObject("user", u);

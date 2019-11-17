@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +46,12 @@
 						</div></li>
 				</ul>
 
-				<form class="form-inline my-2 my-lg-0" name="key" action="searchRecipe.do"
+				<form:form class="form-inline my-2 my-lg-0" name="key" action="searchRecipe.do"
 					method="GET">
 					<input class="form-control mr-sm-2" type="search"
 						placeholder="Search Recipes" aria-label="Search">
 					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</nav>
