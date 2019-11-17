@@ -35,3 +35,9 @@ li {
 a:hover {
 	color: #00FF00;
 }
+
+.register{
+	background-color: rgba(245, 245, 245, 1);
+  opacity: .4;
+
+	}
