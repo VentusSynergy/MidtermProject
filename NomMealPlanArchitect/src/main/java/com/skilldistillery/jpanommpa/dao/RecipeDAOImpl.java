@@ -46,9 +46,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectRecipeByKeyword(String keyword) {
-		String query = "Select r from Recipe r where r.name = :name or r.cookbook like :cb or r.category.name like :cat or r.recipeType.name like :type";
+		String key = "%"+keyword+"%";
+		
+		String query = "Select r from Recipe r where r.name = :name or r.cookbook = :cb or r.category.name = :cat or r.recipeType.name like :type";
 
-		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("name", keyword).setParameter("cb", keyword).setParameter("cat", keyword).setParameter("type", keyword).getResultList();
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("name", key).setParameter("cb", key).setParameter("cat", key).setParameter("type", key).getResultList();
 
 		return results;
 	}
