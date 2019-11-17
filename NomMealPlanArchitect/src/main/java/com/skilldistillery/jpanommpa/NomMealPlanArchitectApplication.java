@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
-@EntityScan("ccom.skilldistillery.jpanommpa")
+@EntityScan("com.skilldistillery.jpanommpa")
 public class NomMealPlanArchitectApplication {
 
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

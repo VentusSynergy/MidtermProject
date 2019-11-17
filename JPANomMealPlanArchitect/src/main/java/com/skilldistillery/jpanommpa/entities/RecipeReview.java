@@ -2,14 +2,60 @@ package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "recipe_review")
 public class RecipeReview {
+
+//	+-------------+------------+------+-----+---------+----------------+
+//	| Field       | Type       | Null | Key | Default | Extra          |
+//	+-------------+------------+------+-----+---------+----------------+
+//	| id          | int(11)    | NO   | PRI | NULL    | auto_increment |
+//	| user_id     | int(11)    | NO   | MUL | NULL    |                |
+//	| recipe_id   | int(11)    | NO   | MUL | NULL    |                |
+//	| rating      | int(1)     | NO   |     | NULL    |                |
+//	| review_date | date       | NO   |     | NULL    |                |
+//	| comment     | text       | YES  |     | NULL    |                |
+//	| active      | tinyint(4) | YES  |     | 1       |                |
+//	+-------------+------------+------+-----+---------+----------------+
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int userId;
-	private int recipeId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	private int rating;
+	@Column(name = "review_date")
 	private LocalDate reviewDate;
 	private String comment;
 	private boolean active;
+	
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
+
+	public RecipeReview() {
+		super();
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
 
 	public int getId() {
 		return id;
@@ -17,22 +63,6 @@ public class RecipeReview {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
 	}
 
 	public int getRating() {
@@ -67,17 +97,19 @@ public class RecipeReview {
 		this.active = active;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + id;
-		result = prime * result + rating;
-		result = prime * result + recipeId;
-		result = prime * result + ((reviewDate == null) ? 0 : reviewDate.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -90,25 +122,7 @@ public class RecipeReview {
 		if (getClass() != obj.getClass())
 			return false;
 		RecipeReview other = (RecipeReview) obj;
-		if (active != other.active)
-			return false;
-		if (comment == null) {
-			if (other.comment != null)
-				return false;
-		} else if (!comment.equals(other.comment))
-			return false;
 		if (id != other.id)
-			return false;
-		if (rating != other.rating)
-			return false;
-		if (recipeId != other.recipeId)
-			return false;
-		if (reviewDate == null) {
-			if (other.reviewDate != null)
-				return false;
-		} else if (!reviewDate.equals(other.reviewDate))
-			return false;
-		if (userId != other.userId)
 			return false;
 		return true;
 	}
@@ -118,10 +132,8 @@ public class RecipeReview {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RecipeReview [id=");
 		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", recipeId=");
-		builder.append(recipeId);
+		builder.append(", user=");
+		builder.append(user);
 		builder.append(", rating=");
 		builder.append(rating);
 		builder.append(", reviewDate=");
@@ -130,6 +142,8 @@ public class RecipeReview {
 		builder.append(comment);
 		builder.append(", active=");
 		builder.append(active);
+		builder.append(", recipe=");
+		builder.append(recipe);
 		builder.append("]");
 		return builder.toString();
 	}
