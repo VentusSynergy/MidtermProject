@@ -124,6 +124,7 @@ public class NomController {
 	public ModelAndView searchRecipeResults(String key) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
+		//test
 //		List<Recipe> recipeList = recipeDao.selectRecipeByKeyword(key);
 //		mv.addObject("recipe", recipeList);
 //		mv.addObject("deleteStatus", false);
