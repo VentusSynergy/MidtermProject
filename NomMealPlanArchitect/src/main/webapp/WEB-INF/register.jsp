@@ -31,14 +31,14 @@
 <title>Register: new user</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+<link href="<c:url value="/CSS/register.css" />" rel="stylesheet"> 
 
 </head>
 <body>
-	<div class="container" id="register">
+	<div class="container">
 		<hr>
 
-		<div class="card bg-light">
+		<div class="card">
 			<article class="card-body mx-auto" style="max-width: 400px;">
 				<h4 class="card-title mt-3 text-center">Create Account</h4>
 				<p class="text-center">Get started with your free account</p>
@@ -117,7 +117,7 @@
 	</div>
 	<!--container end.//-->
 
-	<br>
+	<%-- <br>
 	<br>
 	<br>
 	<form:form action="register.do" method="POST" modelAttribute="user">
@@ -144,7 +144,7 @@
 
 		<input type="submit" value="Register" />
 	</form:form>
-
+ --%>
 
 
 
