@@ -24,8 +24,13 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public User create(User user) {
-		if (isEmailUnique(user.getEmail())) {
+		if (isEmailUnique(user.getEmail()) && isUserNameUnique(user.getUsername())) {
+			user.setEmail(user.getEmail().toLowerCase());
+			user.setUsername(user.getUsername());
 			users.put(user.getEmail(), user);
+			users.put(user.getUsername(), user);
+			user.setActive(true);
+			user.setAdmin(false);
 			em.persist(user);
 			em.flush();
 			return user;
@@ -35,8 +40,15 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Override
 	public boolean isEmailUnique(String email) {
+		System.out.println(!users.containsKey(email));
 		return !users.containsKey(email);
 	}
+	@Override
+	public boolean isUserNameUnique(String username) {
+		System.out.println(!users.containsKey(username));
+		return !users.containsKey(username);
+	}
+	
 
 	@Override
 	public User getUserByEmail(String email) {
@@ -88,6 +100,19 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 		return user;
 
+	}
+
+	@Override
+	public void addUserToMap() {
+		String jpql = "SELECT user from User user";
+		List <User> result = em.createQuery(jpql, User.class).getResultList();
+		System.err.println(result);
+		for (int j = 0; j < result.size(); j++) {
+			users.put(result.get(j).getEmail(), result.get(j));
+			users.put(result.get(j).getUsername(), result.get(j));
+			
+		}
+		System.out.println(users);
 	}
 
 }
