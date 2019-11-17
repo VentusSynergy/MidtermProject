@@ -45,7 +45,7 @@
 						</div></li>
 				</ul>
 
-				<form class="form-inline my-2 my-lg-0" action="searchRecipe.do"
+				<form class="form-inline my-2 my-lg-0" name="key" action="searchRecipe.do"
 					method="GET">
 					<input class="form-control mr-sm-2" type="search"
 						placeholder="Search Recipes" aria-label="Search">
