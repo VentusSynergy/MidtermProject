@@ -26,7 +26,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 	public User create(User user) {
 		if (isEmailUnique(user.getEmail()) && isUserNameUnique(user.getUsername())) {
 			user.setEmail(user.getEmail().toLowerCase());
-			user.setEmail(user.getUsername());
+			user.setUsername(user.getUsername());
 			users.put(user.getEmail(), user);
 			users.put(user.getUsername(), user);
 			user.setActive(true);
