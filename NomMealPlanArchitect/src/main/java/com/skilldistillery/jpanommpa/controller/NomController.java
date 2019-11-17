@@ -85,6 +85,7 @@ public class NomController {
 
 	@RequestMapping(path = "register.do", method = RequestMethod.POST)
 	public String createUser(@Valid User user, Errors errors) {
+		userDao.addUserToMap();
 
 		if (errors.hasErrors()) {
 			return "userProfile";
@@ -94,6 +95,12 @@ public class NomController {
 			errors.rejectValue("email", "error.email", "Email already in use");
 			return "register";
 		}
+		if(!userDao.isUserNameUnique(user.getUsername())) {
+			errors.rejectValue("username", "error.username", "Username already in use");
+			return "register";
+			
+		}
+		System.out.println(user);
 
 		userDao.create(user);
 
