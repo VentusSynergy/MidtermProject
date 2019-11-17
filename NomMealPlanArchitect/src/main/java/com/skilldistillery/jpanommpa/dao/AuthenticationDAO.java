@@ -7,7 +7,16 @@ public interface AuthenticationDAO {
 
 	public boolean isEmailUnique(String email);
 
+	public boolean isUserNameUnique(String username);
+
 	public User getUserByEmail(String email);
 
 	public boolean isValidUser(User u);
+	
+	public User lookUp(String email, String pass);
+	
+	public void addUserToMap();
+	
+	
+	
 }

@@ -28,39 +28,37 @@ public class User {
 //	| date_updated | datetime      | YES  |     | CURRENT_TIMESTAMP |                |
 //	| avatar_url   | varchar(1000) | YES  |     | NULL              |                |
 //	+--------------+---------------+------+-----+-------------------+----------------+
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private String username;
 	private String email;
 	private String password;
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 	private Boolean active;
 	private Boolean admin;
-	@Column(name="date_created")
+	@Column(name = "date_created")
 	private LocalDateTime dateCreated;
-	@Column(name="date_updated")
+	@Column(name = "date_updated")
 	private LocalDateTime dateUpdated;
-	@Column(name="avatar_url")
+	@Column(name = "avatar_url")
 	private String avatarURL;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<UserRecipe> userRecipies;
+	@OneToMany(mappedBy = "user")
+	private List<UserRecipe> userRecipies;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<Recipe> recipies;
+	@OneToMany(mappedBy = "user")
+	private List<Recipe> recipes;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<RecipeReview> recipeReview;
+	@OneToMany(mappedBy = "user")
+	private List<RecipeReview> recipeReview;
 
-//	@OneToMany(mappedBy = "user")
-//	private List<MealPlan> mealPlans;
+	@OneToMany(mappedBy = "user")
+	private List<MealPlan> mealPlans;
 
 	public User() {
 		super();
@@ -68,6 +66,10 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -84,6 +86,38 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<UserRecipe> getUserRecipies() {
+		return userRecipies;
+	}
+
+	public void setUserRecipies(List<UserRecipe> userRecipies) {
+		this.userRecipies = userRecipies;
+	}
+
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+
+	public List<RecipeReview> getRecipeReview() {
+		return recipeReview;
+	}
+
+	public void setRecipeReview(List<RecipeReview> recipeReview) {
+		this.recipeReview = recipeReview;
+	}
+
+	public List<MealPlan> getMealPlans() {
+		return mealPlans;
+	}
+
+	public void setMealPlans(List<MealPlan> mealPlans) {
+		this.mealPlans = mealPlans;
 	}
 
 	@Override

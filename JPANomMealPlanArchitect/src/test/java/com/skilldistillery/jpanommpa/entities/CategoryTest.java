@@ -1,6 +1,8 @@
 package com.skilldistillery.jpanommpa.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -42,17 +44,11 @@ class CategoryTest {
 		cat = null;
 	}
 
-//	@DisplayName("Testing category id field")
-//	@Test
-//	void test1() {
-//		assertEquals(1, cat.getId());
-//		
-//	}
-//	@DisplayName("Testing category name field")
-//	@Test
-//	void test2() {
-//		assertEquals("Other", cat.getName());
-//		
-//	}
+	@DisplayName("Testing Category fields")
+	@Test
+	void test1() {
+		assertEquals(1, cat.getId());
+		assertEquals("Other", cat.getName());
+	}
 
 }

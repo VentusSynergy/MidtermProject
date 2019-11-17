@@ -1,5 +1,7 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserRecipeTest {
@@ -41,8 +44,19 @@ class UserRecipeTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	@DisplayName("testing primary fields")
+	void test2() {
+		assertEquals(1, ur.getId());
+		assertEquals(true, ur.isUserFavorite());
+		assertEquals("Soooo gooooood", ur.getComment());
+		assertNull(ur.getDateLastMade());
+	}
+	
+	@Test
+	@DisplayName("testing relationship recipe_userRecipe")
+	void test3() {
+		//select * from recipe r join user_recipe ur on ur.recipe_id = r.id;
+		assertEquals("Peanut Butter and Jelly Sandwich", ur.getRecipe().getName());
 	}
 
 }

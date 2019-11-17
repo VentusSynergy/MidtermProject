@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,14 +15,39 @@ public class RecipeIngredient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "ingredient_id")
-	private int ingredientId;
-	@Column(name = "recipe_id")
-	private int recipeId;
+
 	private double quantity;
 	@Column(name = "measurement_unit")
 	private String measurementUnit;
 	private String remarks;
+
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
+
+	@ManyToOne
+	@JoinColumn(name = "ingredient_id")
+	private Ingredient ingredient;
+
+	public RecipeIngredient() {
+		super();
+	}
+
+	public Ingredient getIngredient() {
+		return ingredient;
+	}
+
+	public void setIngredient(Ingredient ingredient) {
+		this.ingredient = ingredient;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
 
 	public int getId() {
 		return id;
@@ -28,22 +55,6 @@ public class RecipeIngredient {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getIngredientId() {
-		return ingredientId;
-	}
-
-	public void setIngredientId(int ingredientId) {
-		this.ingredientId = ingredientId;
-	}
-
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
 	}
 
 	public double getQuantity() {
@@ -70,18 +81,19 @@ public class RecipeIngredient {
 		this.remarks = remarks;
 	}
 
+//	public Recipe getRecipe() {
+//		return recipe;
+//	}
+//
+//	public void setRecipe(Recipe recipe) {
+//		this.recipe = recipe;
+//	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ingredientId;
-		result = prime * result + ((measurementUnit == null) ? 0 : measurementUnit.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(quantity);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + recipeId;
-		result = prime * result + ((remarks == null) ? 0 : remarks.hashCode());
 		return result;
 	}
 
@@ -96,22 +108,6 @@ public class RecipeIngredient {
 		RecipeIngredient other = (RecipeIngredient) obj;
 		if (id != other.id)
 			return false;
-		if (ingredientId != other.ingredientId)
-			return false;
-		if (measurementUnit == null) {
-			if (other.measurementUnit != null)
-				return false;
-		} else if (!measurementUnit.equals(other.measurementUnit))
-			return false;
-		if (Double.doubleToLongBits(quantity) != Double.doubleToLongBits(other.quantity))
-			return false;
-		if (recipeId != other.recipeId)
-			return false;
-		if (remarks == null) {
-			if (other.remarks != null)
-				return false;
-		} else if (!remarks.equals(other.remarks))
-			return false;
 		return true;
 	}
 
@@ -120,16 +116,16 @@ public class RecipeIngredient {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RecipeIngredient [id=");
 		builder.append(id);
-		builder.append(", ingredientId=");
-		builder.append(ingredientId);
-		builder.append(", recipeId=");
-		builder.append(recipeId);
 		builder.append(", quantity=");
 		builder.append(quantity);
 		builder.append(", measurementUnit=");
 		builder.append(measurementUnit);
 		builder.append(", remarks=");
 		builder.append(remarks);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append(", ingredient=");
+		builder.append(ingredient);
 		builder.append("]");
 		return builder.toString();
 	}

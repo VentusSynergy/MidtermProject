@@ -15,25 +15,46 @@ import javax.persistence.Table;
 @Table(name = "recipe_review")
 public class RecipeReview {
 
+//	+-------------+------------+------+-----+---------+----------------+
+//	| Field       | Type       | Null | Key | Default | Extra          |
+//	+-------------+------------+------+-----+---------+----------------+
+//	| id          | int(11)    | NO   | PRI | NULL    | auto_increment |
+//	| user_id     | int(11)    | NO   | MUL | NULL    |                |
+//	| recipe_id   | int(11)    | NO   | MUL | NULL    |                |
+//	| rating      | int(1)     | NO   |     | NULL    |                |
+//	| review_date | date       | NO   |     | NULL    |                |
+//	| comment     | text       | YES  |     | NULL    |                |
+//	| active      | tinyint(4) | YES  |     | 1       |                |
+//	+-------------+------------+------+-----+---------+----------------+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_id")
-	private int userId;
-	@Column(name = "recipe_id")
-	private int recipeId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	private int rating;
 	@Column(name = "review_date")
 	private LocalDate reviewDate;
 	private String comment;
 	private boolean active;
-
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
 
 	public RecipeReview() {
 		super();
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	public int getId() {
@@ -42,22 +63,6 @@ public class RecipeReview {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
 	}
 
 	public int getRating() {
@@ -92,6 +97,14 @@ public class RecipeReview {
 		this.active = active;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -116,8 +129,23 @@ public class RecipeReview {
 
 	@Override
 	public String toString() {
-		return "RecipeReview [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", rating=" + rating
-				+ ", reviewDate=" + reviewDate + ", comment=" + comment + ", active=" + active + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("RecipeReview [id=");
+		builder.append(id);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", rating=");
+		builder.append(rating);
+		builder.append(", reviewDate=");
+		builder.append(reviewDate);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", active=");
+		builder.append(active);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

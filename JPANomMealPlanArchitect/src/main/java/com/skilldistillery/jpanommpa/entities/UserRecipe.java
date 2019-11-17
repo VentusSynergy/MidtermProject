@@ -15,22 +15,38 @@ import javax.persistence.Table;
 @Table(name = "user_recipe")
 public class UserRecipe {
 
+//	+----------------+------------+------+-----+---------+----------------+
+//	| Field          | Type       | Null | Key | Default | Extra          |
+//	+----------------+------------+------+-----+---------+----------------+
+//	| id             | int(11)    | NO   | PRI | NULL    | auto_increment |
+//	| user_id        | int(11)    | NO   | MUL | NULL    |                |
+//	| recipe_id      | int(11)    | NO   | MUL | NULL    |                |
+//	| user_favorite  | tinyint(4) | YES  |     | 0       |                |
+//	| comment        | text       | YES  |     | NULL    |                |
+//	| date_last_made | date       | YES  |     | NULL    |                |
+//	+----------------+------------+------+-----+---------+----------------+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_id")
-	private int userId;
-	@Column(name = "recipe_id")
-	private int recipeId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
+	
+
 	@Column(name = "user_favorite")
 	private boolean userFavorite;
+
 	private String comment;
+
 	@Column(name = "date_last_made")
 	private LocalDate dateLastMade;
 
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User user;
 
 	public UserRecipe() {
 		super();
@@ -44,20 +60,12 @@ public class UserRecipe {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public Recipe getRecipe() {
+		return recipe;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	public boolean isUserFavorite() {
@@ -84,6 +92,14 @@ public class UserRecipe {
 		this.dateLastMade = dateLastMade;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -108,9 +124,21 @@ public class UserRecipe {
 
 	@Override
 	public String toString() {
-		return "UserRecipe [id=" + id + ", userId=" + userId + ", recipeId=" + recipeId + ", userFavorite="
-				+ userFavorite + ", comment=" + comment + ", dateLastMade=" + dateLastMade + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserRecipe [id=");
+		builder.append(id);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append(", userFavorite=");
+		builder.append(userFavorite);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", dateLastMade=");
+		builder.append(dateLastMade);
+		builder.append("]");
+		return builder.toString();
 	}
 
-	
 }
