@@ -29,6 +29,165 @@
 <body>
 	<h1>Recipe Search Page</h1>
 
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeByName.do">
+					<div class="form-group">
+						<label for="name">Name</label> <input type="text"
+							class="form-control" id="name" placeholder="Search Recipe Name">
+					</div>
+					<button type="submit" class="btn btn-primary">Search
+						Recipes by Name</button>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeByIngredient.do" method="GET">
+					<div class="form-group">
+						<select class="form-control dropdown-info" id="ingredient"
+							name="ingredient" required>
+							<option disabled selected value="">Choose a Recipe
+								Ingredient</option>
+							<c:forEach var="i" items="${recipeIngredient}">
+								<option>${i}</option>
+							</c:forEach>
+						</select>
+						<button type="submit" class="btn btn-info btn-block">Search
+							Recipes by Ingredient</button>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeByCategory.do" method="GET">
+					<div class="form-group">
+						<select class="form-control dropdown-info" id="category"
+							name="category" required>
+							<option disabled selected value="">Choose a Recipe
+								Category</option>
+							<c:forEach var="r" items="${recipeCategory}">
+								<option>${r}</option>
+							</c:forEach>
+						</select>
+						<button type="submit" class="btn btn-info btn-block">Search
+							Recipes by Category</button>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeByType.do" method="GET">
+					<div class="form-group">
+						<select class="form-control dropdown-info" id="type" name="type"
+							required>
+							<option disabled selected value="">Choose a Meal Type</option>
+							<c:forEach var="t" items="${recipeTypes}">
+								<option>${t}</option>
+							</c:forEach>
+						</select>
+						<button type="submit" class="btn btn-info btn-block">Search
+							Recipes by Meal Type</button>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeByCookbook.do" method="GET">
+					<div class="form-group">
+						<select class="form-control dropdown-info" id="cookbook"
+							name="cookbook" required>
+							<option disabled selected value="">Choose a Cookbook</option>
+							<c:forEach var="c" items="${recipeCookbooks}">
+								<option>${c}</option>
+							</c:forEach>
+						</select>
+						<button type="submit" class="btn btn-info btn-block">Search
+							Recipes by Cookbook</button>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeByKeyword.do" method="GET">
+					<div class="form-group">
+						<label for="keyword">Keyword</label> <input type="text"
+							class="form-control" id="keyword" placeholder="Search by Keyword">
+					</div>
+					<button type="submit" class="btn btn-primary">Search
+						Recipes by Keyword</button>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+
+
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="allRecipes.do" method="GET">
+					<button type="submit" class="btn btn-success btn-block">List
+						All Recipes</button>
+				</form:form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
 
 
 
