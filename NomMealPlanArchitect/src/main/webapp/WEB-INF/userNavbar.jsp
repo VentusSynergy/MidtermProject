@@ -36,8 +36,16 @@
 				<li class="nav-item"><a class="nav-link" href="mealPlan.do">Meal
 						Plan </a>
 			</ul>
-			<form class="form-inline my-2 my-lg-0" action="#" method="GET">
-				<input class="form-control mr-sm-2" type="search"
+			<!-- <form:form action="playersByKey.do" method="GET">
+					<div class="form-group">
+						<label for="key">Team Name, First Name, or Last Name</label> <input
+							type="text" name="key" class="form-control"
+							placeholder="Enter key word to search">
+					</div>
+					<button type="submit" class="btn btn-primary btn-block btn-lg">Search</button>
+				</form:form> -->
+			<form class="form-inline my-2 my-lg-0" action="searchRecipe.do" method="GET">
+				<input class="form-control mr-sm-2" name="key" type="search"
 					placeholder="Search Recipes" aria-label="Search">
 				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
 			</form>

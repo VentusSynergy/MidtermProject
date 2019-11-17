@@ -1,5 +1,7 @@
 package com.skilldistillery.jpanommpa.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import com.skilldistillery.jpanommpa.dao.GroceryListDAO;
 import com.skilldistillery.jpanommpa.dao.IngredientDAO;
 import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
+import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.User;
 
 @Controller
@@ -60,16 +63,15 @@ public class NomController {
 //			System.out.println("Valid user: " + u);
 //			return mv;
 //		}
-		if(u.getFirstName().equalsIgnoreCase("InvalidUser")) {
+		if (u.getFirstName().equalsIgnoreCase("InvalidUser")) {
 			mv.setViewName("login");
 			return mv;
-		}
-		else {
+		} else {
 			mv.addObject("user", u);
 			mv.setViewName("userProfile");
 			System.out.println("Valid user: " + u);
 			return mv;
-			
+
 		}
 
 	}
@@ -95,10 +97,10 @@ public class NomController {
 			errors.rejectValue("email", "error.email", "Email already in use");
 			return "register";
 		}
-		if(!userDao.isUserNameUnique(user.getUsername())) {
+		if (!userDao.isUserNameUnique(user.getUsername())) {
 			errors.rejectValue("username", "error.username", "Username already in use");
 			return "register";
-			
+
 		}
 		System.out.println(user);
 
@@ -118,12 +120,15 @@ public class NomController {
 		return mv;
 	}
 
-	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.POST)
-	public ModelAndView searchRecipeResults() {
+	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.GET)
+	public ModelAndView searchRecipeResults(String key) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
+		List<Recipe> recipeList = recipeDao.selectRecipeByKeyword(key);
+		mv.addObject("recipe", recipeList);
+		mv.addObject("deleteStatus", false);
+		mv.addObject("updateStatus", false);
 		mv.addObject("user", u);
-
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
