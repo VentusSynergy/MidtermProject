@@ -1,5 +1,7 @@
 package com.skilldistillery.jpanommpa.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -52,6 +54,15 @@ public class GroceryListDAOImpl implements GroceryListDAO {
 			return false;
 		}
 
+	}
+
+	@Override
+	public List<GroceryList> selectAllGroceryLists() {
+		String query = "Select g from GroceryList g";
+		
+		List<GroceryList> results = em.createQuery(query, GroceryList.class).getResultList();
+		
+		return results;
 	}
 
 }

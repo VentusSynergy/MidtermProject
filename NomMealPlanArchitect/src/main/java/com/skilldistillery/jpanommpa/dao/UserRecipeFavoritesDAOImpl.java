@@ -58,7 +58,7 @@ public class UserRecipeFavoritesDAOImpl implements UserRecipeFavoritesDAO{
 
 	@Override
 	public List<UserRecipe> selectAllUserRecipe() {
-		String query = "Select u from UserRecipe";
+		String query = "Select u from UserRecipe u";
 
 		List<UserRecipe> results = em.createQuery(query, UserRecipe.class).getResultList();
 
@@ -67,16 +67,16 @@ public class UserRecipeFavoritesDAOImpl implements UserRecipeFavoritesDAO{
 
 	@Override
 	public List<UserRecipe> selectUserRecipeByRecipeName(String name) {
-		String query = "Select u from UserRecipe where u.recipe.name = :name";
+		String query = "Select u from UserRecipe u where u.recipe.name like :name";
 
-		List<UserRecipe> results = em.createQuery(query, UserRecipe.class).setParameter("name", name).getResultList();
+		List<UserRecipe> results = em.createQuery(query, UserRecipe.class).setParameter("name", "%" + name + "%").getResultList();
 
 		return results;
 	}
 
 	@Override
 	public List<UserRecipe> selectUserRecipeByDateLastMade(LocalDate date) {
-		String query = "Select u from UserRecipe where u.dateLastMade = :date";
+		String query = "Select u from UserRecipe u where u.dateLastMade = :date";
 
 		List<UserRecipe> results = em.createQuery(query, UserRecipe.class).setParameter("date", date).getResultList();
 
