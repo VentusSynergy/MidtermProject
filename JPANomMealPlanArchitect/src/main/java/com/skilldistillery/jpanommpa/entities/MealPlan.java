@@ -1,11 +1,57 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "meal_plan")
 public class MealPlan {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int userId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@OneToMany(mappedBy = "mealPlan")
+	private List <MealPlanRecipe> mealPlanRecipes;
+
+	@Column(name = "plan_name")
 	private String planName;
 	private String description;
 	private boolean active;
+
+	public MealPlan() {
+		super();
+	}
+
+
+
+
+	public List<MealPlanRecipe> getMealPlanRecipes() {
+		return mealPlanRecipes;
+	}
+
+
+
+
+	public void setMealPlanRecipes(List<MealPlanRecipe> mealPlanRecipes) {
+		this.mealPlanRecipes = mealPlanRecipes;
+	}
+
+
+
 
 	public int getId() {
 		return id;
@@ -13,14 +59,6 @@ public class MealPlan {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getPlanName() {
@@ -47,15 +85,19 @@ public class MealPlan {
 		this.active = active;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((planName == null) ? 0 : planName.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -68,21 +110,7 @@ public class MealPlan {
 		if (getClass() != obj.getClass())
 			return false;
 		MealPlan other = (MealPlan) obj;
-		if (active != other.active)
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (id != other.id)
-			return false;
-		if (planName == null) {
-			if (other.planName != null)
-				return false;
-		} else if (!planName.equals(other.planName))
-			return false;
-		if (userId != other.userId)
 			return false;
 		return true;
 	}
@@ -92,8 +120,8 @@ public class MealPlan {
 		StringBuilder builder = new StringBuilder();
 		builder.append("MealPlan [id=");
 		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
+		builder.append(", user=");
+		builder.append(user);
 		builder.append(", planName=");
 		builder.append(planName);
 		builder.append(", description=");

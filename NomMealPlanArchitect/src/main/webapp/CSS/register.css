@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+body {
+	background-image:
+		url('https://i.pinimg.com/originals/fa/87/4f/fa874f786a550a7b50a00a08776c246b.gif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* background-color: #0066ff; */
+	color: white;
+}
+.card{
+	background: rgb(60, 60, 60);
+    background: rgba(60, 60, 60, 0.4);
+    background-size: contain;
+}
+.divider-text {
+	position: relative;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	color: black;
+}
+
+.divider-text span {
+	padding: 7px;
+	font-size: 12px;
+	position: relative;
+	z-index: 2;
+}
+
+.divider-text:after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	top: 55%;
+	left: 0;
+	z-index: 1;
+}
+
+.btn-facebook {
+	background-color: #405D9D;
+	color: #fff;
+}
+
+.btn-twitter {
+	background-color: #42AEEC;
+	color: #fff;
+}

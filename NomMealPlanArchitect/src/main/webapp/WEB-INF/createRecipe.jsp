@@ -8,6 +8,7 @@
 <html lang="en">
 <head>
 <jsp:include page="publicNavbar.jsp" />
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -19,18 +20,17 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-
-<title>Home: Nom! Meal Plan Architect</title>
+<title>Create Recipe: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
 
 </head>
 <body>
+	<h1>Create Recipe Page</h1>
 
-	<br>
-	<br>
-	<h1>HOME</h1>
+
+
 
 
 	<!-- Optional JavaScript -->

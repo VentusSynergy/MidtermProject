@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+body {
+	background-image:url('https://i.pinimg.com/originals/fa/87/4f/fa874f786a550a7b50a00a08776c246b.gif'); 
+	background-repeat:no-repeat;
+	background-size: cover;
+	/* background-color: #0066ff; */
+	color: white;
+}
+
+h1, h2, h3, h4, h5, form, a, ul {
+	color: white;
+}
+
+.footer {
+	max-width: 30px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	margin-left: 10%;
+	margin-right: auto;
+	margin-top: auto;
+}
+
+li {
+	list-style-type: none;
+	color: white;
+}
+
+a:hover {
+	color: #00FF00;
+}

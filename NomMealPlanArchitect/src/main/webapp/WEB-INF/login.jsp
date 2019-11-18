@@ -7,7 +7,9 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Bootstrap Header -->
 <jsp:include page="publicNavbar.jsp" />
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -19,20 +21,37 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-
-<title>Home: Nom! Meal Plan Architect</title>
+<title>Login: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
 
 </head>
 <body>
+	<div class="container">
 
-	<br>
-	<br>
-	<h1>HOME</h1>
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h1>Login</h1>
+				<form:form action="loginAction.do" method="GET">
+					<div class="form-group" >
+						<label for="exampleInputEmail1">Email address</label> <input
+							type="email" class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp" placeholder="Enter email" name="email">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label> <input
+							type="password" class="form-control" id="exampleInputPassword1"
+							placeholder="Password" name="password">
+					</div>
+					<button type="submit" class="btn btn-light">Submit</button>
+				</form:form>
+			</div>
+			<div class="col-3"></div>
+		</div>
 
-
+	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

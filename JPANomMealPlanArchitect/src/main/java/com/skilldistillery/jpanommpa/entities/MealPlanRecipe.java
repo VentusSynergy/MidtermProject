@@ -1,51 +1,94 @@
 package com.skilldistillery.jpanommpa.entities;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "meal_plan_recipe")
 public class MealPlanRecipe {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int mealPlanId;
-	private int recipeId;
-	private int sequenceNumber;
-	private int typeId;
+
+	@Column(name = "sequence_number")
+	private Integer sequenceNumber;
+	@Column(name = "day_name")
+	@Enumerated(EnumType.STRING)
 	private Days day;
+
+	@OneToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
+
+	
+
+	@ManyToOne
+	@JoinColumn(name = "meal_plan_id")
+	private MealPlan mealPlan;
+
+	@OneToOne
+	@JoinColumn(name = "type_id")
+	private RecipeType type;
+
+
+	public RecipeType getType() {
+		return type;
+	}
+
+
+	public void setType(RecipeType types) {
+		this.type = types;
+	}
+
+
+	public MealPlanRecipe() {
+		super();
+	}
+
+
+	public MealPlan getMealPlan() {
+		return mealPlan;
+	}
+
+	public void setMealPlan(MealPlan mealPlan) {
+		this.mealPlan = mealPlan;
+	}
 
 	public int getId() {
 		return id;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getMealPlanId() {
-		return mealPlanId;
-	}
-
-	public void setMealPlanId(int mealPlanId) {
-		this.mealPlanId = mealPlanId;
-	}
-
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
-	}
-
-	public int getSequenceNumber() {
+	public Integer getSequenceNumber() {
 		return sequenceNumber;
 	}
 
-	public void setSequenceNumber(int sequenceNumber) {
+	public void setSequenceNumber(Integer sequenceNumber) {
 		this.sequenceNumber = sequenceNumber;
-	}
-
-	public int getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(int typeId) {
-		this.typeId = typeId;
 	}
 
 	public Days getDay() {
@@ -60,12 +103,7 @@ public class MealPlanRecipe {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((day == null) ? 0 : day.hashCode());
 		result = prime * result + id;
-		result = prime * result + mealPlanId;
-		result = prime * result + recipeId;
-		result = prime * result + sequenceNumber;
-		result = prime * result + typeId;
 		return result;
 	}
 
@@ -78,17 +116,7 @@ public class MealPlanRecipe {
 		if (getClass() != obj.getClass())
 			return false;
 		MealPlanRecipe other = (MealPlanRecipe) obj;
-		if (day != other.day)
-			return false;
 		if (id != other.id)
-			return false;
-		if (mealPlanId != other.mealPlanId)
-			return false;
-		if (recipeId != other.recipeId)
-			return false;
-		if (sequenceNumber != other.sequenceNumber)
-			return false;
-		if (typeId != other.typeId)
 			return false;
 		return true;
 	}
@@ -98,16 +126,16 @@ public class MealPlanRecipe {
 		StringBuilder builder = new StringBuilder();
 		builder.append("MealPlanRecipe [id=");
 		builder.append(id);
-		builder.append(", mealPlanId=");
-		builder.append(mealPlanId);
-		builder.append(", recipeId=");
-		builder.append(recipeId);
 		builder.append(", sequenceNumber=");
 		builder.append(sequenceNumber);
-		builder.append(", typeId=");
-		builder.append(typeId);
 		builder.append(", day=");
 		builder.append(day);
+		builder.append(", recipe=");
+		builder.append(recipe);
+		builder.append(", mealPlan=");
+		builder.append(mealPlan);
+		builder.append(", types=");
+		builder.append(type);
 		builder.append("]");
 		return builder.toString();
 	}
