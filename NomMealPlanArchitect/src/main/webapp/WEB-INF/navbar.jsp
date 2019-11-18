@@ -37,15 +37,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 
-					<c:if test="${empty loggedInUser.firstName }">
+					<c:if test="${empty loggedInUser.email }">
 						<li class="nav-item"><a class="nav-link" href="login.do">Login</a>
 						</li>
 					</c:if>
-					<c:if test="${not empty loggedInUser.firstName }">
+					<c:if test="${not empty loggedInUser.email }">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Hi, user </a>
+							aria-expanded="false"> Hi User </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="userProfile.do">Profile</a>
 								<!-- 	<a class="dropdown-item" href="updateUserProfile.do">Update Profile</a> -->
@@ -62,11 +62,11 @@
 						aria-expanded="false"> Recipes </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="recipeSearch.do">Search</a>
-							<c:if test="${not empty loggedInUser.firstName }">
+							<c:if test="${not empty loggedInUser.email }">
 								<a class="dropdown-item" href="createRecipe.do">Create</a>
 							</c:if>
 						</div></li>
-					<c:if test="${not empty loggedInUser.firstName }">
+					<c:if test="${not empty loggedInUser.email }">
 						<li class="nav-item"><a class="nav-link" href="mealPlan.do">Meal
 								Plan </a>
 					</c:if>
