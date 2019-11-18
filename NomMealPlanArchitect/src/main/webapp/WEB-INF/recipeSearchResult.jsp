@@ -51,7 +51,7 @@
 						<article class="search-result row">
 							<div class="col-xs-12 col-sm-12 col-md-3">
 								<a href="#" title="Lorem ipsum" class="thumbnail"><img
-									src="${r.photoLink}" alt="Lorem ipsum" /></a>
+									src="${r.photoLink}" alt="Lorem ipsum" height="150px" width="auto"/></a>
 							</div> 
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
