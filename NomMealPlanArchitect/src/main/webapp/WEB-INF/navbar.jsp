@@ -47,8 +47,8 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> Hi, user </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="userProfile.do">Profile</a> 
-							<!-- 	<a class="dropdown-item" href="updateUserProfile.do">Update Profile</a> -->
+								<a class="dropdown-item" href="userProfile.do">Profile</a>
+								<!-- 	<a class="dropdown-item" href="updateUserProfile.do">Update Profile</a> -->
 								<a class="dropdown-item" href="logout.do">Logout</a>
 
 							</div></li>
@@ -62,10 +62,14 @@
 						aria-expanded="false"> Recipes </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="recipeSearch.do">Search</a>
-							<c:if test="${not empty loggedInUser }">
+							<c:if test="${not empty loggedInUser.firstName }">
 								<a class="dropdown-item" href="createRecipe.do">Create</a>
 							</c:if>
 						</div></li>
+					<c:if test="${not empty loggedInUser.firstName }">
+						<li class="nav-item"><a class="nav-link" href="mealPlan.do">Meal
+								Plan </a>
+					</c:if>
 				</ul>
 
 				<form:form class="form-inline my-2 my-lg-0" name="key"
