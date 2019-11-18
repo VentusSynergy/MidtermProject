@@ -33,7 +33,8 @@
 			<div class="col-3"></div>
 			<div class="col-6">
 				<h1>Update Profile Page</h1>
-				<form:form action="updateUserProfile.do" method="POST" modelAttribute="user">
+				<form:form action="updateUserProfile.do" method="POST"
+					modelAttribute="user">
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i>
@@ -82,14 +83,15 @@
 						<form:input class="form-control" path="password"
 							placeholder="Create password" type="password" />
 						<form:errors path="password" />
-						<br>
-
-						<button type="submit" name="userId" value="${user.id}"
-							class="btn btn-outline-light btn-md">Update Item</button>
+					</div>
+					<br>
+						<div>
+							<button type="submit" name="userId" value="${user.id}"
+								class="btn btn-outline-light btn-md">Update Item</button>
+						</div>
 				</form:form>
 
-				<br /> <a href="index.do" class="badge badge-light">Cancel</a>
-			</div>
+			<br /> <a href="index.do" class="badge badge-light">Cancel</a>
 			<div class="col-3"></div>
 		</div>
 
