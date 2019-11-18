@@ -47,15 +47,17 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> Hi User </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="userProfile.do">Profile</a>
-								<a class="dropdown-item" href="getUserProfile.do" >Update Profile</a>
-								<a class="dropdown-item" href="logout.do">Logout</a>
+								<a class="dropdown-item" href="userProfile.do">Profile</a> <a
+									class="dropdown-item" href="getUserProfile.do">Update
+									Profile</a> <a class="dropdown-item" href="logout.do">Logout</a>
 
 							</div></li>
 					</c:if>
 
-					<li class="nav-item"><a class="nav-link" href="register.do">Register</a></li>
-
+					<c:if test="${not empty loggedInUser.email }">
+						<li class="nav-item"><a class="nav-link" href="register.do">Register</a></li>
+					</c:if>
+					
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
