@@ -46,7 +46,7 @@ public class UserController {
 
 			session.setAttribute("loggedInUser", user);
 
-//			mv.addObject("user", user);
+			mv.addObject("user", user);
 			mv.setViewName("userProfile");
 
 			System.out.println("*************************************************");
@@ -63,7 +63,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User userLogout = new User();
-		userLogout.setFirstName("");
+		userLogout.setEmail("");
 	
 		session.setAttribute("loggedInUser", userLogout);
 
