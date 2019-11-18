@@ -151,7 +151,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectAllPublicRecipe() {
-		String query = "Select r from Recipe where r.isPublic = :public";
+		String query = "Select r from Recipe r where r.isPublic = :public";
 
 		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).getResultList();
 
@@ -160,7 +160,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectPublicRecipeByName(String name) {
-		String query = "Select r from Recipe where r.name = :name and r.isPublic = :public";
+		String query = "Select r from Recipe r where r.name = :name and r.isPublic = :public";
 
 		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("name", name).setParameter("public", true).getResultList();
 
@@ -169,9 +169,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectPublicRecipeByKeyword(String keyword) {
-		String query = "Select r from Recipe where r.isPublic = :public and r.name like '%:word%' or r.cookbook like '%:word%' or r.category.name like '%:word%' or r.type.name like '%:word%'";
+		String key = "%"+keyword+"%";
+		
+		String query = "Select r from Recipe r where r.name like :word or r.cookbook like :word or r.category.name like :word or r.recipeType.name like :word";
 
-		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("word", keyword).setParameter("public", true).getResultList();
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("word", key).getResultList();
 
 		return results;
 	}

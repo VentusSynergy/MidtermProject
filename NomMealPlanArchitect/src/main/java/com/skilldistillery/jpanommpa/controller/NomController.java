@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.GroceryListDAO;
@@ -49,15 +50,11 @@ public class NomController {
 	}
 
 	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.GET)
-	public ModelAndView searchRecipeResults(String key) {
+	public ModelAndView searchRecipeResults(@RequestParam("key") String key) {
 		ModelAndView mv = new ModelAndView();
-		User u = new User();
-		List<Recipe> recipeList = recipeDao.selectRecipeByKeyword(key);
+		List<Recipe> recipeList = recipeDao.selectPublicRecipeByKeyword(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
-		mv.addObject("deleteStatus", false);
-		mv.addObject("updateStatus", false);
-		mv.addObject("user", u);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
