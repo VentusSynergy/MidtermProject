@@ -17,10 +17,10 @@ public class TypeDAOImpl implements TypeDAO {
 	private EntityManager em;
 
 	@Override
-	public List<String> selectAllRecipeTypes() {
-		String query = "Select t.name from RecipeType t";
+	public List<RecipeType> selectAllRecipeTypes() {
+		String query = "Select t from RecipeType t";
 
-		List<String> results = em.createQuery(query, String.class).getResultList();
+		List<RecipeType> results = em.createQuery(query, RecipeType.class).getResultList();
 
 		return results;
 	}

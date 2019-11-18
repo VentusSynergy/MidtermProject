@@ -17,10 +17,10 @@ public class CategoryDAOImpl implements CategoryDAO{
 	private EntityManager em;
 
 	@Override
-	public List<String> selectAllCategories() {
-		String query = "Select c.name from Category c";
+	public List<Category> selectAllCategories() {
+		String query = "Select c from Category c";
 		
-		List<String> results = em.createQuery(query, String.class).getResultList();
+		List<Category> results = em.createQuery(query, Category.class).getResultList();
 		
 		return results;
 	}

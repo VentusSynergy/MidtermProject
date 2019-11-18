@@ -5,5 +5,5 @@ import java.util.List;
 import com.skilldistillery.jpanommpa.entities.RecipeType;
 
 public interface TypeDAO {
-	public List<String> selectAllRecipeTypes();
+	public List<RecipeType> selectAllRecipeTypes();
 }
