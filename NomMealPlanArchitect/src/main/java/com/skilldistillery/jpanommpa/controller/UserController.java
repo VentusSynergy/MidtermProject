@@ -1,5 +1,6 @@
 package com.skilldistillery.jpanommpa.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
 import com.skilldistillery.jpanommpa.entities.User;
 
 @Controller
+@SessionAttributes("loggedInUser")
 public class UserController {
 
 	@Autowired
@@ -29,27 +32,41 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "loginAction.do", method = RequestMethod.GET)
-	public ModelAndView loginDo(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public ModelAndView loginDo(@RequestParam("email") String email, @RequestParam("password") String password,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		User u = userDao.lookUp(email, password);
-		System.out.println("in controller: " + u);
-//		if (userDao.isValidUser(u)) {
-//			mv.addObject("user", u);
-//			mv.setViewName("userProfile");
-//			System.out.println("Valid user: " + u);
-//			return mv;
-//		}
-		if (u.getFirstName().equalsIgnoreCase("InvalidUser")) {
+		User user = userDao.lookUp(email, password);
+		System.out.println("in controller: " + user);
+
+		if (user.getFirstName().equalsIgnoreCase("InvalidUser")) {
 			mv.setViewName("login");
 			return mv;
 		} else {
-			mv.addObject("user", u);
+
+			session.setAttribute("loggedInUser", user);
+
+//			mv.addObject("user", user);
 			mv.setViewName("userProfile");
-			System.out.println("Valid user: " + u);
+
+			System.out.println("*************************************************");
+			System.out.println("Valid user from LoginAction.do: " + user);
+			System.out.println("*************************************************");
+
 			return mv;
 
 		}
+	}
+
+	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
+	public ModelAndView logoutDo(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		session = null;
+
+		mv.setViewName("index");
+
+		return mv;
 	}
 
 	@RequestMapping(path = "register.do", method = RequestMethod.GET)
@@ -62,7 +79,7 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "register.do", method = RequestMethod.POST)
-	public String createUser(@Valid User user, Errors errors) {
+	public String createUser(@Valid User user, Errors errors, HttpSession session) {
 		userDao.addUserToMap();
 
 		if (errors.hasErrors()) {
@@ -81,6 +98,8 @@ public class UserController {
 		System.out.println(user);
 
 		userDao.create(user);
+
+		session.setAttribute("loggedInUser", user);
 
 		return "userProfile";
 

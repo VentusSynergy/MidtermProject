@@ -43,12 +43,12 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		System.out.println(!users.containsKey(email));
 		return !users.containsKey(email);
 	}
+
 	@Override
 	public boolean isUserNameUnique(String username) {
 		System.out.println(!users.containsKey(username));
 		return !users.containsKey(username);
 	}
-	
 
 	@Override
 	public User getUserByEmail(String email) {
@@ -86,17 +86,15 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		List<User> result = new ArrayList<User>();
 
 		String jpql = "SELECT user FROM User user WHERE email = :email AND password = :pass";
-			result = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", pass)
-					.getResultList();
-			User user = new User();
-			user.setFirstName("InvalidUser");
-			if(result.size() < 1) {
-				result.add(user);
-			}
-			else{
-				user = result.get(0);
-			}
-
+		result = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", pass)
+				.getResultList();
+		User user = new User();
+		user.setFirstName("InvalidUser");
+		if (result.size() < 1) {
+			result.add(user);
+		} else {
+			user = result.get(0);
+		}
 
 		return user;
 
@@ -105,12 +103,12 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 	@Override
 	public void addUserToMap() {
 		String jpql = "SELECT user from User user";
-		List <User> result = em.createQuery(jpql, User.class).getResultList();
+		List<User> result = em.createQuery(jpql, User.class).getResultList();
 		System.err.println(result);
 		for (int j = 0; j < result.size(); j++) {
 			users.put(result.get(j).getEmail(), result.get(j));
 			users.put(result.get(j).getUsername(), result.get(j));
-			
+
 		}
 		System.out.println(users);
 	}
