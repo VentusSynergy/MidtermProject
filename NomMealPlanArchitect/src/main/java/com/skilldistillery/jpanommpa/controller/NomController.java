@@ -115,6 +115,8 @@ public class NomController {
 	public ModelAndView createRecipe(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User u = (User)session.getAttribute("loggedInUser");
+		mv.addObject("categories", categoryDao.selectAllCategories());
+		mv.addObject("types", typeDao.selectAllRecipeTypes());
 		mv.addObject("user", u);
 		mv.addObject("date", LocalDate.now());
 		mv.setViewName("createRecipe");
@@ -122,9 +124,11 @@ public class NomController {
 	}
 	
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@Valid Recipe recipe) {
+	public ModelAndView AddRecipe(@Valid Recipe recipe, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
+		recipe.setUser((User)session.getAttribute("loggedInUser"));
+		recipe.setDateCreated(LocalDate.now());
 		Recipe created = recipeDao.createRecipe(recipe);
 		if(created != null) {
 			mv.addObject("createStatus", true);

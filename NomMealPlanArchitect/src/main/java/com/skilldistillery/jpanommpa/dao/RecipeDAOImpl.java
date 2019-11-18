@@ -1,17 +1,17 @@
 package com.skilldistillery.jpanommpa.dao;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.*;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.jpanommpa.entities.Ingredient;
+import com.skilldistillery.jpanommpa.entities.Category;
 import com.skilldistillery.jpanommpa.entities.Recipe;
+import com.skilldistillery.jpanommpa.entities.RecipeType;
 
 @Transactional
 @Service
@@ -21,6 +21,8 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public Recipe createRecipe(Recipe r) {
+		r.setCategory(em.find(Category.class, r.getCategory().getId()));
+		r.setRecipeType(em.find(RecipeType.class, r.getRecipeType().getId()));
 		em.persist(r);
 
 		em.flush();
