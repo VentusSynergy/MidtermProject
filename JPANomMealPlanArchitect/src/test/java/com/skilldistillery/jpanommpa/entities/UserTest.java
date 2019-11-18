@@ -50,7 +50,7 @@ class UserTest {
 //		select * from user where id = 1;
 		assertNotNull(user.getUsername());
 		assertEquals("marthaStewart", user.getUsername());
-		assertEquals("marthaStewart@gmail.com", user.getEmail());
+		assertEquals("marthastewart@gmail.com", user.getEmail());
 		assertEquals("marthaStewart", user.getPassword());
 		assertEquals("Martha", user.getFirstName());
 		assertEquals("Stewart", user.getLastName());
