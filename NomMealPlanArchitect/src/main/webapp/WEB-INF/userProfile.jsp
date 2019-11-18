@@ -41,7 +41,7 @@
 						<tr> 
 						<td>Last Name: &nbsp</td>
 						<td>&nbsp ${user.lastName }</td>
-						</tr>
+		 				</tr>
 						<tr> 
 						<td>Email: &nbsp</td>
 						<td>&nbsp ${user.email }</td>
