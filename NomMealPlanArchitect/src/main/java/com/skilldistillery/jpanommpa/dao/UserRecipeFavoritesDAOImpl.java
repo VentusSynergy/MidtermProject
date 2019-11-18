@@ -1,6 +1,7 @@
 package com.skilldistillery.jpanommpa.dao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.UserRecipe;
 @Transactional
 @Service
@@ -18,6 +20,7 @@ public class UserRecipeFavoritesDAOImpl implements UserRecipeFavoritesDAO{
 
 	@Override
 	public UserRecipe createUserRecipe(UserRecipe ur) {
+		
 		em.persist(ur);
 		
 		em.flush();

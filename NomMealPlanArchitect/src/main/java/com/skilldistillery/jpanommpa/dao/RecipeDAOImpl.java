@@ -195,4 +195,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return results;
 	}
 
+	@Override
+	public Recipe selectRecipeById(int id) {
+		return em.find(Recipe.class, id);
+	}
+
 }

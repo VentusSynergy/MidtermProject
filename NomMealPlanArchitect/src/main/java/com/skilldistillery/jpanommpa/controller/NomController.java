@@ -18,8 +18,10 @@ import com.skilldistillery.jpanommpa.dao.IngredientDAO;
 import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.dao.TypeDAO;
+import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
 import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.User;
+import com.skilldistillery.jpanommpa.entities.UserRecipe;
 
 @Controller
 public class NomController {
@@ -38,7 +40,8 @@ public class NomController {
 	private CategoryDAO categoryDao;
 	@Autowired
 	private TypeDAO typeDao;
-	
+	@Autowired
+	private UserRecipeFavoritesDAO favDao;
 
 	@RequestMapping(path = { "/", "index.do" })
 	public String index(Model model) {
@@ -54,7 +57,7 @@ public class NomController {
 		mv.addObject("recipeIngredient", ingredientDao.selectAllIngredient());
 		mv.addObject("recipeCategory", categoryDao.selectAllCategories());
 		mv.addObject("recipeTypes", typeDao.selectAllRecipeTypes());
-		
+
 		mv.setViewName("recipeSearch");
 		return mv;
 	}
@@ -68,7 +71,7 @@ public class NomController {
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "recipeByIngredient.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeByIngredient(@RequestParam("ingredient") String ingredient) {
 		ModelAndView mv = new ModelAndView();
@@ -77,7 +80,7 @@ public class NomController {
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "recipeByCategory.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeByCategory(@RequestParam("category") String category) {
 		ModelAndView mv = new ModelAndView();
@@ -86,6 +89,7 @@ public class NomController {
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
+
 	@RequestMapping(path = "recipeByType.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeByType(@RequestParam("type") String type) {
 		ModelAndView mv = new ModelAndView();
@@ -94,7 +98,7 @@ public class NomController {
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "searchAllRecipes.do", method = RequestMethod.GET)
 	public ModelAndView searchALLRecipes() {
 		ModelAndView mv = new ModelAndView();
@@ -122,6 +126,30 @@ public class NomController {
 //		TODO needs grocery list to function
 
 		mv.setViewName("groceryList");
+		return mv;
+	}
+
+	@RequestMapping(path = "addRecipeToUser.do", method = RequestMethod.POST)
+	public ModelAndView addRecipeToUser(@RequestParam("id") int id,@RequestParam("key") String key ,HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("loggedInUser");
+		user.getId();
+		UserRecipe ur = new UserRecipe();
+		ur.setUser(user);
+		ur.setRecipe(recipeDao.selectRecipeById(id));
+		favDao.createUserRecipe(ur);
+		List<UserRecipe> favList = favDao.selectAllUserRecipe();
+		for (int i =0; i < favList.size(); i++) {
+			if (favList.get(i).getRecipe().getId() == id) {
+				mv.addObject("addSuccess", true);
+			}else {
+				mv.addObject("addSuccess", false);
+			}
+		}
+		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
+		mv.addObject("recipe", recipeList);
+		mv.addObject("key", key);
+		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
 }

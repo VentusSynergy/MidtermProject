@@ -26,9 +26,12 @@ public class UserRecipe {
 //	| date_last_made | date       | YES  |     | NULL    |                |
 //	+----------------+------------+------+-----+---------+----------------+
 
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
