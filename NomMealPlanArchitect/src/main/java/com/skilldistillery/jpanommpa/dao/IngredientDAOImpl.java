@@ -26,10 +26,10 @@ public class IngredientDAOImpl implements IngredientDAO{
 	}
 
 	@Override
-	public List<Ingredient> selectAllIngredient() {
-		String query = "Select i from Ingredient i";
+	public List<String> selectAllIngredient() {
+		String query = "Select i.name from Ingredient i";
 
-		List<Ingredient> results = em.createQuery(query, Ingredient.class).getResultList();
+		List<String> results = em.createQuery(query, String.class).getResultList();
 
 		return results;
 	}

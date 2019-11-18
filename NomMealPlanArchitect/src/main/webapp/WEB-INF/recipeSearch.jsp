@@ -35,10 +35,10 @@
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
-				<form:form action="recipeByName.do">
+				<form:form action="searchRecipe.do" method="GET">
 					<div class="form-group">
 						<label for="name">Name</label> <input type="text"
-							class="form-control" id="name" placeholder="Search Recipe Name">
+							class="form-control" id="key" name="key" placeholder="Search Recipe Name">
 					</div>
 					<button type="submit" class="btn btn-primary">Search
 						Recipes by Name</button>
@@ -132,55 +132,7 @@
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
-				<form:form action="recipeByCookbook.do" method="GET">
-					<div class="form-group">
-						<select class="form-control dropdown-info" id="cookbook"
-							name="cookbook" required>
-							<option disabled selected value="">Choose a Cookbook</option>
-							<c:forEach var="c" items="${recipeCookbooks}">
-								<option>${c}</option>
-							</c:forEach>
-						</select>
-						<button type="submit" class="btn btn-info btn-block">Search
-							Recipes by Cookbook</button>
-					</div>
-				</form:form>
-			</div>
-			<div class="col-2"></div>
-		</div>
-	</div>
-
-
-	<br>
-	<br>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-				<form:form action="recipeByKeyword.do" method="GET">
-					<div class="form-group">
-						<label for="keyword">Keyword</label> <input type="text"
-							class="form-control" id="keyword" placeholder="Search by Keyword">
-					</div>
-					<button type="submit" class="btn btn-primary">Search
-						Recipes by Keyword</button>
-				</form:form>
-			</div>
-			<div class="col-2"></div>
-		</div>
-	</div>
-
-
-
-	<br>
-	<br>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-				<form:form action="allRecipes.do" method="GET">
+				<form:form action="searchAllRecipes.do" method="GET">
 					<button type="submit" class="btn btn-success btn-block">List
 						All Recipes</button>
 				</form:form>

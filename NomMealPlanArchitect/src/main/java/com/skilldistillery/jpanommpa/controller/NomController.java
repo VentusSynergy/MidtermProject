@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.jpanommpa.dao.CategoryDAO;
 import com.skilldistillery.jpanommpa.dao.GroceryListDAO;
 import com.skilldistillery.jpanommpa.dao.IngredientDAO;
 import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
+import com.skilldistillery.jpanommpa.dao.TypeDAO;
 import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.User;
 
@@ -32,6 +34,11 @@ public class NomController {
 	private MealPlanDAO mealPlanDao;
 	@Autowired
 	private RecipeDAO recipeDao;
+	@Autowired
+	private CategoryDAO categoryDao;
+	@Autowired
+	private TypeDAO typeDao;
+	
 
 	@RequestMapping(path = { "/", "index.do" })
 	public String index(Model model) {
@@ -44,7 +51,10 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
-
+		mv.addObject("recipeIngredient", ingredientDao.selectAllIngredient());
+		mv.addObject("recipeCategory", categoryDao.selectAllCategories());
+		mv.addObject("recipeTypes", typeDao.selectAllRecipeTypes());
+		
 		mv.setViewName("recipeSearch");
 		return mv;
 	}
@@ -55,6 +65,41 @@ public class NomController {
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
+		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+	
+	@RequestMapping(path = "recipeByIngredient.do", method = RequestMethod.GET)
+	public ModelAndView searchRecipeByIngredient(@RequestParam("ingredient") String ingredient) {
+		ModelAndView mv = new ModelAndView();
+		List<Recipe> recipeList = recipeDao.selectPublicRecipeByIngredient(ingredient);
+		mv.addObject("recipe", recipeList);
+		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+	
+	@RequestMapping(path = "recipeByCategory.do", method = RequestMethod.GET)
+	public ModelAndView searchRecipeByCategory(@RequestParam("category") String category) {
+		ModelAndView mv = new ModelAndView();
+		List<Recipe> recipeList = recipeDao.selectPublicRecipeByCategory(category);
+		mv.addObject("recipe", recipeList);
+		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+	@RequestMapping(path = "recipeByType.do", method = RequestMethod.GET)
+	public ModelAndView searchRecipeByType(@RequestParam("type") String type) {
+		ModelAndView mv = new ModelAndView();
+		List<Recipe> recipeList = recipeDao.selectPublicRecipeByType(type);
+		mv.addObject("recipe", recipeList);
+		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+	
+	@RequestMapping(path = "searchAllRecipes.do", method = RequestMethod.GET)
+	public ModelAndView searchALLRecipes() {
+		ModelAndView mv = new ModelAndView();
+		List<Recipe> recipeList = recipeDao.selectAllPublicRecipe();
+		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
