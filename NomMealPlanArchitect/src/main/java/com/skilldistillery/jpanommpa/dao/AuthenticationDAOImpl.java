@@ -124,4 +124,13 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		
 		return managedUser;
 	}
+	
+	@Override
+	public User updateActiveStatus(int id) {
+		User managedUser = em.find(User.class, id);
+		
+		managedUser.setActive(false);
+		
+		return managedUser;
+	}
 }
