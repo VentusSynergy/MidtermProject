@@ -9,14 +9,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
 import com.skilldistillery.jpanommpa.entities.User;
 
 @Controller
-//@SessionAttributes("loggedInUser")
 public class UserController {
 
 	@Autowired
@@ -53,10 +51,6 @@ public class UserController {
 
 			mv.addObject("user", user);
 			mv.setViewName("userProfile");
-
-			System.out.println("*************************************************");
-			System.out.println("Valid user from LoginAction.do: " + user);
-			System.out.println("*************************************************");
 
 			return mv;
 

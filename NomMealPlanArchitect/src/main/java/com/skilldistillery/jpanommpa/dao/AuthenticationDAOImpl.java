@@ -65,17 +65,9 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		System.out.println(user);
 
 		if (getUserByEmail(user.getEmail()) == null) {
-
-			System.out.println("************************************");
-			System.out.println(false);
-
 			return false;
 		}
 		if (users.get(user.getEmail()).getPassword().equals(user.getPassword())) {
-
-			System.out.println("************************************");
-			System.out.println(true);
-
 			return true;
 		}
 		return false;
@@ -97,7 +89,6 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		}
 
 		return user;
-
 	}
 
 	@Override
@@ -110,27 +101,26 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 			users.put(result.get(j).getUsername(), result.get(j));
 
 		}
-		System.out.println(users);
 	}
 
 	@Override
 	public User updateUser(int id, User updatedUser) {
 		User managedUser = em.find(User.class, id);
-		
+
 		managedUser.setFirstName(updatedUser.getFirstName());
 		managedUser.setLastName(updatedUser.getLastName());
 		managedUser.setEmail(updatedUser.getEmail());
 		managedUser.setUsername(updatedUser.getUsername());
-		
+
 		return managedUser;
 	}
-	
+
 	@Override
 	public User updateActiveStatus(int id) {
 		User managedUser = em.find(User.class, id);
-		
+
 		managedUser.setActive(false);
-		
+
 		return managedUser;
 	}
 }
