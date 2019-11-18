@@ -65,8 +65,11 @@
 									<a href="#" title="">${r.name}</a>
 								</h3>
 								<p>${r.instructions}</p>
-								<span class="plus"><a href="#" title="Lorem ipsum"><i
-										class="glyphicon glyphicon-plus"></i></a></span>
+								<form class="plus" action="addRecipeToUser.do" method="get">
+								<button  class="glyphicon glyphicon-plus">Add</button>
+								<input type="hidden" name="id" value="${r.id}">
+								</form>	
+									
 							</div>
 							<span class="clearfix borda"></span>
 						</article>
