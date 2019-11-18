@@ -62,7 +62,7 @@ public class MealPlanRecipeDAOImpl implements MealPlanRecipeDAO {
 
 	@Override
 	public List<MealPlanRecipe> selectAllMealPlanRecipe() {
-		String query = "Select m from MealPlanRecipe";
+		String query = "Select m from MealPlanRecipe m";
 
 		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).getResultList();
 
@@ -71,16 +71,16 @@ public class MealPlanRecipeDAOImpl implements MealPlanRecipeDAO {
 
 	@Override
 	public List<MealPlanRecipe> selectMealPlanRecipeByRecipe(String recipe) {
-		String query = "Select m from MealPlanRecipe where m.recipe.name = :name";
+		String query = "Select m from MealPlanRecipe m where m.recipe.name like :name";
 
-		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("name", recipe).getResultList();
+		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("name", "%" + recipe + "%").getResultList();
 
 		return results;
 	}
 
 	@Override
 	public List<MealPlanRecipe> selectMealPlanRecipeByDay(String day) {
-		String query = "Select m from MealPlanRecipe where m.day = :day";
+		String query = "Select m from MealPlanRecipe m where m.day = :day";
 
 		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("day", day).getResultList();
 
@@ -89,7 +89,7 @@ public class MealPlanRecipeDAOImpl implements MealPlanRecipeDAO {
 
 	@Override
 	public List<MealPlanRecipe> selectMealPlanRecipeBySequenceNum(int seqNum) {
-		String query = "Select m from MealPlanRecipe where m.sequenceNumber = :s";
+		String query = "Select m from MealPlanRecipe m where m.sequenceNumber = :s";
 
 		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("s", seqNum).getResultList();
 
@@ -98,7 +98,7 @@ public class MealPlanRecipeDAOImpl implements MealPlanRecipeDAO {
 
 	@Override
 	public List<MealPlanRecipe> selectMealPlanRecipeByType(String type) {
-		String query = "Select m from MealPlanRecipe where m.type = :t";
+		String query = "Select m from MealPlanRecipe m where m.type = :t";
 
 		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("t", type).getResultList();
 
@@ -107,9 +107,9 @@ public class MealPlanRecipeDAOImpl implements MealPlanRecipeDAO {
 
 	@Override
 	public List<MealPlanRecipe> selectMealPlanRecipeByKeyword(String keyword) {
-		String query = "Select m from MealPlanRecipe where m.day like '%word%' or m.type like '%word%' or m.recipe.name like '%word%' ";
+		String query = "Select m from MealPlanRecipe m where m.day like :word or m.type like :word or m.recipe.name like :word ";
 
-		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("word", keyword).getResultList();
+		List<MealPlanRecipe> results = em.createQuery(query, MealPlanRecipe.class).setParameter("word", "%" + keyword + "%").getResultList();
 
 		return results;
 	}

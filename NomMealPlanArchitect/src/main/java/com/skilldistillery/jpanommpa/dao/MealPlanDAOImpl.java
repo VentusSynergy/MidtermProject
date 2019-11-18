@@ -56,7 +56,7 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 
 	@Override
 	public List<MealPlan> selectAllMealPlan(MealPlan m) {
-		String query = "Select m from MealPlan";
+		String query = "Select m from MealPlan m";
 
 		List<MealPlan> results = em.createQuery(query, MealPlan.class).getResultList();
 
@@ -65,9 +65,9 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 
 	@Override
 	public List<MealPlan> selectMealPlanByKeyword(String keyword) {
-		String query = "Select m from MealPlan where planName like '%word%' or description like '%word%'";
+		String query = "Select m from MealPlan m where planName like :word or description like :word";
 
-		List<MealPlan> results = em.createQuery(query, MealPlan.class).setParameter("word", keyword).getResultList();
+		List<MealPlan> results = em.createQuery(query, MealPlan.class).setParameter("word", "%" + keyword + "%").getResultList();
 
 		return results;
 	}

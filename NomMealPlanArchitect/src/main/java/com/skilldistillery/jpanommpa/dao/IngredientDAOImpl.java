@@ -27,7 +27,7 @@ public class IngredientDAOImpl implements IngredientDAO{
 
 	@Override
 	public List<Ingredient> selectAllIngredient() {
-		String query = "Select i from Ingredient";
+		String query = "Select i from Ingredient i";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).getResultList();
 
@@ -36,25 +36,25 @@ public class IngredientDAOImpl implements IngredientDAO{
 
 	@Override
 	public List<Ingredient> selectIngredientByName(String name) {
-		String query = "Select i from Ingredient where i.name = :name";
+		String query = "Select i from Ingredient i where i.name like :name";
 
-		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("name", name).getResultList();
+		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("name", "%" + name + "%").getResultList();
 
 		return results;
 	}
 
 	@Override
 	public List<Ingredient> selectIngredientByBrand(String brand) {
-		String query = "Select i from Ingredient where i.brand = :brand";
+		String query = "Select i from Ingredient i where i.brand like :brand";
 
-		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("brand", brand).getResultList();
+		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("brand", "%" + brand + "%").getResultList();
 
 		return results;
 	}
 
 	@Override
 	public List<Ingredient> selectIngredientByCategory(String category) {
-		String query = "Select i from Ingredient where i.category = :category";
+		String query = "Select i from Ingredient i where i.category = :category";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("category", category).getResultList();
 

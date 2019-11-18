@@ -61,7 +61,7 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 
 	@Override
 	public List<RecipeReview> selectAllRecipeReview() {
-		String query = "Select r from RecipeReview";
+		String query = "Select r from RecipeReview r";
 
 		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).getResultList();
 
@@ -70,7 +70,7 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 
 	@Override
 	public List<RecipeReview> selectRecipeReviewByUserID(int id) {
-		String query = "Select r from RecipeReview where r.user.id = :id";
+		String query = "Select r from RecipeReview r where r.user.id = :id";
 
 		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("id", id).getResultList();
 
@@ -79,7 +79,7 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 
 	@Override
 	public List<RecipeReview> selectRecipeReviewByRating(int rating) {
-		String query = "Select r from RecipeReview where r.rating = :rating";
+		String query = "Select r from RecipeReview r where r.rating = :rating";
 
 		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("rating", rating).getResultList();
 
@@ -88,7 +88,7 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 
 	@Override
 	public List<RecipeReview> selectRecipeReviewByRecipeID(int id) {
-		String query = "Select r from RecipeReview where r.recipe.id = :id";
+		String query = "Select r from RecipeReview r where r.recipe.id = :id";
 
 		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("id", id).getResultList();
 
@@ -97,9 +97,9 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 
 	@Override
 	public List<RecipeReview> selectRecipeReviewByRecipeName(String recipeName) {
-		String query = "Select r from RecipeReview where r.recipe.name = :name";
+		String query = "Select r from RecipeReview r where r.recipe.name like :name";
 
-		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("name", recipeName).getResultList();
+		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("name", "%" + recipeName + "%").getResultList();
 
 		return results;
 	}
