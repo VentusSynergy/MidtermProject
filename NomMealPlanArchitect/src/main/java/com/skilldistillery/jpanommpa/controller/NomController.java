@@ -1,5 +1,7 @@
 package com.skilldistillery.jpanommpa.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -113,8 +115,29 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
-
+		mv.addObject("date", LocalDate.now());
 		mv.setViewName("createRecipe");
+		return mv;
+	}
+	
+	@RequestMapping(path = "createRecipe.do", method = RequestMethod.POST)
+	public ModelAndView AddRecipe(@RequestParam("recipe") Recipe recipe) {
+		ModelAndView mv = new ModelAndView();
+		User u = new User();
+		Recipe created = recipeDao.createRecipe(recipe);
+		if(created != null) {
+			mv.addObject("createStatus", true);
+			List<Recipe> recipeList = new ArrayList<>();
+			recipeList.add(created);
+			mv.addObject("recipe", recipeList);
+			mv.setViewName("recipeSearchResult");
+		}
+		else {
+			mv.addObject("createStatus", false);
+			mv.addObject("user", u);
+			mv.setViewName("createRecipe");
+		}
+		
 		return mv;
 	}
 

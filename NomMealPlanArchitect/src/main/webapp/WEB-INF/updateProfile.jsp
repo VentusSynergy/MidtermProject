@@ -85,29 +85,39 @@
 						<form:errors path="password" />
 					</div>
 					<br>
-						<div>
-							<button type="submit" name="userId" value="${user.id}"
-								class="btn btn-outline-light btn-md">Update Item</button>
-						</div>
+					<div>
+						<button type="submit" name="userId" value="${user.id}"
+							class="btn btn-outline-light btn-md">Update Item</button>
+					</div>
+					<br>
 				</form:form>
 
-			<br /> <a href="index.do" class="badge badge-light">Cancel</a>
-			<div class="col-3"></div>
-		</div>
+				<form:form action="deactivateUser.do" method="POST"
+					modelAttribute="user">
+					<div>
+						<button type="submit" name="userId" value="${user.id}"
+							class="btn btn-outline-danger btn-md">Deactivate Account</button>
+					</div>
+				</form:form>
 
-	</div>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
+				<br /> <a href="index.do" class="badge badge-light">Cancel</a>
+
+				<div class="col-3"></div>
+			</div>
+
+		</div>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
 </body>
 </html>

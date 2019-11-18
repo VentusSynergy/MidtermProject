@@ -19,4 +19,6 @@ public interface AuthenticationDAO {
 
 	public User updateUser(int id, User updatedUser);
 
+	User updateActiveStatus(int id);
+
 }
