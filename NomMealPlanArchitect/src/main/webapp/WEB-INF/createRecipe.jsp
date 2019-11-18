@@ -35,7 +35,7 @@
 				<h2 style="color: green">Create a New Recipe</h2>
 				<c:choose>
 					<c:when test="${createStatus}">
-						<h2 style="color: green">Recipe Creation Successful!</h2>
+						<h2 style="color: red">Recipe Creation Failed!</h2>
 					</c:when>
 				</c:choose>
 				<div class="col-2"></div>
