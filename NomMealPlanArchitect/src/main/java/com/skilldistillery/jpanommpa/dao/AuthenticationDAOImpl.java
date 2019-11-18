@@ -80,15 +80,25 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		String jpql = "SELECT user FROM User user WHERE email = :email AND password = :pass";
 		result = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", pass)
 				.getResultList();
-		User user = new User();
-		user.setFirstName("InvalidUser");
-		if (result.size() < 1) {
-			result.add(user);
-		} else {
-			user = result.get(0);
-		}
 
-		return user;
+		User userNotFound = new User();
+		userNotFound.setId(0);
+		userNotFound.setFirstName("InvalidUser");
+		userNotFound.setLastName("InvalidUser");
+		userNotFound.setPassword("InvalidUser");
+		userNotFound.setUsername("InvalidUser");
+		userNotFound.setEmail("InvalidUser");
+		userNotFound.setActive(true);
+		userNotFound.setAdmin(false);
+
+		User validUser = new User();
+
+		if (result.size() < 1) {
+			return userNotFound;
+		}
+		
+		validUser = result.get(0);
+		return validUser;
 	}
 
 	@Override

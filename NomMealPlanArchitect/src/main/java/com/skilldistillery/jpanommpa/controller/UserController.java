@@ -35,6 +35,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User user = userDao.lookUp(email, password);
+
 		System.out.println("in controller: " + user);
 
 		if (user.getActive() == false) {
@@ -43,18 +44,18 @@ public class UserController {
 		}
 
 		if (user.getFirstName().equalsIgnoreCase("InvalidUser")) {
-			mv.setViewName("login");
+			mv.setViewName("loginInvalid");
 			return mv;
-		} else {
-
-			session.setAttribute("loggedInUser", user);
-
-			mv.addObject("user", user);
-			mv.setViewName("userProfile");
-
-			return mv;
-
 		}
+		
+
+		session.setAttribute("loggedInUser", user);
+
+		mv.addObject("user", user);
+		mv.setViewName("userProfile");
+
+		return mv;
+
 	}
 
 	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
