@@ -27,12 +27,38 @@
 
 </head>
 <body>
-	<h1>User Profile Page</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h1>User Profile Page</h1>
+				<form action="loginAction.do" method="GET">
+					<table>
+						<tr> 
+						<td>First Name: &nbsp</td>
+						<td>&nbsp ${user.firstName }</td>
+						</tr>
+						<tr> 
+						<td>Last Name: &nbsp</td>
+						<td>&nbsp ${user.lastName }</td>
+						</tr>
+						<tr> 
+						<td>Email: &nbsp</td>
+						<td>&nbsp ${user.email }</td>
+						</tr>
+						<tr> 
+						<td>User Name: &nbsp</td>
+						<td>&nbsp ${user.username }</td>
+						</tr>
+					</table>
+				</form>
 
 
 
 
-
+			</div>
+		</div>
+	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
