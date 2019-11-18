@@ -52,7 +52,7 @@ public class NomController {
 	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeResults(@RequestParam("key") String key) {
 		ModelAndView mv = new ModelAndView();
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByKeyword(key);
+		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
 		mv.setViewName("recipeSearchResult");
