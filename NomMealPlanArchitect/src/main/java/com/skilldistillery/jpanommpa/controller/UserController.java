@@ -39,6 +39,11 @@ public class UserController {
 		User user = userDao.lookUp(email, password);
 		System.out.println("in controller: " + user);
 
+		if (user.getActive() == false) {
+			mv.setViewName("loginDeactive");
+			return mv;
+		}
+
 		if (user.getFirstName().equalsIgnoreCase("InvalidUser")) {
 			mv.setViewName("login");
 			return mv;
@@ -64,7 +69,7 @@ public class UserController {
 
 		User userLogout = new User();
 		userLogout.setEmail("");
-	
+
 		session.setAttribute("loggedInUser", userLogout);
 
 		mv.setViewName("index");
@@ -106,36 +111,48 @@ public class UserController {
 		return "userProfile";
 
 	}
-	
+
 	@RequestMapping(path = "userProfile.do")
 	public ModelAndView userProfile(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-//		User u = new User();
-//		mv.addObject("user", u);
+
 		mv.setViewName("userProfile");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "getUserProfile.do", method = RequestMethod.GET)
 	public ModelAndView userUpdate(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		User userToUpdate = (User) session.getAttribute("loggedInUser");
-		
+
 		mv.addObject("user", userToUpdate);
 		mv.setViewName("updateProfile");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "updateUserProfile.do", params = "userId", method = RequestMethod.POST)
 	public ModelAndView updateUserProfile(@RequestParam("userId") int userId, @Valid User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		User display = userDao.updateUser(userId, user);
-		
+
 		session.setAttribute("loggedInUser", display);
-		
+
 		mv.setViewName("userProfile");
+		return mv;
+	}
+
+	@RequestMapping(path = "deactivateUser.do", params = "userId", method = RequestMethod.POST)
+	public ModelAndView deactivateUser(@RequestParam("userId") int userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		User logout = userDao.updateActiveStatus(userId);
+		logout.setEmail("");
+
+		session.setAttribute("loggedInUser", logout);
+
+		mv.setViewName("index");
 		return mv;
 	}
 
