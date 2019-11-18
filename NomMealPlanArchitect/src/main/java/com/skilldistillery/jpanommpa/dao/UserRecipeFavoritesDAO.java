@@ -12,5 +12,6 @@ public interface UserRecipeFavoritesDAO {
 	public List<UserRecipe> selectAllUserRecipe();
 	public List<UserRecipe> selectUserRecipeByRecipeName(String name);
 	public List<UserRecipe> selectUserRecipeByDateLastMade(LocalDate date);
+//	public List<UserRecipe> addRecipeToUser(int id);
 
 }
