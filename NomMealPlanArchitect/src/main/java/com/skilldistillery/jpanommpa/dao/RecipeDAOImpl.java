@@ -176,7 +176,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectPublicRecipeByType(String type) {
-		String query = "Select r from Recipe r where r.isPublic = :public and r.type.name like :word";
+		String query = "Select r from Recipe r where r.isPublic = :public and r.recipeType.name like :word";
 
 		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("word", "%" + type+ "%").getResultList();
 
