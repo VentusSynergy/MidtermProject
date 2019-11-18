@@ -16,14 +16,14 @@ import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
 import com.skilldistillery.jpanommpa.entities.User;
 
 @Controller
-@SessionAttributes("loggedInUser")
+//@SessionAttributes("loggedInUser")
 public class UserController {
 
 	@Autowired
 	private AuthenticationDAO userDao;
 
 	@RequestMapping(path = "login.do")
-	public ModelAndView login() {
+	public ModelAndView login(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
@@ -62,10 +62,12 @@ public class UserController {
 	public ModelAndView logoutDo(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		session = null;
+		User userLogout = new User();
+		userLogout.setFirstName("");
+	
+		session.setAttribute("loggedInUser", userLogout);
 
 		mv.setViewName("index");
-
 		return mv;
 	}
 
@@ -103,6 +105,24 @@ public class UserController {
 
 		return "userProfile";
 
+	}
+	
+	@RequestMapping(path = "userProfile.do")
+	public ModelAndView userProfile(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+//		User u = new User();
+//		mv.addObject("user", u);
+		mv.setViewName("userProfile");
+		return mv;
+	}
+	
+	@RequestMapping(path = "updateUserProfile.do")
+	public ModelAndView updateUserProfile(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+//		User u = new User();
+//		mv.addObject("user", u);
+		mv.setViewName("userProfile");
+		return mv;
 	}
 
 }

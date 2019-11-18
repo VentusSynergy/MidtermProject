@@ -1,4 +1,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +36,24 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="login.do">Login</a>
-					</li>
+
+					<c:if test="${empty loggedInUser.firstName }">
+						<li class="nav-item"><a class="nav-link" href="login.do">Login</a>
+						</li>
+					</c:if>
+					<c:if test="${not empty loggedInUser.firstName }">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Hi, user </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="userProfile.do">Profile</a> 
+							<!-- 	<a class="dropdown-item" href="updateUserProfile.do">Update Profile</a> -->
+								<a class="dropdown-item" href="logout.do">Logout</a>
+
+							</div></li>
+					</c:if>
+
 					<li class="nav-item"><a class="nav-link" href="register.do">Register</a></li>
 
 					<li class="nav-item dropdown"><a
@@ -41,8 +61,10 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Recipes </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="recipeSearch.do">Search</a> <a
-								class="dropdown-item" href="createRecipe.do">Create</a>
+							<a class="dropdown-item" href="recipeSearch.do">Search</a>
+							<c:if test="${not empty loggedInUser }">
+								<a class="dropdown-item" href="createRecipe.do">Create</a>
+							</c:if>
 						</div></li>
 				</ul>
 
