@@ -48,7 +48,7 @@
 		</div>
 	</div>
 
-	<br>
+	<%-- <br>
 	<br>
 
 	<div class="container">
@@ -72,7 +72,7 @@
 			</div>
 			<div class="col-2"></div>
 		</div>
-	</div>
+	</div> --%>
 
 	<br>
 	<br>

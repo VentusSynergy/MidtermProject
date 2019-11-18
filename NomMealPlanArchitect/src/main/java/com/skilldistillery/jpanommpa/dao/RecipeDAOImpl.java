@@ -1,6 +1,7 @@
 package com.skilldistillery.jpanommpa.dao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.transaction.*;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpanommpa.entities.Ingredient;
 import com.skilldistillery.jpanommpa.entities.Recipe;
 
 @Transactional
@@ -167,9 +169,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectPublicRecipeByIngredient(String ingredient) {
-		String query = "Select r from Recipe r where r.isPublic = :public and r.recipeIngredients.ingredient.name like :name";
+	
+		String query = "Select r from Recipe r where r.isPublic = :public and r.recipeIngredients.ingredient.name in (:name)";
 
-		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("name", "%" + ingredient + "%").getResultList();
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("name", ingredient).getResultList();
 
 		return results;
 	}
