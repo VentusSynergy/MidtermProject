@@ -49,7 +49,8 @@
 				<form:form class="form-inline my-2 my-lg-0" name="key" action="searchRecipe.do"
 					method="GET">
 					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search Recipes" aria-label="Search">
+						placeholder="Search Recipes" aria-label="Search" id="key"
+									name="key">
 					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
 				</form:form>
 			</div>
