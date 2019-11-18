@@ -133,19 +133,14 @@ public class NomController {
 	public ModelAndView addRecipeToUser(@RequestParam("id") int id,@RequestParam("key") String key ,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
-		user.getId();
 		UserRecipe ur = new UserRecipe();
 		ur.setUser(user);
 		ur.setRecipe(recipeDao.selectRecipeById(id));
 		favDao.createUserRecipe(ur);
 		List<UserRecipe> favList = favDao.selectAllUserRecipe();
-		for (int i =0; i < favList.size(); i++) {
-			if (favList.get(i).getRecipe().getId() == id) {
-				mv.addObject("addSuccess", true);
-			}else {
-				mv.addObject("addSuccess", false);
-			}
-		}
+		mv.addObject("favList", favList);
+		
+		//return same search
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);

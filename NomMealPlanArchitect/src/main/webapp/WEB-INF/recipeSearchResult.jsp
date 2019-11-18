@@ -57,21 +57,27 @@
 									<a href="#" title="">${r.name}</a>
 								</h3>
 								<p>${r.instructions}</p>
-								<c:choose>
-									<c:when test="${addSuccess}">
-									<form class="plus" action="addRecipeToUser.do" method="POST">
-											<button class="glyphicon glyphicon-plus" disabled>Added</button>
-											<input type="hidden" name="id" value="${r.id}"> <input
-												type="hidden" name="key" value="${key}"></form>
-									</c:when>
-									<c:otherwise>
-										<form class="plus" action="addRecipeToUser.do" method="POST">
-											<button class="glyphicon glyphicon-plus">Add</button>
-											<input type="hidden" name="id" value="${r.id}"> <input
-												type="hidden" name="key" value="${key}">
-										</form>
-									</c:otherwise>
-								</c:choose>
+								
+								
+								<c:forEach var="fl" items="${favList}"> 
+									<c:choose>
+										<c:if test="${fl.recipe.id == r.id}">
+											<form class="plus" action="addRecipeToUser.do" method="POST">
+												<button class="glyphicon glyphicon-plus" disabled>Added</button>
+												<input type="hidden" name="id" value="${r.id}"> <input
+													type="hidden" name="key" value="${key}">
+											</form>
+										</c:if>
+
+										<c:otherwise>
+											<form class="plus" action="addRecipeToUser.do" method="POST">
+												<button class="glyphicon glyphicon-plus">Add</button>
+												<input type="hidden" name="id" value="${r.id}"> <input
+													type="hidden" name="key" value="${key}">
+											</form>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 
 							</div>
 							<span class="clearfix borda"></span>
