@@ -124,12 +124,12 @@ public class NomController {
 	public ModelAndView searchRecipeResults(String key) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
-		//test
-//		List<Recipe> recipeList = recipeDao.selectRecipeByKeyword(key);
-//		mv.addObject("recipe", recipeList);
-//		mv.addObject("deleteStatus", false);
-//		mv.addObject("updateStatus", false);
-//		mv.addObject("user", u);
+		List<Recipe> recipeList = recipeDao.selectRecipeByKeyword(key);
+		mv.addObject("recipe", recipeList);
+		mv.addObject("key", key);
+		mv.addObject("deleteStatus", false);
+		mv.addObject("updateStatus", false);
+		mv.addObject("user", u);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}

@@ -28,7 +28,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectAllRecipe() {
-		String query = "Select r from Recipe";
+		String query = "Select r from Recipe r";
 
 		List<Recipe> results = em.createQuery(query, Recipe.class).getResultList();
 
@@ -37,7 +37,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectRecipeByName(String name) {
-		String query = "Select r from Recipe where r.name = :name";
+		String query = "Select r from Recipe r where r.name = :name";
 
 		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("name", name).getResultList();
 
@@ -46,9 +46,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectRecipeByKeyword(String keyword) {
-		String query = "Select r from Recipe where r.name like '%:word%' or r.cookbook like '%:word%' or r.category.name like '%:word%' or r.type.name like '%:word%'";
+		String key = "%"+keyword+"%";
+		
+		String query = "Select r from Recipe r where r.name = :name or r.cookbook = :cb or r.category.name = :cat or r.recipeType.name like :type";
 
-		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("word", keyword).getResultList();
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("name", key).setParameter("cb", key).setParameter("cat", key).setParameter("type", key).getResultList();
 
 		return results;
 	}
