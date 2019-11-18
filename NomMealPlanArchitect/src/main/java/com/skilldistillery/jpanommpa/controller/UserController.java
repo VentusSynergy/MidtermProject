@@ -116,11 +116,25 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "updateUserProfile.do")
-	public ModelAndView updateUserProfile(HttpSession session) {
+	@RequestMapping(path = "getUserProfile.do", method = RequestMethod.GET)
+	public ModelAndView userUpdate(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-//		User u = new User();
-//		mv.addObject("user", u);
+		
+		User userToUpdate = (User) session.getAttribute("loggedInUser");
+		
+		mv.addObject("user", userToUpdate);
+		mv.setViewName("updateProfile");
+		return mv;
+	}
+	
+	@RequestMapping(path = "updateUserProfile.do", params = "userId", method = RequestMethod.POST)
+	public ModelAndView updateUserProfile(@RequestParam("userId") int userId, @Valid User user, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		User display = userDao.updateUser(userId, user);
+		
+		session.setAttribute("loggedInUser", display);
+		
 		mv.setViewName("userProfile");
 		return mv;
 	}

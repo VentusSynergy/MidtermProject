@@ -48,7 +48,7 @@
 							aria-expanded="false"> Hi User </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="userProfile.do">Profile</a>
-								<!-- 	<a class="dropdown-item" href="updateUserProfile.do">Update Profile</a> -->
+								<a class="dropdown-item" href="getUserProfile.do" >Update Profile</a>
 								<a class="dropdown-item" href="logout.do">Logout</a>
 
 							</div></li>
