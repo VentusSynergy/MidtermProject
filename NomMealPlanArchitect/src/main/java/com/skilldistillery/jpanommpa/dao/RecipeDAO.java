@@ -9,14 +9,12 @@ public interface RecipeDAO {
 	public List<Recipe> selectAllPublicRecipe();
 	public List<Recipe> selectPublicRecipeByName(String name);
 	public boolean isRecipePublic(int id);
-	public List<Recipe> selectPublicRecipeByKeyword(String keyword);
 	public List<Recipe> selectPublicRecipeByCategory(String category);
 	public List<Recipe> selectPublicRecipeByIngredient(String ingredient);
 	public List<Recipe> selectPublicRecipeByType(String type);
 	public List<Recipe> selectPublicRecipeByCookbook(String cookbook);
 	public List<Recipe> selectAllRecipe();
 	public List<Recipe> selectRecipeByName(String name);
-	public List<Recipe> selectRecipeByKeyword(String keyword);
 	public List<Recipe> selectRecipeByCategory(String category);
 	public List<Recipe> selectRecipeByIngredient(String ingredient);
 	public List<Recipe> selectRecipeByType(String type);
