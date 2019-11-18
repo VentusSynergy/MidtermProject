@@ -75,6 +75,15 @@ public class UserController {
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
+		u.setId(0);
+		u.setFirstName("");
+		u.setLastName("");
+		u.setPassword("");
+		u.setUsername("");
+		u.setEmail("");
+		u.setActive(true);
+		u.setAdmin(false);
+		
 		mv.addObject("user", u);
 		mv.setViewName("register");
 		return mv;
