@@ -28,6 +28,7 @@
 </head>
 <body>
 	<div class="container">
+		
 		<div class="row">
 			<div class="col-3"></div>
 			<div class="col-6">
@@ -52,12 +53,10 @@
 						</tr>
 					</table>
 				</form>
-
-
-
-
 			</div>
+			<div class="col-3"></div>
 		</div>
+		
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

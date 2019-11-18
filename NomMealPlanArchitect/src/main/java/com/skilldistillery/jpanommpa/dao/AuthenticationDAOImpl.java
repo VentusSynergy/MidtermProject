@@ -113,4 +113,15 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		System.out.println(users);
 	}
 
+	@Override
+	public User updateUser(int id, User updatedUser) {
+		User managedUser = em.find(User.class, id);
+		
+		managedUser.setFirstName(updatedUser.getFirstName());
+		managedUser.setLastName(updatedUser.getLastName());
+		managedUser.setEmail(updatedUser.getEmail());
+		managedUser.setUsername(updatedUser.getUsername());
+		
+		return managedUser;
+	}
 }
