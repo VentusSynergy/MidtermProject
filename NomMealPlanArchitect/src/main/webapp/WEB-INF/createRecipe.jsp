@@ -50,18 +50,19 @@
 			<div class="col-8">
 				<form:form action="recipeCreate.do" method="POST" modelAttribute="recipe">
 					<div class="form-group">
+					
 						<label for="title">Name</label> <input type="text" name="name"
 							class="form-control" placeholder="Recipe Name" required="required">
 						<br> 
 						
-						<input type="hidden" id="active" name="active" value="true">
+						<input type="hidden" id="dateCreated" name="dateCreated" value="${date}">
 	
 							 <input type="hidden" id="active" name="active" value="true">
 							
 							 <input type="hidden" id="user" name="user" value="${user.id}">
 							
 							<select class="form-control dropdown-info" id="isPublic"
-							name="isPublic" required>
+							name="isPublic" required="required">
 							<option disabled selected value="">Choose Public/Private</option>
 								<option value="true">Public Recipe</option>
 								<option value="false">Private Recipe</option>
@@ -109,14 +110,14 @@
 							name="category" required>
 							<option disabled selected value="">Choose a Recipe
 								Category</option>
-								<option value="1">Other</option>
-								<option value="2">Asian</option>
-								<option value="3">American</option>
-								<option value="4">Italian</option>
-								<option value="5">Mediterranean</option>
-								<option value="6">Mexican</option>
-								<option value="7">French</option>
-								<option value="8">Indian</option>
+								<option >Other</option>
+								<option >Asian</option>
+								<option >American</option>
+								<option >Italian</option>
+								<option >Mediterranean</option>
+								<option >Mexican</option>
+								<option >French</option>
+								<option >Indian</option>
 						</select>
 						<br>
 						
@@ -124,14 +125,13 @@
 							name="type" required>
 							<option disabled selected value="">Choose a Recipe Meal
 								Type</option>
-								<option value="1">Breakfast</option>
-								<option value="2">Lunch</option>
-								<option value="3">Dinner</option>
-								<option value="4">Snack</option>
-								<option value="5">Dessert</option>
-								<option value="6">Baked</option>
+								<option>Breakfast</option>
+								<option>Lunch</option>
+								<option>Dinner</option>
+								<option>Snack</option>
+								<option>Dessert</option>
+								<option>Baked</option>
 						</select>
-							
 							
 					</div>
 					<button type="submit" class="btn btn-success btn-block">Create

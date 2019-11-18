@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -111,17 +112,17 @@ public class NomController {
 	}
 
 	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
-	public ModelAndView createRecipe() {
+	public ModelAndView createRecipe(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User u = new User();
+		User u = (User)session.getAttribute("loggedInUser");
 		mv.addObject("user", u);
 		mv.addObject("date", LocalDate.now());
 		mv.setViewName("createRecipe");
 		return mv;
 	}
 	
-	@RequestMapping(path = "createRecipe.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@RequestParam("recipe") Recipe recipe) {
+	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
+	public ModelAndView AddRecipe(@Valid Recipe recipe) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		Recipe created = recipeDao.createRecipe(recipe);
