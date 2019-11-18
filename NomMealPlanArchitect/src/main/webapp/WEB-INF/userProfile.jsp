@@ -37,19 +37,19 @@
 					<table>
 						<tr> 
 						<td>First Name: &nbsp</td>
-						<td>&nbsp ${user.firstName }</td>
+						<td>&nbsp ${loggedInUser.firstName }</td>
 						</tr>
 						<tr> 
 						<td>Last Name: &nbsp</td>
-						<td>&nbsp ${user.lastName }</td>
+						<td>&nbsp ${loggedInUser.lastName }</td>
 		 				</tr>
 						<tr> 
 						<td>Email: &nbsp</td>
-						<td>&nbsp ${user.email }</td>
+						<td>&nbsp ${loggedInUser.email }</td>
 						</tr>
 						<tr> 
 						<td>User Name: &nbsp</td>
-						<td>&nbsp ${user.username }</td>
+						<td>&nbsp ${loggedInUser.username }</td>
 						</tr>
 					</table>
 				</form>

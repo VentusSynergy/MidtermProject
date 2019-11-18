@@ -45,7 +45,7 @@
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Hi User </a>
+							aria-expanded="false"> Hi ${loggedInUser.firstName } </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="userProfile.do">Profile</a> <a
 									class="dropdown-item" href="getUserProfile.do">Update
@@ -69,7 +69,7 @@
 							</c:if>
 						</div></li>
 					<c:if test="${loggedInUser.active eq true}">
-						<li class="nav-item"><a class="nav-link" href="mealPlan.do">Meal
+						<li class="nav-item"><a class="nav-link" href="mealPlan.do"> ${loggedInUser.firstName }'s Meal
 								Plan </a>
 					</c:if>
 				</ul>
