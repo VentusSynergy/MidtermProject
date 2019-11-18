@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <!-- Bootstrap Header -->
-<jsp:include page="publicNavbar.jsp" />
+<jsp:include page="navbar.jsp" />
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
