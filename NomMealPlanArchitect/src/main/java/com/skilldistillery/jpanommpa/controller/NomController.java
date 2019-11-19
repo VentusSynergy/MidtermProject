@@ -70,19 +70,16 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		List<Recipe> recipeList = new ArrayList<>();
-		//if there is a logged-in user, 
-		//get ALL recipes by name
-		//also get a list of user-fav recipes
-		if(user.getEmail().length() > 0) {
-			recipeList = recipeDao.selectRecipeByName(key);
-			List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
-			mv.addObject("favList", favList);		
+		List<UserRecipe> favList = new ArrayList<>();
+		// if there is a logged-in user,
+		// get ALL recipes by name
+		// also get a list of user-fav recipes
+		if (user != null) {
+			favList = favDao.selectAllUserRecipe(user.getId());
 		}
-		//otherwise, only get public recipes
-		//get no fav-recipes
-		else {
-			recipeList = recipeDao.selectPublicRecipeByName(key);
-		}
+
+		recipeList = recipeDao.selectRecipeByName(key);
+		mv.addObject("favList", favList);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
 		mv.setViewName("recipeSearchResult");
@@ -128,7 +125,7 @@ public class NomController {
 	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
 	public ModelAndView createRecipe(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User u = (User)session.getAttribute("loggedInUser");
+		User u = (User) session.getAttribute("loggedInUser");
 		mv.addObject("categories", categoryDao.selectAllCategories());
 		mv.addObject("types", typeDao.selectAllRecipeTypes());
 		mv.addObject("user", u);
@@ -136,53 +133,51 @@ public class NomController {
 		mv.setViewName("createRecipe");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
 	public ModelAndView AddRecipe(@Valid Recipe recipe, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		recipe.setUser((User)session.getAttribute("loggedInUser"));
+		recipe.setUser((User) session.getAttribute("loggedInUser"));
 		recipe.setDateCreated(LocalDate.now());
 		Recipe created = recipeDao.createRecipe(recipe);
-		if(created != null) {
+		if (created != null) {
 			List<Recipe> recipeList = new ArrayList<>();
 			recipeList.add(created);
 			mv.addObject("recipe", recipeList);
 			mv.setViewName("recipeSearchResult");
-		}
-		else {
+		} else {
 			mv.addObject("createStatus", true);
 			mv.setViewName("createRecipe");
 		}
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "updateRecipe.do", method = RequestMethod.GET)
 	public ModelAndView updateRecipe(@RequestParam("recipeId") int id, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User u = (User)session.getAttribute("loggedInUser");
+		User u = (User) session.getAttribute("loggedInUser");
 		Recipe toUpdate = recipeDao.selectRecipeById(id);
 		mv.addObject("user", u);
 		mv.addObject("recipe", toUpdate);
 		mv.setViewName("updateRecipe");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "recipeUpdate.do", method = RequestMethod.POST)
 	public ModelAndView UpdateRecipe(@Valid Recipe recipe, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Recipe updated = recipeDao.updateRecipe(recipe);
-		if(updated != null) {
+		if (updated != null) {
 			List<Recipe> recipeList = new ArrayList<>();
 			recipeList.add(updated);
 			mv.addObject("recipe", recipeList);
 			mv.setViewName("recipeSearchResult");
-		}
-		else {
+		} else {
 			mv.addObject("updateStatus", true);
 			mv.setViewName("updateRecipe");
 		}
-		
+
 		return mv;
 	}
 
@@ -198,7 +193,8 @@ public class NomController {
 	}
 
 	@RequestMapping(path = "addRecipeToUser.do", method = RequestMethod.POST)
-	public ModelAndView addRecipeToUser(@RequestParam("id") int id,@RequestParam("key") String key ,HttpSession session) {
+	public ModelAndView addRecipeToUser(@RequestParam("id") int id, @RequestParam("key") String key,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		UserRecipe ur = new UserRecipe();
@@ -207,9 +203,8 @@ public class NomController {
 		favDao.createUserRecipe(ur);
 //		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 //		mv.addObject("favList", favList);
-		
-		
-		//return same search
+
+		// return same search
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
