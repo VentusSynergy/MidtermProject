@@ -28,35 +28,42 @@
 </head>
 <body>
 	<div class="container">
-		
+
 		<div class="row">
 			<div class="col-3"></div>
 			<div class="col-6">
-				<h1>User Profile Page</h1>
-				<form action="loginAction.do" method="GET">
-					<table>
-						<tr> 
-						<td>First Name: &nbsp</td>
-						<td>&nbsp ${loggedInUser.firstName }</td>
-						</tr>
-						<tr> 
-						<td>Last Name: &nbsp</td>
-						<td>&nbsp ${loggedInUser.lastName }</td>
-		 				</tr>
-						<tr> 
-						<td>Email: &nbsp</td>
-						<td>&nbsp ${loggedInUser.email }</td>
-						</tr>
-					<!-- 	<tr> 
-						<td>User Name: &nbsp</td>
-						<td>&nbsp ${loggedInUser.username }</td>
-						</tr> -->
-					</table>
-				</form>
+				<h3>User Profile:</h3>
+
+				<form:form action="loginAction.do" method="GET"
+					modelAttribute="user">
+
+					<!-- form-group// -->
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-user"></i>
+							</span>
+						</div>
+						<h5> &nbsp ${loggedInUser.firstName} ${loggedInUser.lastName }</h5>
+						<form:errors path="firstName" />
+					</div>
+
+					<!-- form-group// -->
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-envelope"></i>
+							</span>
+						</div>
+						<h5>&nbsp ${loggedInUser.email}</h5>
+					</div>
+					<br>
+
+				</form:form>
 			</div>
 			<div class="col-3"></div>
 		</div>
-		
+
+
+		<br> <br> <br>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
