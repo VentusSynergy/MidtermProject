@@ -2,6 +2,7 @@ package com.skilldistillery.jpanommpa.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.dao.TypeDAO;
 import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
+import com.skilldistillery.jpanommpa.entities.Ingredient;
 import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.User;
 import com.skilldistillery.jpanommpa.entities.UserRecipe;
@@ -139,11 +141,12 @@ public class NomController {
 	}
 	
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@Valid Recipe recipe, HttpSession session) {
+	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User)session.getAttribute("loggedInUser"));
-		recipe.setDateCreated(LocalDate.now());
-		Recipe created = recipeDao.createRecipe(recipe);
+		System.out.println("NomController.AddRecipe() recipe: " + recipe);
+		System.out.println("NomController.AddRecipe()  ingredients: " + Arrays.deepToString(ingredientIds));
+		Recipe created = recipeDao.createRecipe(recipe, ingredientIds);
 		if(created != null) {
 			List<Recipe> recipeList = new ArrayList<>();
 			recipeList.add(created);

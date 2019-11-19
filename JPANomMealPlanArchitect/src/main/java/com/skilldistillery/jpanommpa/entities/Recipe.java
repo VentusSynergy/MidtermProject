@@ -1,6 +1,7 @@
 package com.skilldistillery.jpanommpa.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,7 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeReview> reviews;
 
-	@OneToMany(mappedBy = "recipe")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "recipe")
 	private List<RecipeIngredient> recipeIngredients;
 
 	@OneToOne
@@ -202,6 +203,24 @@ public class Recipe {
 	public void setRecipeType(RecipeType recipeType) {
 		this.recipeType = recipeType;
 	}
+	
+//	public void addrecipeIngredients(Ingredient ingredient) {
+//		if(recipeIngredients == null) {
+//			recipeIngredients = new ArrayList<>();
+//		}
+//		
+//		if(!recipeIngredients.contains(ingredient)) {
+//			recipeIngredients.add(ingredient);
+//			recipeIngredients.addActor(this);
+//		}
+//	}
+//	
+//	public void removeFilm(Ingredient ingredient) {
+//		if(recipeIngredients != null && recipeIngredients.contains(ingredient)) {
+//			recipeIngredients.remove(ingredient);
+//			ingredient.removeActor(this);
+//		}
+//	}
 
 	@Override
 	public int hashCode() {
