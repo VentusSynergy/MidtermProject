@@ -66,12 +66,16 @@ public class NomController {
 	}
 
 	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.GET)
-	public ModelAndView searchRecipeResults(@RequestParam("key") String key) {
+	public ModelAndView searchRecipeResults(@RequestParam("key") String key, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("loggedInUser");
+System.out.println("==========" +user);
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
 		mv.setViewName("recipeSearchResult");
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
 		return mv;
 	}
 
@@ -191,8 +195,9 @@ public class NomController {
 		ur.setUser(user);
 		ur.setRecipe(recipeDao.selectRecipeById(id));
 		favDao.createUserRecipe(ur);
-		List<UserRecipe> favList = favDao.selectAllUserRecipe();
-		mv.addObject("favList", favList);
+//		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+//		mv.addObject("favList", favList);
+		
 		
 		//return same search
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
