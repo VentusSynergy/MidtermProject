@@ -47,7 +47,6 @@ public class UserController {
 			mv.setViewName("loginInvalid");
 			return mv;
 		}
-		
 
 		session.setAttribute("loggedInUser", user);
 
@@ -62,10 +61,7 @@ public class UserController {
 	public ModelAndView logoutDo(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		User userLogout = new User();
-		userLogout.setEmail("");
-
-		session.setAttribute("loggedInUser", userLogout);
+		session.removeAttribute("loggedInUser");
 
 		mv.setViewName("index");
 		return mv;
@@ -83,7 +79,7 @@ public class UserController {
 		u.setEmail("");
 		u.setActive(true);
 		u.setAdmin(false);
-		
+
 		mv.addObject("user", u);
 		mv.setViewName("register");
 		return mv;
@@ -151,10 +147,9 @@ public class UserController {
 	public ModelAndView deactivateUser(@RequestParam("userId") int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		User logout = userDao.updateActiveStatus(userId);
-		logout.setEmail("");
+		userDao.updateActiveStatus(userId);
 
-		session.setAttribute("loggedInUser", logout);
+		session.removeAttribute("loggedInUser");
 
 		mv.setViewName("index");
 		return mv;
