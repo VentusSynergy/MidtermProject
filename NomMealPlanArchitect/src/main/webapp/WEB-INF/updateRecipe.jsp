@@ -123,20 +123,22 @@
 							class="form-control" value="${recipe.webLink}">
 							<br>
 							
+							<label
+							for="category.id">Recipe Category</label>
 							<select class="form-control dropdown-info" id="category.id"
 							name="category.id" required="required">
-							<option disabled selected value="">Choose a Recipe
-								Category</option>
+							<option selected value="${recipe.category.id}">${recipe.category.name}</option>
 								<c:forEach var="category" items="${categories }">
 								<option value="${category.id}">${category.name }</option>
 								</c:forEach>
 						</select>
 						<br>
 						
-						<select class="form-control dropdown-info" id="recipeType"
+						<label
+							for="category.id">Recipe Type</label>
+						<select class="form-control dropdown-info" id="recipeType.id"
 							name="recipeType.id" required="required">
-							<option disabled selected value="">Choose a Recipe Meal
-								Type</option>
+							<option selected value="${recipe.recipeType.id}">${recipe.recipeType.name}</option>
 								<c:forEach var="type" items="${types }">
 								<option value="${type.id}">${type.name }</option>
 								</c:forEach>

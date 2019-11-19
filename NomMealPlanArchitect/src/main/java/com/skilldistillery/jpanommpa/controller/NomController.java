@@ -147,6 +147,7 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		User u = (User) session.getAttribute("loggedInUser");
 		mv.addObject("categories", categoryDao.selectAllCategories());
+		System.out.println("*******************************"+categoryDao.selectAllCategories().get(1).getId() + categoryDao.selectAllCategories().get(1).getName());
 		mv.addObject("types", typeDao.selectAllRecipeTypes());
 		mv.addObject("ingredients", ingredientDao.selectAllIngredientObjects());
 		mv.addObject("user", u);
@@ -157,6 +158,7 @@ public class NomController {
 
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
 	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
+		System.out.println("*******************" + recipe.getCategory());
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User) session.getAttribute("loggedInUser"));
 		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
@@ -229,7 +231,6 @@ public class NomController {
 		}
 		
 		Recipe updated = recipeDao.updateRecipe(recipe, ri);
-		System.err.println(updated);
 		// return same search
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(updated.getName());
 		mv.addObject("recipe", recipeList);
