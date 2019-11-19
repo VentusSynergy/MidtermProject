@@ -29,7 +29,7 @@
 <body>
 	<h1>Meal Plan Page</h1>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -70,9 +70,23 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> -->
+
+	<div class="container">
+
+		<c:forEach var="recipe" items="${mealPlan }">
+			<c:forEach var="r" items="${recipe.mealPlanRecipes}">
+				<ol>
+					<li>Meal Plan Name: ${recipe.planName }</li>
+					<li>Recipe: ${r.recipe.name }</li>
+				</ol>
 
 
+			</c:forEach>
+		</c:forEach>
+
+
+	</div>
 
 
 

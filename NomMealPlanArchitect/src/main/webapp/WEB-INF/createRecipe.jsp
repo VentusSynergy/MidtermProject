@@ -35,7 +35,7 @@
 				<h2 style="color: green">Create a New Recipe</h2>
 				<c:choose>
 					<c:when test="${createStatus}">
-						<h2 style="color: green">Recipe Creation Successful!</h2>
+						<h2 style="color: red">Recipe Creation Failed!</h2>
 					</c:when>
 				</c:choose>
 				<div class="col-2"></div>
@@ -51,15 +51,15 @@
 				<form:form action="recipeCreate.do" method="POST" modelAttribute="recipe">
 					<div class="form-group">
 					
-						<label for="title">Name</label> <input type="text" name="name"
+						<label for="title">Recipe Name</label> <input type="text" name="name"
 							class="form-control" placeholder="Recipe Name" required="required">
 						<br> 
 						
-						<input type="hidden" id="dateCreated" name="dateCreated" value="${date}">
+						<%-- <input type="hidden" id="dateCreated" name="dateCreated" value="${date}"> --%>
 	
 							 <input type="hidden" id="active" name="active" value="true">
 							
-							 <input type="hidden" id="user" name="user" value="${user.id}">
+							 <%-- <input type="hidden" id="user" name="user" value="${user}"> --%>
 							
 							<select class="form-control dropdown-info" id="isPublic"
 							name="isPublic" required="required">
@@ -106,31 +106,38 @@
 							class="form-control" placeholder="Additional Comments">
 							<br>
 							
-							<select class="form-control dropdown-info" id="category"
-							name="category" required>
+							<select class="form-control dropdown-info" id="category.id"
+							name="category.id" required>
 							<option disabled selected value="">Choose a Recipe
 								Category</option>
-								<option >Other</option>
+								<c:forEach var="category" items="${categories }">
+								<option value="${category.id}">${category.name }</option>
+								</c:forEach>
+								<!-- <option >Other</option>
 								<option >Asian</option>
 								<option >American</option>
 								<option >Italian</option>
 								<option >Mediterranean</option>
 								<option >Mexican</option>
 								<option >French</option>
-								<option >Indian</option>
+								<option >Indian</option> -->
 						</select>
 						<br>
 						
-						<select class="form-control dropdown-info" id="type"
-							name="type" required>
+						<select class="form-control dropdown-info" id="recipeType"
+							name="recipeType.id" required>
 							<option disabled selected value="">Choose a Recipe Meal
 								Type</option>
-								<option>Breakfast</option>
+								<c:forEach var="type" items="${types }">
+								<option value="${type.id}">${type.name }</option>
+								</c:forEach>
+								
+								<!-- <option>Breakfast</option>
 								<option>Lunch</option>
 								<option>Dinner</option>
 								<option>Snack</option>
 								<option>Dessert</option>
-								<option>Baked</option>
+								<option>Baked</option> -->
 						</select>
 							
 					</div>

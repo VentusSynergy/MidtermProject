@@ -119,6 +119,8 @@ System.out.println("==========" +user);
 	public ModelAndView createRecipe(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User u = (User)session.getAttribute("loggedInUser");
+		mv.addObject("categories", categoryDao.selectAllCategories());
+		mv.addObject("types", typeDao.selectAllRecipeTypes());
 		mv.addObject("user", u);
 		mv.addObject("date", LocalDate.now());
 		mv.setViewName("createRecipe");
@@ -126,21 +128,49 @@ System.out.println("==========" +user);
 	}
 	
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@Valid Recipe recipe) {
+	public ModelAndView AddRecipe(@Valid Recipe recipe, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User u = new User();
+		recipe.setUser((User)session.getAttribute("loggedInUser"));
+		recipe.setDateCreated(LocalDate.now());
 		Recipe created = recipeDao.createRecipe(recipe);
 		if(created != null) {
-			mv.addObject("createStatus", true);
 			List<Recipe> recipeList = new ArrayList<>();
 			recipeList.add(created);
 			mv.addObject("recipe", recipeList);
 			mv.setViewName("recipeSearchResult");
 		}
 		else {
-			mv.addObject("createStatus", false);
-			mv.addObject("user", u);
+			mv.addObject("createStatus", true);
 			mv.setViewName("createRecipe");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(path = "updateRecipe.do", method = RequestMethod.GET)
+	public ModelAndView updateRecipe(@RequestParam("recipeId") int id, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User u = (User)session.getAttribute("loggedInUser");
+		Recipe toUpdate = recipeDao.selectRecipeById(id);
+		mv.addObject("user", u);
+		mv.addObject("recipe", toUpdate);
+		mv.setViewName("updateRecipe");
+		return mv;
+	}
+	
+	@RequestMapping(path = "recipeUpdate.do", method = RequestMethod.POST)
+	public ModelAndView UpdateRecipe(@Valid Recipe recipe, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Recipe updated = recipeDao.updateRecipe(recipe);
+		if(updated != null) {
+			List<Recipe> recipeList = new ArrayList<>();
+			recipeList.add(updated);
+			mv.addObject("recipe", recipeList);
+			mv.setViewName("recipeSearchResult");
+		}
+		else {
+			mv.addObject("updateStatus", true);
+			mv.setViewName("updateRecipe");
 		}
 		
 		return mv;
