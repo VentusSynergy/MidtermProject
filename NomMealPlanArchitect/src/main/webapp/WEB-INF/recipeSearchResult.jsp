@@ -17,6 +17,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -35,7 +38,8 @@
 		</h2>
 	</hgroup>
 	<c:choose>
-		<c:when test="${fn: length(recipe) gt 0}">
+<%-- 		<c:when test="${fn: length(recipe) gt 0}"> --%>
+		<c:when test="${not empty recipe}">
 			<c:forEach var="r" items="${recipe}">
 				<div class="container">
 					<section class="col-xs-12 col-sm-6 col-md-12">
@@ -57,17 +61,21 @@
 									<a href="#" title="">${r.name}</a>
 								</h3>
 								<p>${r.instructions}</p>
-								
-								
-								<c:forEach var="fl" items="${favList}"> 
+
+
+                                <c:set var="isFavorite" value="false" />
+								<c:forEach var="fl" items="${favList}">
+										<c:if test="${fl.recipe.id == r.id}"><c:set var="isFavorite" value="true" /></c:if>
+								</c:forEach>
 									<c:choose>
-										<c:if test="${fl.recipe.id == r.id}">
+									
+										<c:when test="${isFavorite == true}">
 											<form class="plus" action="addRecipeToUser.do" method="POST">
 												<button class="glyphicon glyphicon-plus" disabled>Added</button>
 												<input type="hidden" name="id" value="${r.id}"> <input
 													type="hidden" name="key" value="${key}">
 											</form>
-										</c:if>
+										</c:when>
 
 										<c:otherwise>
 											<form class="plus" action="addRecipeToUser.do" method="POST">
@@ -76,14 +84,14 @@
 													type="hidden" name="key" value="${key}">
 											</form>
 										</c:otherwise>
+										
 									</c:choose>
-								</c:forEach>
-
 							</div>
 							<span class="clearfix borda"></span>
 						</article>
 					</section>
 				</div>
+				<hr>
 			</c:forEach>
 		</c:when>
 	</c:choose>
