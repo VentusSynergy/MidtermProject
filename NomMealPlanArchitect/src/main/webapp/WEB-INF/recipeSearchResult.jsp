@@ -62,6 +62,10 @@
 								</h3>
 								<p>${r.instructions}</p>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ecdc5fe271429d9a9932c632b46613ee769f1d8
 								<c:set var="isFavorite" value="false" />
 								<c:forEach var="fl" items="${favList}">
 									<c:if test="${fl.recipe.id == r.id}">
@@ -90,7 +94,11 @@
 								<div><form:form class="update" action="updateRecipe.do" method="GET"
 									modelAttribute="recipe" >
 										<button type="submit" name="recipeId" value="${r.id}"
+<<<<<<< HEAD
 											class="glyphicon glyphicon-edit">Update</button>
+=======
+											class="btn btn-warning btn-md">Update Recipe</button>
+>>>>>>> 5ecdc5fe271429d9a9932c632b46613ee769f1d8
 								</form:form></div>
 
 							</div>
