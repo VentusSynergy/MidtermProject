@@ -73,7 +73,7 @@ public class NomController {
 		//if there is a logged-in user, 
 		//get ALL recipes by name
 		//also get a list of user-fav recipes
-		if(user.getEmail() != "") {
+		if(user.getEmail().length() > 0) {
 			recipeList = recipeDao.selectRecipeByName(key);
 			List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 			mv.addObject("favList", favList);		
