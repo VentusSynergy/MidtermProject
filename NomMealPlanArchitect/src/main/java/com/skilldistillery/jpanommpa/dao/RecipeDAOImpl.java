@@ -1,6 +1,7 @@
 package com.skilldistillery.jpanommpa.dao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpanommpa.entities.Category;
 import com.skilldistillery.jpanommpa.entities.Recipe;
+import com.skilldistillery.jpanommpa.entities.RecipeIngredient;
 import com.skilldistillery.jpanommpa.entities.RecipeType;
 
 @Transactional
@@ -20,16 +22,27 @@ public class RecipeDAOImpl implements RecipeDAO {
 	private EntityManager em;
 
 	@Override
-	public Recipe createRecipe(Recipe r, Integer[] ingredientIds) {
+	public Recipe createRecipe(Recipe r, RecipeIngredient[] ri) {
 		r.setDateCreated(LocalDate.now());
-
 		r.setCategory(em.find(Category.class, r.getCategory().getId()));
 		r.setRecipeType(em.find(RecipeType.class, r.getRecipeType().getId()));
 		em.persist(r);
-
+//TODO - Retrieve Ingredient using ids, instantiate RecipeIngredients, add to recipe
+//		List<RecipeIngredient> ri = new ArrayList<>();
+//		for(int i = 0; i< ingredientIds.length; i++) {
+//			Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
+//			RecipeIngredient recIng = new RecipeIngredient();
+//			recIng.setIngredient(ing);
+//			ri.add(recIng);
+//		}
+				
+		for (RecipeIngredient recipeIngredient : ri) {
+			recipeIngredient.setRecipe(r);
+		}
+		
+		em.persist(ri);
+		
 		em.flush();
-		
-		
 
 		return r;
 	}
