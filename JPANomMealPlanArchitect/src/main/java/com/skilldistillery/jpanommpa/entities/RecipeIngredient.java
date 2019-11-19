@@ -80,15 +80,8 @@ public class RecipeIngredient {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-
-//	public Recipe getRecipe() {
-//		return recipe;
-//	}
-//
-//	public void setRecipe(Recipe recipe) {
-//		this.recipe = recipe;
-//	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

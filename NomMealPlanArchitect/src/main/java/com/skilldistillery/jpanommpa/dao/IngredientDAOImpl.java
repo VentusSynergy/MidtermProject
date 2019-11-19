@@ -96,7 +96,7 @@ public class IngredientDAOImpl implements IngredientDAO{
 
 	@Override
 	public List<Ingredient> selectAllIngredientObjects() {
-		String query = "Select i.name from Ingredient i";
+		String query = "Select i from Ingredient i";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).getResultList();
 
