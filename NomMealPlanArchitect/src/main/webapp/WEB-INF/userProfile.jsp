@@ -47,10 +47,10 @@
 						<td>Email: &nbsp</td>
 						<td>&nbsp ${loggedInUser.email }</td>
 						</tr>
-						<tr> 
+					<!-- 	<tr> 
 						<td>User Name: &nbsp</td>
 						<td>&nbsp ${loggedInUser.username }</td>
-						</tr>
+						</tr> -->
 					</table>
 				</form>
 			</div>

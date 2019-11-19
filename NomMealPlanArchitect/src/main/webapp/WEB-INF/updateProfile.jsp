@@ -35,15 +35,15 @@
 				<h1>Update Profile Page</h1>
 				<form:form action="updateUserProfile.do" method="POST"
 					modelAttribute="user">
-					<div class="form-group input-group">
+<%-- 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i>
 							</span>
 						</div>
 						<form:input class="form-control" path="username"
-							placeholder="Username" type="text" />
+							placeholder="Username" type="hidden" />
 						<form:errors path="username" />
-					</div>
+					</div> --%>
 					<!-- form-group// -->
 					<div class="form-group input-group">
 						<div class="input-group-prepend">

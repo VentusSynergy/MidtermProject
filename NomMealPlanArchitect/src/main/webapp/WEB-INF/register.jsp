@@ -43,15 +43,15 @@
 				<h4 class="card-title mt-3 text-center">Create Account</h4>
 		
 				<form:form action="register.do" method="POST" modelAttribute="user">
-					<div class="form-group input-group">
+<%-- 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i>
 							</span>
-						</div>
-						<form:input class="form-control" path="username"
+						</div> 
+			<form:input class="form-control" path="username"
 							placeholder="Username" type="text" />
-						<form:errors path="username" />
-					</div>
+						<form:errors path="username" /> 
+					</div> --%>
 					<!-- form-group// -->
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
@@ -105,36 +105,7 @@
 		<!-- card.// -->
 
 	</div>
-	<!--container end.//-->
 
-	<%-- <br>
-	<br>
-	<br>
-	<form:form action="register.do" method="POST" modelAttribute="user">
-		<form:label path="username">UserName:</form:label>
-		<form:input path="username" />
-		<form:errors path="username" />
-		<br />
-		<form:label path="email">Email:</form:label>
-		<form:input path="email" />
-		<form:errors path="email" />
-		<br />
-		<form:label path="firstName">First Name:</form:label>
-		<form:input path="firstName" />
-		<form:errors path="firstName" />
-		<br />
-		<form:label path="lastName">Last Name:</form:label>
-		<form:input path="lastName" />
-		<form:errors path="lastName" />
-		<br />
-		<form:label path="password">Password:</form:label>
-		<form:password path="password" />
-		<form:errors path="password" />
-		<br />
-
-		<input type="submit" value="Register" />
-	</form:form>
- --%>
 
 
 
