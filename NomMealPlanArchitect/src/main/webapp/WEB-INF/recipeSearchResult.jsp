@@ -88,14 +88,11 @@
 									</c:otherwise>
 
 								</c:choose>
-								<form:form action="updateRecipe.do" method="GET"
-									modelAttribute="recipe">
-									<div>
+								<div><form:form class="update" action="updateRecipe.do" method="GET"
+									modelAttribute="recipe" >
 										<button type="submit" name="recipeId" value="${r.id}"
-											class="btn btn-outline-light btn-md">Update Recipe</button>
-									</div>
-									<br>
-								</form:form>
+											class="btn btn-warning btn-md">Update Recipe</button>
+								</form:form></div>
 
 							</div>
 							<span class="clearfix borda"></span>

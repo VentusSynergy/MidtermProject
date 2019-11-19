@@ -173,19 +173,14 @@ public class NomController {
 	public ModelAndView UpdateRecipe(@Valid Recipe recipe, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Recipe updated = recipeDao.updateRecipe(recipe);
-		if(updated != null) {
-			List<Recipe> recipeList = new ArrayList<>();
-			recipeList.add(updated);
+		System.err.println(updated);
+			// return same search
+			List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(updated.getName());
 			mv.addObject("recipe", recipeList);
 			mv.setViewName("recipeSearchResult");
-		}
-		else {
-			mv.addObject("updateStatus", true);
-			mv.setViewName("updateRecipe");
-		}
-		
-		return mv;
+			return mv;
 	}
+
 
 	@RequestMapping(path = "groceryList.do")
 	public ModelAndView viewGroceryList(HttpSession session) {
