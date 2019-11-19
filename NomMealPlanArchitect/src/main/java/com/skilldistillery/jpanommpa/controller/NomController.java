@@ -71,7 +71,21 @@ public class NomController {
 	@RequestMapping(path = "searchRecipe.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeResults(@RequestParam("key") String key, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
+		User userFake = new User();
+		userFake.setFirstName("");
+		userFake.setLastName("");
+		userFake.setActive(false);
+		
+		userFake.setAdmin(false);
+		userFake.setEmail("");
+		userFake.setUsername("");
+		userFake.setPassword("");
 		User user = (User) session.getAttribute("loggedInUser");
+		if(user == null) {
+			user = userFake;
+		}
+		
 		List<Recipe> recipeList = new ArrayList<>();
 		//if there is a logged-in user, 
 		//get ALL recipes by name
