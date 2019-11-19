@@ -3,9 +3,10 @@ package com.skilldistillery.jpanommpa.dao;
 import java.util.*;
 
 import com.skilldistillery.jpanommpa.entities.Recipe;
+import com.skilldistillery.jpanommpa.entities.RecipeIngredient;
 
 public interface RecipeDAO {
-	public Recipe createRecipe(Recipe r, Integer[] ingredientIds);
+	public Recipe createRecipe(Recipe r, RecipeIngredient[] ri);
 	public Recipe selectRecipeById(int id);
 	public List<Recipe> selectAllPublicRecipe();
 	public List<Recipe> selectPublicRecipeByName(String name);

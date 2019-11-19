@@ -25,6 +25,7 @@ import com.skilldistillery.jpanommpa.dao.TypeDAO;
 import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
 import com.skilldistillery.jpanommpa.entities.Ingredient;
 import com.skilldistillery.jpanommpa.entities.Recipe;
+import com.skilldistillery.jpanommpa.entities.RecipeIngredient;
 import com.skilldistillery.jpanommpa.entities.User;
 import com.skilldistillery.jpanommpa.entities.UserRecipe;
 
@@ -144,9 +145,23 @@ public class NomController {
 	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User)session.getAttribute("loggedInUser"));
-		System.out.println("NomController.AddRecipe() recipe: " + recipe);
-		System.out.println("NomController.AddRecipe()  ingredients: " + Arrays.deepToString(ingredientIds));
-		Recipe created = recipeDao.createRecipe(recipe, ingredientIds);
+//		System.out.println("NomController.AddRecipe() recipe: " + recipe);
+//		System.out.println("NomController.AddRecipe()  ingredients: " + Arrays.deepToString(ingredientIds));
+		RecipeIngredient[] ri = new RecipeIngredient[100];
+		for(int i = 0; i< ingredientIds.length; i++) {
+			if(ingredientIds[i] != null) {
+			Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
+			System.out.println("************************************************************" +ing.toString());
+			ri[i].setIngredient(ing);
+			ri[i].setQuantity(1);
+			}
+			else {
+				break;
+			}
+		}
+		System.out.println("*******************************RI List Created");
+		Recipe created = recipeDao.createRecipe(recipe, ri);
+		System.out.println("*******************************recipeDao called");
 		if(created != null) {
 			List<Recipe> recipeList = new ArrayList<>();
 			recipeList.add(created);

@@ -103,4 +103,9 @@ public class IngredientDAOImpl implements IngredientDAO{
 		return results;
 	}
 
+	@Override
+	public Ingredient selectIngredientById(int id) {
+		return em.find(Ingredient.class, id);
+	}
+
 }
