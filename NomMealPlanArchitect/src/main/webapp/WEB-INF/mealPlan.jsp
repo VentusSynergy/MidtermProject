@@ -75,10 +75,14 @@
 	<div class="container">
 
 		<c:forEach var="recipe" items="${mealPlan }">
-			<ol>
-				<li>Recipe: ${recipe.planName }</li>
-			</ol>
+			<c:forEach var="r" items="${recipe.mealPlanRecipes}">
+				<ol>
+					<li>Meal Plan Name: ${recipe.planName }</li>
+					<li>Recipe: ${r.recipe.name }</li>
+				</ol>
 
+
+			</c:forEach>
 		</c:forEach>
 
 
