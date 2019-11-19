@@ -68,10 +68,10 @@
 								<a class="dropdown-item" href="createRecipe.do">Create</a>
 							</c:if>
 						</div></li>
-					<c:if test="${loggedInUser.active eq true}">
+					<%-- <c:if test="${loggedInUser.active eq true}">
 						<li class="nav-item"><a class="nav-link" href="mealPlan.do"> ${loggedInUser.firstName }'s Meal
 								Plan </a>
-					</c:if>
+					</c:if> --%>
 				</ul>
 
 				<form:form class="form-inline my-2 my-lg-0" name="key"
