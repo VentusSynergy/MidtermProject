@@ -92,12 +92,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public Recipe updateRecipe(Recipe r) {
 		//get a match from the database
 		Recipe matchingRecipe = em.find(Recipe.class, r.getId());
-		
 		//update to match user form input
 		matchingRecipe.setName(r.getName());
 		matchingRecipe.setDateCreated(LocalDate.now());
 		matchingRecipe.setActive(true);
-		matchingRecipe.setUser(r.getUser()); ///not sure about this - where does USER come from?
 		matchingRecipe.setRecipeIngredients(r.getRecipeIngredients()); //?
 		matchingRecipe.setCategory(r.getCategory());
 		matchingRecipe.setRecipeType(r.getRecipeType());
@@ -108,7 +106,6 @@ public class RecipeDAOImpl implements RecipeDAO {
 		matchingRecipe.setCookbookPageNumber(r.getCookbookPageNumber());
 		matchingRecipe.setWebLink(r.getWebLink());
 		matchingRecipe.setIsPublic(r.getIsPublic());
-		
 		em.persist(matchingRecipe);
 		
 		em.flush();

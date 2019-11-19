@@ -66,6 +66,7 @@ public class Recipe {
 		super();
 	}
 
+	
 	public List<RecipeReview> getReviews() {
 		return reviews;
 	}
@@ -274,7 +275,6 @@ public class Recipe {
 		builder.append(cookbookPageNumber);
 		builder.append(", webLink=");
 		builder.append(webLink);
-		builder.append("]");
 		return builder.toString();
 	}
 

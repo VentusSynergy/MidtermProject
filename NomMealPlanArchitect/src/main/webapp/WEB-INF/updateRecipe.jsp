@@ -56,13 +56,11 @@
 							class="form-control" value="${recipe.name}" required="required">
 						<br> 
 							
+							 <input type="hidden" id="recipe" name="id" value="${recipe.id}">
 							 <input type="hidden" id="active" name="active" value="true">
-							<%--  <input type="text" name="name"
-							class="form-control" value="${recipe.name}" required="required"> --%>
 														
 							<select class="form-control dropdown-info" id="isPublic"
 							name="isPublic" required="required">
-							<option disabled selected value="${recipe.isPublic}">Choose Public/Private</option>
 								<option value="true">Public Recipe</option>
 								<option value="false">Private Recipe</option>
 							</select>
