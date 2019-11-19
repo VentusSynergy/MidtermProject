@@ -80,6 +80,15 @@
 							placeholder="Step 1...Step 2..."> 
 							<br> 
 							
+							<select class="custom-select" multiple>
+  							<option selected>Choose Recipe Ingredients</option>
+  							<c:forEach var="i" items="${ingredients}">
+ 							 	<option value="${i.id}">${i.name}</option>
+							</c:forEach>
+							</select>
+							
+							
+							
 							<label for="photoLink">Photo Link</label> 
 							<input type="text"
 							name="photoLink" class="form-control"
@@ -113,14 +122,6 @@
 								<c:forEach var="category" items="${categories }">
 								<option value="${category.id}">${category.name }</option>
 								</c:forEach>
-								<!-- <option >Other</option>
-								<option >Asian</option>
-								<option >American</option>
-								<option >Italian</option>
-								<option >Mediterranean</option>
-								<option >Mexican</option>
-								<option >French</option>
-								<option >Indian</option> -->
 						</select>
 						<br>
 						
@@ -131,13 +132,6 @@
 								<c:forEach var="type" items="${types }">
 								<option value="${type.id}">${type.name }</option>
 								</c:forEach>
-								
-								<!-- <option>Breakfast</option>
-								<option>Lunch</option>
-								<option>Dinner</option>
-								<option>Snack</option>
-								<option>Dessert</option>
-								<option>Baked</option> -->
 						</select>
 							
 					</div>
