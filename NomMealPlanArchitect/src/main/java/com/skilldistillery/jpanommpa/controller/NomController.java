@@ -69,7 +69,6 @@ public class NomController {
 	public ModelAndView searchRecipeResults(@RequestParam("key") String key, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
-System.out.println("==========" +user);
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
