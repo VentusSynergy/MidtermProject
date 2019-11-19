@@ -80,7 +80,7 @@
 							placeholder="Step 1...Step 2..."> 
 							<br> 
 							
-							<select class="custom-select" multiple>
+							<select class="custom-select" multiple name="ingredientIds">
   							<option selected>Choose Recipe Ingredients</option>
   							<c:forEach var="i" items="${ingredients}">
  							 	<option value="${i.id}">${i.name}</option>

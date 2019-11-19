@@ -134,4 +134,14 @@ public class Ingredient {
 		return builder.toString();
 	}
 
+	public Ingredient() {
+		super();
+	}
+
+	public Ingredient(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
 }

@@ -20,12 +20,16 @@ public class RecipeDAOImpl implements RecipeDAO {
 	private EntityManager em;
 
 	@Override
-	public Recipe createRecipe(Recipe r) {
+	public Recipe createRecipe(Recipe r, Integer[] ingredientIds) {
+		r.setDateCreated(LocalDate.now());
+
 		r.setCategory(em.find(Category.class, r.getCategory().getId()));
 		r.setRecipeType(em.find(RecipeType.class, r.getRecipeType().getId()));
 		em.persist(r);
 
 		em.flush();
+		
+		
 
 		return r;
 	}
