@@ -99,7 +99,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 	}
 
 	@Override
-	public Recipe updateRecipe(Recipe r) {
+	public Recipe updateRecipe(Recipe r, RecipeIngredient[] ri) {
 		// get a match from the database
 		Recipe matchingRecipe = em.find(Recipe.class, r.getId());
 		// update to match user form input
@@ -107,8 +107,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 		matchingRecipe.setDateCreated(LocalDate.now());
 		matchingRecipe.setActive(true);
 		matchingRecipe.setRecipeIngredients(r.getRecipeIngredients()); // ?
-		matchingRecipe.setCategory(r.getCategory());
-		matchingRecipe.setRecipeType(r.getRecipeType());
+//		matchingRecipe.setCategory(r.getCategory());
+//		matchingRecipe.setRecipeType(r.getRecipeType());
+		matchingRecipe.setCategory(em.find(Category.class, r.getCategory().getId()));
+		matchingRecipe.setRecipeType(em.find(RecipeType.class, r.getRecipeType().getId()));
 		matchingRecipe.setPrepTime(r.getPrepTime());
 		matchingRecipe.setInstructions(r.getInstructions());
 		matchingRecipe.setPhotoLink(r.getPhotoLink());
@@ -117,6 +119,27 @@ public class RecipeDAOImpl implements RecipeDAO {
 		matchingRecipe.setWebLink(r.getWebLink());
 		matchingRecipe.setIsPublic(r.getIsPublic());
 		em.persist(matchingRecipe);
+
+		em.flush();
+		
+		//remove ALL existing recipeingredients before adding newly selected ones
+		String query = "Select ri from RecipeIngredient ri where ri.recipe.id = :id";
+
+		List<RecipeIngredient> results = em.createQuery(query, RecipeIngredient.class).setParameter("id", r.getId()).getResultList();
+		for (RecipeIngredient recipeIngredient : results) {
+			em.remove(recipeIngredient);
+		}
+		
+		em.flush();
+		
+		
+		for (RecipeIngredient recipeIngredient : ri) {
+			if (recipeIngredient != null) {
+				recipeIngredient.setRecipe(r);
+				em.persist(recipeIngredient);
+			} else
+				break;
+		}
 
 		em.flush();
 

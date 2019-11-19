@@ -21,6 +21,6 @@ public interface RecipeDAO {
 	public List<Recipe> selectRecipeByIngredient(String ingredient);
 	public List<Recipe> selectRecipeByType(String type);
 	public List<Recipe> selectRecipeByCookbook(String cookbook);
-	public Recipe updateRecipe(Recipe r);
+	public Recipe updateRecipe(Recipe r, RecipeIngredient[] ri);
 	public boolean deleteRecipe(Recipe r);
 }

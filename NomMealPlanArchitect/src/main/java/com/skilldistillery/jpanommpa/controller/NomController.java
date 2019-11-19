@@ -159,12 +159,11 @@ public class NomController {
 	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User) session.getAttribute("loggedInUser"));
-		RecipeIngredient[] ri = new RecipeIngredient[100];
+		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
 
 		for (int i = 0; i < ingredientIds.length; i++) {
 			if (ingredientIds[i] != null) {
 				Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
-				System.out.println("************************************************************" + ing.toString());
 				RecipeIngredient riToAdd = new RecipeIngredient();
 
 				ri[i] = riToAdd;
@@ -175,9 +174,7 @@ public class NomController {
 				break;
 			}
 		}
-		System.out.println("*******************************RI List Created");
 		Recipe created = recipeDao.createRecipe(recipe, ri);
-		System.out.println("*******************************recipeDao called");
 		if (created != null) {
 			List<Recipe> recipeList = new ArrayList<>();
 			recipeList.add(created);
@@ -197,15 +194,41 @@ public class NomController {
 		User u = (User) session.getAttribute("loggedInUser");
 		Recipe toUpdate = recipeDao.selectRecipeById(id);
 		mv.addObject("user", u);
+		mv.addObject("ingredients", ingredientDao.selectAllIngredientObjects());
+		List<RecipeIngredient> inRecipe = recipeDao.selectRecipeById(id).getRecipeIngredients();
+		List<Ingredient> ingInRecipe = new ArrayList<Ingredient>();
+		for (RecipeIngredient recipeIngredient : inRecipe) {
+			ingInRecipe.add(recipeIngredient.getIngredient());
+		}
+		mv.addObject("categories", categoryDao.selectAllCategories());
+		mv.addObject("types", typeDao.selectAllRecipeTypes());
+		mv.addObject("ingredientsIN", ingInRecipe);
 		mv.addObject("recipe", toUpdate);
 		mv.setViewName("updateRecipe");
 		return mv;
 	}
 
 	@RequestMapping(path = "recipeUpdate.do", method = RequestMethod.POST)
-	public ModelAndView UpdateRecipe(@Valid Recipe recipe, HttpSession session) {
+	public ModelAndView UpdateRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		Recipe updated = recipeDao.updateRecipe(recipe);
+		
+		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
+
+		for (int i = 0; i < ingredientIds.length; i++) {
+			if (ingredientIds[i] != null) {
+				Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
+				RecipeIngredient riToAdd = new RecipeIngredient();
+
+				ri[i] = riToAdd;
+
+				ri[i].setIngredient(ing);
+				ri[i].setQuantity(1);
+			} else {
+				break;
+			}
+		}
+		
+		Recipe updated = recipeDao.updateRecipe(recipe, ri);
 		System.err.println(updated);
 		// return same search
 		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(updated.getName());
