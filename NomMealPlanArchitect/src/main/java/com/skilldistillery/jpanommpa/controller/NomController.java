@@ -69,12 +69,23 @@ public class NomController {
 	public ModelAndView searchRecipeResults(@RequestParam("key") String key, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
+		List<Recipe> recipeList = new ArrayList<>();
+		//if there is a logged-in user, 
+		//get ALL recipes by name
+		//also get a list of user-fav recipes
+		if(user.getEmail() != "") {
+			recipeList = recipeDao.selectRecipeByName(key);
+			List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+			mv.addObject("favList", favList);		
+		}
+		//otherwise, only get public recipes
+		//get no fav-recipes
+		else {
+			recipeList = recipeDao.selectPublicRecipeByName(key);
+		}
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
 		mv.setViewName("recipeSearchResult");
-		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
-		mv.addObject("favList", favList);
 		return mv;
 	}
 
