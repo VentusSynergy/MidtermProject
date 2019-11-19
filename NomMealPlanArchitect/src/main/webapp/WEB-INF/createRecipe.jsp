@@ -80,8 +80,9 @@
 							placeholder="Step 1...Step 2..."> 
 							<br> 
 							
+							<label for="ingredients">Recipe Ingredients</label>
 							<select class="custom-select" multiple name="ingredientIds">
-  							<option selected>Choose Recipe Ingredients</option>
+  							<!-- <option disabled selected value="">Choose Recipe Ingredients</option> -->
   							<c:forEach var="i" items="${ingredients}">
  							 	<option value="${i.id}">${i.name}</option>
 							</c:forEach>
@@ -116,7 +117,7 @@
 							<br>
 							
 							<select class="form-control dropdown-info" id="category.id"
-							name="category.id" required>
+							name="category.id" required="required">
 							<option disabled selected value="">Choose a Recipe
 								Category</option>
 								<c:forEach var="category" items="${categories }">
@@ -125,8 +126,8 @@
 						</select>
 						<br>
 						
-						<select class="form-control dropdown-info" id="recipeType"
-							name="recipeType.id" required>
+						<select class="form-control dropdown-info" id="recipeType.id"
+							name="recipeType.id" required="required">
 							<option disabled selected value="">Choose a Recipe Meal
 								Type</option>
 								<c:forEach var="type" items="${types }">
