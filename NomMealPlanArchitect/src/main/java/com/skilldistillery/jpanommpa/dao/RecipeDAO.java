@@ -5,7 +5,7 @@ import java.util.*;
 import com.skilldistillery.jpanommpa.entities.Recipe;
 
 public interface RecipeDAO {
-	public Recipe createRecipe(Recipe r);
+	public Recipe createRecipe(Recipe r, Integer[] ingredientIds);
 	public Recipe selectRecipeById(int id);
 	public List<Recipe> selectAllPublicRecipe();
 	public List<Recipe> selectPublicRecipeByName(String name);
