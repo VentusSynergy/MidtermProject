@@ -7,6 +7,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Bootstrap Header -->
 <jsp:include page="navbar.jsp" />
 
 <!-- Required meta tags -->
@@ -20,7 +21,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<title>User Profile: Nom! Meal Plan Architect</title>
+<title>Login: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
@@ -32,38 +33,25 @@
 		<div class="row">
 			<div class="col-3"></div>
 			<div class="col-6">
-				<h3>User Profile:</h3>
-
-				<form:form action="loginAction.do" method="GET"
-					modelAttribute="user">
-
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-user"></i>
-							</span>
-						</div>
-						<h5> &nbsp ${loggedInUser.firstName} ${loggedInUser.lastName }</h5>
-						<form:errors path="firstName" />
+				<h1>Login</h1>
+				<p>Sorry, that account has been deactivated.</p>
+				<form:form action="loginAction.do" method="GET">
+					<div class="form-group" >
+						<label for="exampleInputEmail1">Email address</label> <input
+							type="email" class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp" placeholder="Enter email" name="email">
 					</div>
-
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-envelope"></i>
-							</span>
-						</div>
-						<h5>&nbsp ${loggedInUser.email}</h5>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label> <input
+							type="password" class="form-control" id="exampleInputPassword1"
+							placeholder="Password" name="password">
 					</div>
-					<br>
-
+					<button type="submit" class="btn btn-light">Submit</button>
 				</form:form>
 			</div>
 			<div class="col-3"></div>
 		</div>
 
-
-		<br> <br> <br>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

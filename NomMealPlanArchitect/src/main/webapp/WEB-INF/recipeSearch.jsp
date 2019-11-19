@@ -48,7 +48,7 @@
 		</div>
 	</div>
 
-	<br>
+	<%-- <br>
 	<br>
 
 	<div class="container">
@@ -72,7 +72,7 @@
 			</div>
 			<div class="col-2"></div>
 		</div>
-	</div>
+	</div> --%>
 
 	<br>
 	<br>
@@ -88,7 +88,7 @@
 							<option disabled selected value="">Choose a Recipe
 								Category</option>
 							<c:forEach var="r" items="${recipeCategory}">
-								<option>${r}</option>
+								<option>${r.name}</option>
 							</c:forEach>
 						</select>
 						<button type="submit" class="btn btn-info btn-block">Search
@@ -113,7 +113,7 @@
 							required>
 							<option disabled selected value="">Choose a Meal Type</option>
 							<c:forEach var="t" items="${recipeTypes}">
-								<option>${t}</option>
+								<option>${t.name}</option>
 							</c:forEach>
 						</select>
 						<button type="submit" class="btn btn-info btn-block">Search

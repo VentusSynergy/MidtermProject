@@ -27,9 +27,113 @@
 
 </head>
 <body>
-	<h1>Update Recipe Page</h1>
+
+<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<h2 style="color: green">Update this New Recipe</h2>
+				<c:choose>
+					<c:when test="${updateStatus}">
+						<h2 style="color: red">Recipe Update Failed!</h2>
+					</c:when>
+				</c:choose>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
 
 
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeUpdate.do" method="POST" items="${recipe}">
+				
+					<div class="form-group">
+					
+						<label for="title">Recipe Name</label> <input type="text" name="name"
+							class="form-control" value="${recipe.name}" required="required">
+						<br> 
+							
+							 <input type="hidden" id="recipe" name="id" value="${recipe.id}">
+							 <input type="hidden" id="active" name="active" value="true">
+														
+							<select class="form-control dropdown-info" id="isPublic"
+							name="isPublic" required="required">
+								<option value="true">Public Recipe</option>
+								<option value="false">Private Recipe</option>
+							</select>
+							<br>
+							
+						<label for="prepTime">Prep Time</label>
+						<input type="text" name="prepTime"
+							class="form-control" value="${recipe.prepTime}"> 
+							<br>
+							
+						<label for="instructions">Recipe Instructions</label> 
+						<input
+							type="text" name="instructions" class="form-control"
+							value="${recipe.instructions}]"> 
+							<br> 
+							
+							<label for="photoLink">Photo Link</label> 
+							<input type="text"
+							name="photoLink" class="form-control"
+							value="${recipe.photoLink}"> 
+							<br> 
+							
+							<label
+							for="cookbook">Cookbook Name</label> 
+							<input
+							type="text" name="cookbook" class="form-control"
+							value="${recipe.cookbook}"> 
+							<br> 
+							
+							<label
+							for="cookbookPageNumber">Cookbook Page #</label> 
+							<input type="text"
+							name="cookbookPageNumber" class="form-control"
+							value="${recipe.cookbookPageNumber}"> 
+							<br> 
+							
+							<label
+							for="webLink">URL Web Link to Recipe</label> 
+							<input type="text" name="webLink"
+							class="form-control" value="${recipe.webLink}">
+							<br>
+							
+							<select class="form-control dropdown-info" id="category.id"
+							name="category.id" >
+							<option disabled selected value="">Choose a Recipe
+								Category</option>
+								<c:forEach var="category" items="${categories }">
+								<option value="${category.id}">${category.name }</option>
+								</c:forEach>
+						</select>
+						<br>
+						
+						<select class="form-control dropdown-info" id="recipeType"
+							name="recipeType.id" >
+							<option disabled selected value="">Choose a Recipe Meal
+								Type</option>
+								<c:forEach var="type" items="${types }">
+								<option value="${type.id}">${type.name }</option>
+								</c:forEach>
+						</select>
+							
+					</div>
+					<button type="submit" class="btn btn-success btn-block">Update
+						Recipe</button>
+				</form:form>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+	<br>
+	
+	<br>
+	<br>
 
 
 

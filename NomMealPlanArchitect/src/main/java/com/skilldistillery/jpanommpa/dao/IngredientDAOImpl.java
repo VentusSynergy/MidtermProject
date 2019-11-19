@@ -94,4 +94,18 @@ public class IngredientDAOImpl implements IngredientDAO{
 		}
 	}
 
+	@Override
+	public List<Ingredient> selectAllIngredientObjects() {
+		String query = "Select i from Ingredient i";
+
+		List<Ingredient> results = em.createQuery(query, Ingredient.class).getResultList();
+
+		return results;
+	}
+
+	@Override
+	public Ingredient selectIngredientById(int id) {
+		return em.find(Ingredient.class, id);
+	}
+
 }

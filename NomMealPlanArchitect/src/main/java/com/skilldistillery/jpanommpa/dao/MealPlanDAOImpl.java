@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpanommpa.entities.MealPlan;
+import com.skilldistillery.jpanommpa.entities.User;
 
 @Transactional
 @Service
@@ -60,6 +61,16 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 
 		List<MealPlan> results = em.createQuery(query, MealPlan.class).getResultList();
 
+		return results;
+	}
+	
+	
+	@Override
+	public List<MealPlan> selectMealPlanByUser(User user) {
+		String query = "Select m from MealPlan m where m.user.id = :id";
+		
+		List<MealPlan> results = em.createQuery(query, MealPlan.class).setParameter("id", user.getId()).getResultList();
+		System.err.println(results.get(0).toString());
 		return results;
 	}
 

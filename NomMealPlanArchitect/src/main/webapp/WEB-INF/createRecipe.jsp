@@ -27,8 +27,125 @@
 
 </head>
 <body>
-	<h1>Create Recipe Page</h1>
 
+<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<h2 style="color: green">Create a New Recipe</h2>
+				<c:choose>
+					<c:when test="${createStatus}">
+						<h2 style="color: red">Recipe Creation Failed!</h2>
+					</c:when>
+				</c:choose>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form:form action="recipeCreate.do" method="POST" modelAttribute="recipe">
+					<div class="form-group">
+					
+						<label for="title">Recipe Name</label> <input type="text" name="name"
+							class="form-control" placeholder="Recipe Name" required="required">
+						<br> 
+						
+						<%-- <input type="hidden" id="dateCreated" name="dateCreated" value="${date}"> --%>
+	
+							 <input type="hidden" id="active" name="active" value="true">
+							
+							 <%-- <input type="hidden" id="user" name="user" value="${user}"> --%>
+							
+							<select class="form-control dropdown-info" id="isPublic"
+							name="isPublic" required="required">
+							<option disabled selected value="">Choose Public/Private</option>
+								<option value="true">Public Recipe</option>
+								<option value="false">Private Recipe</option>
+							</select>
+							<br>
+							
+						<label for="prepTime">Prep Time</label>
+						<input type="text" name="prepTime"
+							class="form-control" placeholder="Prep Time in Minutes"> 
+							<br>
+							
+						<label for="instructions">Recipe Instructions</label> 
+						<input
+							type="text" name="instructions" class="form-control"
+							placeholder="Step 1...Step 2..."> 
+							<br> 
+							
+							<select class="custom-select" multiple name="ingredientIds">
+  							<option selected>Choose Recipe Ingredients</option>
+  							<c:forEach var="i" items="${ingredients}">
+ 							 	<option value="${i.id}">${i.name}</option>
+							</c:forEach>
+							</select>
+							
+							
+							
+							<label for="photoLink">Photo Link</label> 
+							<input type="text"
+							name="photoLink" class="form-control"
+							placeholder="URL Link to Recipe Photo"> 
+							<br> 
+							
+							<label
+							for="cookbook">Cookbook Name</label> 
+							<input
+							type="text" name="cookbook" class="form-control"
+							placeholder="Cookbook Name"> 
+							<br> 
+							
+							<label
+							for="cookbookPageNumber">Cookbook Page #</label> 
+							<input type="text"
+							name="cookbookPageNumber" class="form-control"
+							placeholder="Cookbook Page Number"> 
+							<br> 
+							
+							<label
+							for="webLink">URL Web Link to Recipe</label> 
+							<input type="text" name="webLink"
+							class="form-control" placeholder="Additional Comments">
+							<br>
+							
+							<select class="form-control dropdown-info" id="category.id"
+							name="category.id" required>
+							<option disabled selected value="">Choose a Recipe
+								Category</option>
+								<c:forEach var="category" items="${categories }">
+								<option value="${category.id}">${category.name }</option>
+								</c:forEach>
+						</select>
+						<br>
+						
+						<select class="form-control dropdown-info" id="recipeType"
+							name="recipeType.id" required>
+							<option disabled selected value="">Choose a Recipe Meal
+								Type</option>
+								<c:forEach var="type" items="${types }">
+								<option value="${type.id}">${type.name }</option>
+								</c:forEach>
+						</select>
+							
+					</div>
+					<button type="submit" class="btn btn-success btn-block">Create
+						Recipe</button>
+				</form:form>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+	<br>
+	
+	<br>
+	<br>
 
 
 

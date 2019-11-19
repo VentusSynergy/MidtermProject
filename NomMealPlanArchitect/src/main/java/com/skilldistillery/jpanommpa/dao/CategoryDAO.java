@@ -8,5 +8,5 @@ import com.skilldistillery.jpanommpa.entities.Category;
 public interface CategoryDAO {
 	
 	
-	public List<String> selectAllCategories();
+	public List<Category> selectAllCategories();
 }

@@ -12,11 +12,13 @@ public interface AuthenticationDAO {
 	public User getUserByEmail(String email);
 
 	public boolean isValidUser(User u);
-	
+
 	public User lookUp(String email, String pass);
-	
+
 	public void addUserToMap();
-	
-	
-	
+
+	public User updateUser(int id, User updatedUser);
+
+	User updateActiveStatus(int id);
+
 }

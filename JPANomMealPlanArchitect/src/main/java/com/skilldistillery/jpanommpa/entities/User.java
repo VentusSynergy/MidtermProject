@@ -77,7 +77,7 @@ public class User {
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.username = email;
 	}
 
 	public String getPassword() {
@@ -232,11 +232,11 @@ public class User {
 	}
 
 	public String getEmail() {
-		return email;
+		return email.toLowerCase();
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public String getFirstName() {

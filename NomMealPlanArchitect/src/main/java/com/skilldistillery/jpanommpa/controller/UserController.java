@@ -9,14 +9,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
 import com.skilldistillery.jpanommpa.entities.User;
 
 @Controller
-//@SessionAttributes("loggedInUser")
 public class UserController {
 
 	@Autowired
@@ -37,35 +35,33 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User user = userDao.lookUp(email, password);
+
 		System.out.println("in controller: " + user);
 
-		if (user.getFirstName().equalsIgnoreCase("InvalidUser")) {
-			mv.setViewName("login");
+		if (user.getActive() == false) {
+			mv.setViewName("loginDeactive");
 			return mv;
-		} else {
-
-			session.setAttribute("loggedInUser", user);
-
-			mv.addObject("user", user);
-			mv.setViewName("userProfile");
-
-			System.out.println("*************************************************");
-			System.out.println("Valid user from LoginAction.do: " + user);
-			System.out.println("*************************************************");
-
-			return mv;
-
 		}
+
+		if (user.getFirstName().equalsIgnoreCase("InvalidUser")) {
+			mv.setViewName("loginInvalid");
+			return mv;
+		}
+
+		session.setAttribute("loggedInUser", user);
+
+		mv.addObject("user", user);
+		mv.setViewName("userProfile");
+
+		return mv;
+
 	}
 
 	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
 	public ModelAndView logoutDo(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		User userLogout = new User();
-		userLogout.setEmail("");
-	
-		session.setAttribute("loggedInUser", userLogout);
+		session.removeAttribute("loggedInUser");
 
 		mv.setViewName("index");
 		return mv;
@@ -75,6 +71,15 @@ public class UserController {
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
+		u.setId(0);
+		u.setFirstName("");
+		u.setLastName("");
+		u.setPassword("");
+		u.setUsername("");
+		u.setEmail("");
+		u.setActive(true);
+		u.setAdmin(false);
+
 		mv.addObject("user", u);
 		mv.setViewName("register");
 		return mv;
@@ -106,22 +111,47 @@ public class UserController {
 		return "userProfile";
 
 	}
-	
+
 	@RequestMapping(path = "userProfile.do")
 	public ModelAndView userProfile(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-//		User u = new User();
-//		mv.addObject("user", u);
+
 		mv.setViewName("userProfile");
 		return mv;
 	}
-	
-	@RequestMapping(path = "updateUserProfile.do")
-	public ModelAndView updateUserProfile(HttpSession session) {
+
+	@RequestMapping(path = "getUserProfile.do", method = RequestMethod.GET)
+	public ModelAndView userUpdate(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-//		User u = new User();
-//		mv.addObject("user", u);
+
+		User userToUpdate = (User) session.getAttribute("loggedInUser");
+
+		mv.addObject("user", userToUpdate);
+		mv.setViewName("updateProfile");
+		return mv;
+	}
+
+	@RequestMapping(path = "updateUserProfile.do", params = "userId", method = RequestMethod.POST)
+	public ModelAndView updateUserProfile(@RequestParam("userId") int userId, @Valid User user, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		User display = userDao.updateUser(userId, user);
+
+		session.setAttribute("loggedInUser", display);
+
 		mv.setViewName("userProfile");
+		return mv;
+	}
+
+	@RequestMapping(path = "deactivateUser.do", params = "userId", method = RequestMethod.POST)
+	public ModelAndView deactivateUser(@RequestParam("userId") int userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		userDao.updateActiveStatus(userId);
+
+		session.removeAttribute("loggedInUser");
+
+		mv.setViewName("index");
 		return mv;
 	}
 

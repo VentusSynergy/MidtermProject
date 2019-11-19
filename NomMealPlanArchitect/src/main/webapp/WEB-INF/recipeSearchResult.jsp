@@ -8,30 +8,28 @@
 <html lang="en">
 <head>
 <jsp:include page="navbar.jsp" />
-
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <title>Recipe Search Results: Nom! Meal Plan Architect</title>
-
 <!-- CSS -->
 <link href="<c:url value="/CSS/recipeSearchResult.css" />"
 	rel="stylesheet">
-
 </head>
 <body>
 	<h1>Recipe Search Results Page</h1>
-
 	<hgroup class="mb20">
 		<h1>Search Results</h1>
 		<h2 class="lead">
@@ -39,20 +37,18 @@
 			were found for the search for <strong class="text-danger">${key}</strong>
 		</h2>
 	</hgroup>
-
-
 	<c:choose>
-		<c:when test="${fn: length(recipe) gt 0}">
+		<%-- 		<c:when test="${fn: length(recipe) gt 0}"> --%>
+		<c:when test="${not empty recipe}">
 			<c:forEach var="r" items="${recipe}">
 				<div class="container">
-
-
 					<section class="col-xs-12 col-sm-6 col-md-12">
 						<article class="search-result row">
 							<div class="col-xs-12 col-sm-12 col-md-3">
 								<a href="#" title="Lorem ipsum" class="thumbnail"><img
-									src="${r.photoLink}" alt="Lorem ipsum" height="150px" width="auto"/></a>
-							</div> 
+									src="${r.photoLink}" alt="Lorem ipsum" height="150px"
+									width="auto" /></a>
+							</div>
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
 									<li><i class="glyphicon glyphicon-calendar"></i> <span>${r.dateCreated}</span></li>
@@ -65,22 +61,47 @@
 									<a href="#" title="">${r.name}</a>
 								</h3>
 								<p>${r.instructions}</p>
-								<form class="plus" action="addRecipeToUser.do" method="get">
-								<button  class="glyphicon glyphicon-plus">Add</button>
-								<input type="hidden" name="id" value="${r.id}">
-								</form>	
-									
+
+								<c:set var="isFavorite" value="false" />
+								<c:forEach var="fl" items="${favList}">
+									<c:if test="${fl.recipe.id == r.id}">
+										<c:set var="isFavorite" value="true" />
+									</c:if>
+								</c:forEach>
+								<c:choose>
+
+									<c:when test="${isFavorite == true}">
+										<form class="plus" action="addRecipeToUser.do" method="POST">
+											<button class="glyphicon glyphicon-plus" disabled>Added</button>
+											<input type="hidden" name="id" value="${r.id}"> <input
+												type="hidden" name="key" value="${key}">
+										</form>
+									</c:when>
+
+									<c:otherwise>
+										<form class="plus" action="addRecipeToUser.do" method="POST">
+											<button class="glyphicon glyphicon-plus">Add</button>
+											<input type="hidden" name="id" value="${r.id}"> <input
+												type="hidden" name="key" value="${key}">
+										</form>
+									</c:otherwise>
+
+								</c:choose>
+								<div><form:form class="update" action="updateRecipe.do" method="GET"
+									modelAttribute="recipe" >
+										<button type="submit" name="recipeId" value="${r.id}"
+											class="glyphicon glyphicon-edit">Update</button>
+								</form:form></div>
+
 							</div>
 							<span class="clearfix borda"></span>
 						</article>
-
 					</section>
 				</div>
+				<hr>
 			</c:forEach>
 		</c:when>
 	</c:choose>
-
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -96,3 +117,5 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+
+

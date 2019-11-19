@@ -1,15 +1,19 @@
 package com.skilldistillery.jpanommpa.dao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.*;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpanommpa.entities.Category;
 import com.skilldistillery.jpanommpa.entities.Recipe;
+import com.skilldistillery.jpanommpa.entities.RecipeIngredient;
+import com.skilldistillery.jpanommpa.entities.RecipeType;
 
 @Transactional
 @Service
@@ -18,9 +22,26 @@ public class RecipeDAOImpl implements RecipeDAO {
 	private EntityManager em;
 
 	@Override
-	public Recipe createRecipe(Recipe r) {
+	public Recipe createRecipe(Recipe r, RecipeIngredient[] ri) {
+		r.setDateCreated(LocalDate.now());
+		r.setCategory(em.find(Category.class, r.getCategory().getId()));
+		r.setRecipeType(em.find(RecipeType.class, r.getRecipeType().getId()));
 		em.persist(r);
-
+//TODO - Retrieve Ingredient using ids, instantiate RecipeIngredients, add to recipe
+//		List<RecipeIngredient> ri = new ArrayList<>();
+//		for(int i = 0; i< ingredientIds.length; i++) {
+//			Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
+//			RecipeIngredient recIng = new RecipeIngredient();
+//			recIng.setIngredient(ing);
+//			ri.add(recIng);
+//		}
+				
+		for (RecipeIngredient recipeIngredient : ri) {
+			recipeIngredient.setRecipe(r);
+		}
+		
+		em.persist(ri);
+		
 		em.flush();
 
 		return r;
@@ -84,23 +105,20 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public Recipe updateRecipe(Recipe r) {
 		//get a match from the database
 		Recipe matchingRecipe = em.find(Recipe.class, r.getId());
-		
 		//update to match user form input
 		matchingRecipe.setName(r.getName());
 		matchingRecipe.setDateCreated(LocalDate.now());
 		matchingRecipe.setActive(true);
-		matchingRecipe.setUser(r.getUser()); ///not sure about this - where does USER come from?
 		matchingRecipe.setRecipeIngredients(r.getRecipeIngredients()); //?
 		matchingRecipe.setCategory(r.getCategory());
 		matchingRecipe.setRecipeType(r.getRecipeType());
-		matchingRecipe.setPublic(r.isPublic());
 		matchingRecipe.setPrepTime(r.getPrepTime());
 		matchingRecipe.setInstructions(r.getInstructions());
 		matchingRecipe.setPhotoLink(r.getPhotoLink());
 		matchingRecipe.setCookbook(r.getCookbook());
 		matchingRecipe.setCookbookPageNumber(r.getCookbookPageNumber());
 		matchingRecipe.setWebLink(r.getWebLink());
-		
+		matchingRecipe.setIsPublic(r.getIsPublic());
 		em.persist(matchingRecipe);
 		
 		em.flush();
@@ -167,9 +185,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectPublicRecipeByIngredient(String ingredient) {
-		String query = "Select r from Recipe r where r.isPublic = :public and r.recipeIngredients.ingredient.name like :name";
+	
+		String query = "Select r from Recipe r where r.isPublic = :public and r.recipeIngredients.ingredient.name in (:name)";
 
-		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("name", "%" + ingredient + "%").getResultList();
+		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("name", ingredient).getResultList();
 
 		return results;
 	}
@@ -190,6 +209,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("public", true).setParameter("word", "%" + cookbook + "%").getResultList();
 
 		return results;
+	}
+
+	@Override
+	public Recipe selectRecipeById(int id) {
+		return em.find(Recipe.class, id);
 	}
 
 }
