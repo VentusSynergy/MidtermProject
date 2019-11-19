@@ -74,8 +74,28 @@
 						<label for="instructions">Recipe Instructions</label> 
 						<input
 							type="text" name="instructions" class="form-control"
-							value="${recipe.instructions}]"> 
+							value="${recipe.instructions}"> 
 							<br> 
+							
+							<label for="ingredients">Recipe Ingredients</label> 
+							<select class="custom-select" multiple name="ingredientIds">
+  							<!-- <option selected>Ingredients Currently in Recipe</option> -->
+  							<c:forEach var="i" items="${ingredientsIN}">
+ 							 	<option selected value="${i.id}">${i.name}</option>
+							</c:forEach>
+							<c:forEach var="i" items="${ingredients}">
+ 							 	<option value="${i.id}">${i.name}</option>
+							</c:forEach>
+							</select>
+							
+							<br>
+							
+							<%-- <select class="custom-select" multiple name="ingredientIds">
+  							<option selected>Choose Recipe Ingredients</option>
+  							<c:forEach var="i" items="${ingredients}">
+ 							 	<option value="${i.id}">${i.name}</option>
+							</c:forEach>
+							</select> --%>
 							
 							<label for="photoLink">Photo Link</label> 
 							<input type="text"
@@ -104,7 +124,7 @@
 							<br>
 							
 							<select class="form-control dropdown-info" id="category.id"
-							name="category.id" >
+							name="category.id" required="required">
 							<option disabled selected value="">Choose a Recipe
 								Category</option>
 								<c:forEach var="category" items="${categories }">
@@ -114,7 +134,7 @@
 						<br>
 						
 						<select class="form-control dropdown-info" id="recipeType"
-							name="recipeType.id" >
+							name="recipeType.id" required="required">
 							<option disabled selected value="">Choose a Recipe Meal
 								Type</option>
 								<c:forEach var="type" items="${types }">
