@@ -38,7 +38,7 @@
 		</h2>
 	</hgroup>
 	<c:choose>
-<%-- 		<c:when test="${fn: length(recipe) gt 0}"> --%>
+		<%-- 		<c:when test="${fn: length(recipe) gt 0}"> --%>
 		<c:when test="${not empty recipe}">
 			<c:forEach var="r" items="${recipe}">
 				<div class="container">
@@ -63,29 +63,40 @@
 								<p>${r.instructions}</p>
 
 
-                                <c:set var="isFavorite" value="false" />
+								<c:set var="isFavorite" value="false" />
 								<c:forEach var="fl" items="${favList}">
-										<c:if test="${fl.recipe.id == r.id}"><c:set var="isFavorite" value="true" /></c:if>
+									<c:if test="${fl.recipe.id == r.id}">
+										<c:set var="isFavorite" value="true" />
+									</c:if>
 								</c:forEach>
-									<c:choose>
-									
-										<c:when test="${isFavorite == true}">
-											<form class="plus" action="addRecipeToUser.do" method="POST">
-												<button class="glyphicon glyphicon-plus" disabled>Added</button>
-												<input type="hidden" name="id" value="${r.id}"> <input
-													type="hidden" name="key" value="${key}">
-											</form>
-										</c:when>
+								<c:choose>
 
-										<c:otherwise>
-											<form class="plus" action="addRecipeToUser.do" method="POST">
-												<button class="glyphicon glyphicon-plus">Add</button>
-												<input type="hidden" name="id" value="${r.id}"> <input
-													type="hidden" name="key" value="${key}">
-											</form>
-										</c:otherwise>
-										
-									</c:choose>
+									<c:when test="${isFavorite == true}">
+										<form class="plus" action="addRecipeToUser.do" method="POST">
+											<button class="glyphicon glyphicon-plus" disabled>Added</button>
+											<input type="hidden" name="id" value="${r.id}"> <input
+												type="hidden" name="key" value="${key}">
+										</form>
+									</c:when>
+
+									<c:otherwise>
+										<form class="plus" action="addRecipeToUser.do" method="POST">
+											<button class="glyphicon glyphicon-plus">Add</button>
+											<input type="hidden" name="id" value="${r.id}"> <input
+												type="hidden" name="key" value="${key}">
+										</form>
+									</c:otherwise>
+
+								</c:choose>
+								<form:form action="updateRecipe.do" method="GET"
+									modelAttribute="recipe">
+									<div>
+										<button type="submit" name="recipeId" value="${r.id}"
+											class="btn btn-outline-light btn-md">Update Recipe</button>
+									</div>
+									<br>
+								</form:form>
+
 							</div>
 							<span class="clearfix borda"></span>
 						</article>

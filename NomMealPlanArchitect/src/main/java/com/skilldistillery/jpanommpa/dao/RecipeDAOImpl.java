@@ -97,13 +97,13 @@ public class RecipeDAOImpl implements RecipeDAO {
 		matchingRecipe.setRecipeIngredients(r.getRecipeIngredients()); //?
 		matchingRecipe.setCategory(r.getCategory());
 		matchingRecipe.setRecipeType(r.getRecipeType());
-		matchingRecipe.setPublic(r.isPublic());
 		matchingRecipe.setPrepTime(r.getPrepTime());
 		matchingRecipe.setInstructions(r.getInstructions());
 		matchingRecipe.setPhotoLink(r.getPhotoLink());
 		matchingRecipe.setCookbook(r.getCookbook());
 		matchingRecipe.setCookbookPageNumber(r.getCookbookPageNumber());
 		matchingRecipe.setWebLink(r.getWebLink());
+		matchingRecipe.setIsPublic(r.getIsPublic());
 		
 		em.persist(matchingRecipe);
 		
