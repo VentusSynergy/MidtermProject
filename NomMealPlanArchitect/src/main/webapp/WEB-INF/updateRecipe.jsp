@@ -57,8 +57,8 @@
 						<br> 
 							
 							 <input type="hidden" id="active" name="active" value="true">
-							 <input type="text" name="name"
-							class="form-control" value="${recipe.name}" required="required">
+							<%--  <input type="text" name="name"
+							class="form-control" value="${recipe.name}" required="required"> --%>
 														
 							<select class="form-control dropdown-info" id="isPublic"
 							name="isPublic" required="required">
@@ -70,7 +70,7 @@
 							
 						<label for="prepTime">Prep Time</label>
 						<input type="text" name="prepTime"
-							class="form-control" value="${recipe.prepTime"}> 
+							class="form-control" value="${recipe.prepTime}"> 
 							<br>
 							
 						<label for="instructions">Recipe Instructions</label> 
@@ -106,7 +106,7 @@
 							<br>
 							
 							<select class="form-control dropdown-info" id="category.id"
-							name="category.id" required>
+							name="category.id" >
 							<option disabled selected value="">Choose a Recipe
 								Category</option>
 								<c:forEach var="category" items="${categories }">
@@ -116,7 +116,7 @@
 						<br>
 						
 						<select class="form-control dropdown-info" id="recipeType"
-							name="recipeType.id" required>
+							name="recipeType.id" >
 							<option disabled selected value="">Choose a Recipe Meal
 								Type</option>
 								<c:forEach var="type" items="${types }">
