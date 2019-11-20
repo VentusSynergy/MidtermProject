@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpanommpa.dao.CategoryDAO;
 import com.skilldistillery.jpanommpa.dao.GroceryListDAO;
 import com.skilldistillery.jpanommpa.dao.IngredientDAO;
-import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeReviewDAO;
 import com.skilldistillery.jpanommpa.dao.TypeDAO;
@@ -34,17 +34,12 @@ public class RecipeCUDController {
 	@Autowired
 	private CategoryDAO categoryDao;
 	@Autowired
-	private GroceryListDAO groceryDao;
-	@Autowired
 	private IngredientDAO ingredientDao;
 	@Autowired
 	private RecipeDAO recipeDao;
 	@Autowired
-	private RecipeReviewDAO recipeReviewDao;
-	@Autowired
 	private TypeDAO typeDao;
-	@Autowired
-	private UserRecipeFavoritesDAO favDao;
+
 	
 	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
 	public ModelAndView createRecipe(HttpSession session) {
@@ -60,7 +55,7 @@ public class RecipeCUDController {
 	}
 
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
+	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User) session.getAttribute("loggedInUser"));
 		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
@@ -78,6 +73,7 @@ public class RecipeCUDController {
 				break;
 			}
 		}
+		
 		Recipe created = recipeDao.createRecipe(recipe, ri);
 		if (created != null) {
 			List<Recipe> recipeList = new ArrayList<>();
