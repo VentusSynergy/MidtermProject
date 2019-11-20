@@ -61,12 +61,13 @@
 							
 							 <%-- <input type="hidden" id="user" name="user" value="${user}"> --%>
 							
-							<select class="form-control dropdown-info" id="isPublic"
+							<input type="hidden" id="isPublic" name="isPublic" value="true">
+							<!-- <select class="form-control dropdown-info" id="isPublic"
 							name="isPublic" required="required">
 							<option disabled selected value="">Choose Public/Private</option>
 								<option value="true">Public Recipe</option>
 								<option value="false">Private Recipe</option>
-							</select>
+							</select> -->
 							<br>
 							
 						<label for="prepTime">Prep Time</label>
