@@ -124,13 +124,9 @@ public class UserController {
 	@RequestMapping(path = "userProfile.do")
 	public ModelAndView userProfile(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-//		User loggedInUser = (User) session.getAttribute("loggedInUser");
-//		System.err.println(loggedInUser);
-//		List<Recipe> favList = loggedInUser.getRecipes();
-//		for (Recipe userRecipe : favList) {
-//			System.out.println(userRecipe);
-//		}
-		
+		User user = (User) session.getAttribute("loggedInUser");
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
 		mv.setViewName("userProfile");
 		return mv;
 	}
@@ -172,10 +168,10 @@ public class UserController {
 	@RequestMapping(path = "removeFav.do", params = "id", method = RequestMethod.POST)
 	public ModelAndView removeFavRecipe(@RequestParam("id") int id, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
+		User user = (User) session.getAttribute("loggedInUser");
 		favDao.deleteUserRecipe(id);
-		
-		
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
 		mv.setViewName("userProfile");
 		return mv;
 	}
