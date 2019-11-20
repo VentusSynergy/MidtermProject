@@ -27,12 +27,12 @@
 
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<h1>Recipe Details</h1>
 
@@ -138,8 +138,7 @@
 										<li>Rating: ${review.rating}
 											<ul>
 												<li>Review: ${review.comment}</li>
-												<li>Written by ${review.user.firstName}
-													${review.user.lastName} on ${review.reviewDate}</li>
+												<li>${review.user.firstName}&nbsp ${review.user.lastName}&nbsp ${review.reviewDate}</li>
 												<li><c:if test="${loggedInUser.id eq review.user.id }">
 
 														<form action="reviewDeactivate.do" method="POST">
