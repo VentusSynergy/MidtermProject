@@ -171,8 +171,8 @@ public class NomController {
 		ur.setUser(user);
 		ur.setRecipe(recipeDao.selectRecipeById(id));
 		favDao.createUserRecipe(ur);
-//		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
-//		mv.addObject("favList", favList);
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
 
 		// return same search
 		List<Recipe> recipeList = recipeDao.selectRecipeByName(key);
