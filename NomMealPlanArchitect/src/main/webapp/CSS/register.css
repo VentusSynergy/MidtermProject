@@ -1,16 +1,15 @@
 @charset "UTF-8";
 
 body {
-	/* background-image:
-		url('https://i.pinimg.com/originals/fa/87/4f/fa874f786a550a7b50a00a08776c246b.gif');
-	background-repeat: no-repeat;
-	background-size: cover; */
-	background-color: black; 
-	color: white;
+	background-image:
+		url('https://images.pexels.com/photos/1227648/pexels-photo-1227648.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+		opacity: 100;
+
 }
 .card{
 	background: rgb(60, 60, 60);
     background: rgba(60, 60, 60, 0.4);
+    background-color: transparent;
     background-size: contain;
 }
 .divider-text {
