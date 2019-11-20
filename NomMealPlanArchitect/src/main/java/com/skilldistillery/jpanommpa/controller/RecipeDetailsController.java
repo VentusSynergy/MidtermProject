@@ -1,7 +1,5 @@
 package com.skilldistillery.jpanommpa.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +36,18 @@ public class RecipeDetailsController {
 		ModelAndView mv = new ModelAndView();
 		reviewDao.createRecipeReview(newReview);
 		Recipe recipe = recipeDao.selectRecipeById(newReview.getRecipe().getId());
+		mv.addObject("recipe", recipe);
+		mv.setViewName("recipeDetails");
+		return mv;
+	}
+
+	@RequestMapping(path = "reviewDeactivate.do", method = RequestMethod.POST)
+	public ModelAndView reviewDeactivate(@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView();
+		RecipeReview deactivateReview = reviewDao.findReviewById(id);
+
+		reviewDao.deleteRecipeReview(deactivateReview);
+		Recipe recipe = recipeDao.selectRecipeById(deactivateReview.getRecipe().getId());
 		mv.addObject("recipe", recipe);
 		mv.setViewName("recipeDetails");
 		return mv;
