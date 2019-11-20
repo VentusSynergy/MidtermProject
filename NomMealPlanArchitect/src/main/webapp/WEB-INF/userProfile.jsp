@@ -33,17 +33,12 @@
 <br>
 <br>
 <br>
-	<!-- <div class="container">
-
-		<div class="row">
-			<div class="col-3"></div>
-			<div class="col-6"> -->
 				<form:form action="loginAction.do" method="GET"
 					modelAttribute="user">
 				<h2 style="text-align: center">${loggedInUser.firstName}'s Profile</h2>
 <div class="container">
     <div class="fb-profile">
-        <img align="left" class="fb-image-lg" src="http://straitbuzz.com/wp-content/uploads/2017/11/martha-stewart-holiday-memories.jpg" alt="Profile image example"/>
+        <img align="left" class="fb-image-lg" src="https://cms.splendidtable.org/sites/default/files/styles/w2000/public/cooks-in-kitchen_pidjoe-iStock-GettyImagesPlus-LEDE.jpg?itok=pMpz8wND" alt="Profile image example"/>
         <img align="left" class="fb-image-profile thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Martha_Stewart_2011_Shankbone.JPG" alt="Profile image example"/>
         <div class="fb-profile-text">
             <h1>${loggedInUser.firstName} ${loggedInUser.lastName }</h1>
@@ -51,41 +46,18 @@
         </div>
     </div>
 </div>
-				
-
-					<%-- <!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-user"></i>
-							</span>
-						</div>
-						<h5>&nbsp ${loggedInUser.firstName} ${loggedInUser.lastName }</h5>
-						<form:errors path="firstName" />
-					</div>
-
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-envelope"></i>
-							</span>
-						</div>
-						<h5>&nbsp ${loggedInUser.email}</h5>
-					</div>
-					<br>
- --%>
 				</form:form>
-			<%-- </div>
-			<div class="col-3"></div>
-		</div>
 
-
-		<br> <br> <br>
-	</div>
- --%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
 	<!-- Users Saved Recipes -->
 	<hgroup class="mb20">
-		<h1>Saved Recipes</h1>
-		<h2 class="lead">
+		<h1 style="text-align: center">Saved Recipes</h1>
+		<h2 class="lead" style="text-align: center">
 			<strong class="text-danger">${fn: length(favList)}</strong> recipes
 			have been added to your profile.
 		</h2>
