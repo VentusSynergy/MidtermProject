@@ -39,20 +39,11 @@
 		<hr>
 
 		<div class="card">
-			<article class="card-body mx-auto" style="max-width: 400px;">
+			<article class="card-body mx-auto text-light" style="max-width: 400px;">
 				<h4 class="card-title mt-3 text-center">Create Account</h4>
 		
 				<form:form action="register.do" method="POST" modelAttribute="user">
-<%-- 					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-user"></i>
-							</span>
-						</div> 
-			<form:input class="form-control" path="username"
-							placeholder="Username" type="text" />
-						<form:errors path="username" /> 
-					</div> --%>
-					<!-- form-group// -->
+
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i>
@@ -94,11 +85,11 @@
 					</div>
 					<!-- form-group// -->
 					<div class="form-group">
-						<button type="submit" value="Register" class="btn btn-primary btn-block">
+						<button type="submit" value="Register" class="btn btn-primary btn-block ">
 							Create Account</button>
 					</div>
 					<!-- form-group// -->
-					<p class="text-center">Have an account? <a href="login.do">Log In</a> </p>   
+					<p class="text-center text-primary">Have an account? <a href="login.do">Log In</a> </p>   
 				</form:form>
 			</article>
 		</div>
