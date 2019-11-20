@@ -98,7 +98,7 @@ public class NomController {
 		// otherwise, only get public recipes
 		// get no fav-recipes
 		else {
-			recipeList = recipeDao.selectPublicRecipeByName(key);
+			recipeList = recipeDao.selectRecipeByName(key);
 		}
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
@@ -109,7 +109,7 @@ public class NomController {
 	@RequestMapping(path = "recipeByIngredient.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeByIngredient(@RequestParam("ingredient") String ingredient) {
 		ModelAndView mv = new ModelAndView();
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByIngredient(ingredient);
+		List<Recipe> recipeList = recipeDao.selectRecipeByIngredient(ingredient);
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -118,7 +118,7 @@ public class NomController {
 	@RequestMapping(path = "recipeByCategory.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeByCategory(@RequestParam("category") String category) {
 		ModelAndView mv = new ModelAndView();
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByCategory(category);
+		List<Recipe> recipeList = recipeDao.selectRecipeByCategory(category);
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -127,7 +127,7 @@ public class NomController {
 	@RequestMapping(path = "recipeByType.do", method = RequestMethod.GET)
 	public ModelAndView searchRecipeByType(@RequestParam("type") String type) {
 		ModelAndView mv = new ModelAndView();
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByType(type);
+		List<Recipe> recipeList = recipeDao.selectRecipeByType(type);
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -136,7 +136,7 @@ public class NomController {
 	@RequestMapping(path = "searchAllRecipes.do", method = RequestMethod.GET)
 	public ModelAndView searchALLRecipes() {
 		ModelAndView mv = new ModelAndView();
-		List<Recipe> recipeList = recipeDao.selectAllPublicRecipe();
+		List<Recipe> recipeList = recipeDao.selectAllRecipe();
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -147,7 +147,6 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		User u = (User) session.getAttribute("loggedInUser");
 		mv.addObject("categories", categoryDao.selectAllCategories());
-		System.out.println("*******************************"+categoryDao.selectAllCategories().get(1).getId() + categoryDao.selectAllCategories().get(1).getName());
 		mv.addObject("types", typeDao.selectAllRecipeTypes());
 		mv.addObject("ingredients", ingredientDao.selectAllIngredientObjects());
 		mv.addObject("user", u);
@@ -158,7 +157,6 @@ public class NomController {
 
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
 	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
-		System.out.println("*******************" + recipe.getCategory());
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User) session.getAttribute("loggedInUser"));
 		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
@@ -232,7 +230,7 @@ public class NomController {
 		
 		Recipe updated = recipeDao.updateRecipe(recipe, ri);
 		// return same search
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(updated.getName());
+		List<Recipe> recipeList = recipeDao.selectRecipeByName(updated.getName());
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -262,9 +260,23 @@ public class NomController {
 //		mv.addObject("favList", favList);
 
 		// return same search
-		List<Recipe> recipeList = recipeDao.selectPublicRecipeByName(key);
+		List<Recipe> recipeList = recipeDao.selectRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
+		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+	
+	@RequestMapping(path = "deleteRecipe.do", method = RequestMethod.POST)
+	public ModelAndView deleteRecipe(@RequestParam("id") int id, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("loggedInUser");
+		UserRecipe ur = new UserRecipe();
+		ur.setUser(user);
+		recipeDao.deleteRecipe(recipeDao.selectRecipeById(id));
+		// return same search
+		List<Recipe> recipeList = recipeDao.selectAllRecipe();
+		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
