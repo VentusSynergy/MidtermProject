@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html>
-<head>
 <link href="<c:url value="/CSS/nav.css" />" rel="stylesheet">
 
 <meta charset="utf-8">
@@ -24,7 +23,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<body>
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.do"><i
@@ -86,5 +85,4 @@
 			</div>
 		</div>
 	</nav>
-</body>
 </html>

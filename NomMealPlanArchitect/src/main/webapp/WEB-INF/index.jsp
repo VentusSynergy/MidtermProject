@@ -22,7 +22,6 @@
 <link href="<c:url value="/CSS/index.css" />" rel="stylesheet">
 </head>
 <body>
- 
 	<div class="top-container"><h1 class="app-title" ><em>NOM</em></h1></div>
 	<section id="team" class="pb-5">
 	<h5 class="section-title h1">This Weeks Picks</h5>

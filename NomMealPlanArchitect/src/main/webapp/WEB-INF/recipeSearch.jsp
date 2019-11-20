@@ -27,7 +27,13 @@
 
 </head>
 <body>
-	<h1>Recipe Search Page</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+	<h1 style="text-align: center">Recipe Search Page</h1>
 
 	<br>
 	<br>

@@ -17,18 +17,18 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <title>Recipe Search Results: Nom! Meal Plan Architect</title>
 <!-- CSS -->
 <link href="<c:url value="/CSS/recipeSearchResult.css" />"
 	rel="stylesheet">
 </head>
 <body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<h1>Recipe Search Results Page</h1>
 	<hgroup class="mb20">
 		<h1>Search Results</h1>
