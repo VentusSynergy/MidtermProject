@@ -29,10 +29,55 @@
 <body>
 	<h1>Recipe Details</h1>
 
+	<c:choose>
+		<c:when test="${not empty recipe}">
+			<div class="container">
+				<section class="col-xs-12 col-sm-6 col-md-12">
+					<article class="search-result row">
+						<div class="col-xs-12 col-sm-12 col-md-3">
+							<a href="#" title="Lorem ipsum" class="thumbnail"><img
+								src="${recipe.photoLink}" alt="Lorem ipsum" height="150px"
+								width="auto" /></a>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-2">
+							<ul class="meta-search">
+								<li><i class="glyphicon glyphicon-calendar"></i> <span>${recipe.dateCreated}</span></li>
+								<li><i class="glyphicon glyphicon-time"></i> <span>${recipe.prepTime}</span></li>
+								<li><i class="glyphicon glyphicon-tags"></i> <span>${recipe.category.name}</span></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+							<h3>
+								<a href="#" title="">${recipe.name}</a>
+							</h3>
+							<p>${recipe.instructions}</p>
 
+							<div>
+								<form:form class="update" action="updateRecipe.do" method="GET"
+									modelAttribute="recipe">
+									<button type="submit" name="recipeId" value="${recipe.id}"
+										class="glyphicon glyphicon-edit">Update</button>
 
+								</form:form>
+							</div>
+							<br>
+							<div>
+								<form:form class="delete" action="deleteRecipe.do" method="POST"
+									modelAttribute="recipe">
+									<button type="submit" name="id" value="${recipe.id}"
+										class="glyphicon glyphicon-remove">Delete</button>
 
+								</form:form>
+							</div>
 
+						</div>
+						<span class="clearfix borda"></span>
+					</article>
+				</section>
+			</div>
+			<hr>
+		</c:when>
+	</c:choose>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
