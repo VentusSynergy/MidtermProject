@@ -78,7 +78,6 @@ public class RecipeReview {
 	}
 
 	public void setReviewDate(LocalDate reviewDate) {
-		
 		this.reviewDate = reviewDate;
 	}
 

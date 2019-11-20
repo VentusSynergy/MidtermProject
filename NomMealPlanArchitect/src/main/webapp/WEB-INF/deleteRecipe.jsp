@@ -20,51 +20,19 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<title>User Profile: Nom! Meal Plan Architect</title>
+<title>Delete Recipe: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
 
 </head>
 <body>
-	<div class="container">
-
-		<div class="row">
-			<div class="col-3"></div>
-			<div class="col-6">
-				<h3>User Profile:</h3>
-
-				<form:form action="loginAction.do" method="GET"
-					modelAttribute="user">
-
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-user"></i>
-							</span>
-						</div>
-						<h5> &nbsp ${loggedInUser.firstName} ${loggedInUser.lastName }</h5>
-						<form:errors path="firstName" />
-					</div>
-
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="fa fa-envelope"></i>
-							</span>
-						</div>
-						<h5>&nbsp ${loggedInUser.email}</h5>
-					</div>
-					<br>
-
-				</form:form>
-			</div>
-			<div class="col-3"></div>
-		</div>
+	<h1>Delete Recipe Page</h1>
 
 
-		<br> <br> <br>
-	</div>
+
+
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

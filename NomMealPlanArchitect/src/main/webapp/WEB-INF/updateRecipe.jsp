@@ -11,7 +11,6 @@
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="CSS/CRURecipe.css">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -33,7 +32,7 @@
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
-				<h2 style="color: #FF5733">Update this New Recipe</h2>
+				<h2 style="color: green">Update this New Recipe</h2>
 				<c:choose>
 					<c:when test="${updateStatus}">
 						<h2 style="color: red">Recipe Update Failed!</h2>
@@ -148,7 +147,7 @@
 						</select>
 							
 					</div>
-					<button type="submit" class="btn btn-warning btn-block">Update
+					<button type="submit" class="btn btn-success btn-block">Update
 						Recipe</button>
 				</form:form>
 				<div class="col-2"></div>

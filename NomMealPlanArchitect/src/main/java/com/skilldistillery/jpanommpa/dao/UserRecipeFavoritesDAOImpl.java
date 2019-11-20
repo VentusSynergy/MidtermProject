@@ -48,13 +48,16 @@ public class UserRecipeFavoritesDAOImpl implements UserRecipeFavoritesDAO{
 	}
 
 	@Override
-	public void deleteUserRecipe(int id) {
-		UserRecipe matchingUR = em.find(UserRecipe.class, id);
+	public boolean deleteUserRecipe(UserRecipe ur) {
+		UserRecipe matchingUR = em.find(UserRecipe.class, ur.getId());
 		
-		em.remove(matchingUR);;
+		matchingUR.setUserFavorite(false);
+		
+		em.persist(ur);
 		
 		em.flush();
-		
+
+		return true;
 	}
 
 	@Override
