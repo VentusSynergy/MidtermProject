@@ -23,7 +23,7 @@
 <title>Update Profile: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/userprofile.css" />" rel="stylesheet">
+<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
 
 </head>
 <body>

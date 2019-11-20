@@ -43,23 +43,4 @@ public class RecipeDetailsController {
 		mv.setViewName("recipeDetails");
 		return mv;
 	}
-	
-	
-	@RequestMapping(path = "review.do", method = RequestMethod.GET)
-	public ModelAndView addReview(@RequestParam("recipeId") int id) {
-		ModelAndView mv = new ModelAndView();
-		
-		
-		
-		
-		
-		Recipe recipe = recipeDao.selectRecipeById(id);
-		mv.addObject("recipe", recipe);
-		mv.setViewName("recipeDetails");
-		return mv;
-	}
-	
-	
-	
-	
 }

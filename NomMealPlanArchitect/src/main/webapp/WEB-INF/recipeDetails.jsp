@@ -27,123 +27,57 @@
 
 </head>
 <body>
-	<div class="container">
-		<h1>Recipe Details</h1>
+	<h1>Recipe Details</h1>
 
-		<c:choose>
-			<c:when test="${not empty recipe}">
-				<div class="container">
-					<section class="col-xs-12 col-sm-6 col-md-12">
-						<article class="search-result row">
-							<c:if test="${not empty recipe.photoLink}">
-								<div class="col-xs-12 col-sm-12 col-md-3">
-									<a href="#" title="Lorem ipsum" class="thumbnail"><img
-										src="${recipe.photoLink}" alt="Lorem ipsum" height="150px"
-										width="auto" /></a>
-								</div>
-							</c:if>
-							<%-- 	<c:if test="${ empty recipe.photoLink}">
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<a href="#" title="Lorem ipsum" class="thumbnail"><img
-									src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwih7uykk_nlAhVUKH0KHZrUB00QjRx6BAgBEAQ&url=https%3A%2F%2Fwww.myrecipes.com%2Fhow-to%2Fgood-kitchen-habits&psig=AOvVaw1Hy7puwdsfh1FRq14GxIuK&ust=1574351682486173"
-									alt="Lorem ipsum" height="150px" width="auto" /></a>
+	<c:choose>
+		<c:when test="${not empty recipe}">
+			<div class="container">
+				<section class="col-xs-12 col-sm-6 col-md-12">
+					<article class="search-result row">
+						<div class="col-xs-12 col-sm-12 col-md-3">
+							<a href="#" title="Lorem ipsum" class="thumbnail"><img
+								src="${recipe.photoLink}" alt="Lorem ipsum" height="150px"
+								width="auto" /></a>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-2">
+							<ul class="meta-search">
+								<li><i class="glyphicon glyphicon-calendar"></i> <span>${recipe.dateCreated}</span></li>
+								<li><i class="glyphicon glyphicon-time"></i> <span>${recipe.prepTime}</span></li>
+								<li><i class="glyphicon glyphicon-tags"></i> <span>${recipe.category.name}</span></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+							<h3>
+								<a href="#" title="">${recipe.name}</a>
+							</h3>
+							<p>${recipe.instructions}</p>
+
+							<div>
+								<form:form class="update" action="updateRecipe.do" method="GET"
+									modelAttribute="recipe">
+									<button type="submit" name="recipeId" value="${recipe.id}"
+										class="glyphicon glyphicon-edit">Update</button>
+
+								</form:form>
 							</div>
-						</c:if> --%>
-							<div class="col-xs-12 col-sm-12 col-md-2">
-								<ul class="meta-search">
-									<li><i class="glyphicon glyphicon-calendar"></i> <span>${recipe.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>${recipe.prepTime}</span></li>
-									<li><i class="glyphicon glyphicon-tags"></i> <span>${recipe.category.name}</span></li>
-								</ul>
+							<br>
+							<div>
+								<form:form class="delete" action="deleteRecipe.do" method="POST"
+									modelAttribute="recipe">
+									<button type="submit" name="id" value="${recipe.id}"
+										class="glyphicon glyphicon-remove">Delete</button>
+
+								</form:form>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-								<h3>${recipe.name}</h3>
 
-								<h4>Ingredients:</h4>
-								<c:choose>
-									<c:when test="${not empty recipe.recipeIngredients}">
-										<c:forEach var="recipeIngredients"
-											items="${recipe.recipeIngredients}">
-											<ul>
-												<li>${recipeIngredients.quantity}
-													${recipeIngredients.measurementUnit}
-													${recipeIngredients.ingredient.name}
-													${recipeIngredients.remarks}</li>
-											</ul>
-										</c:forEach>
-									</c:when>
-
-									<c:otherwise>
-										<p>Sorry, no Ingredients just yet.</p>
-
-									</c:otherwise>
-								</c:choose>
-								<h4>Directions:</h4>
-								<p>${recipe.instructions}</p>
-
-								<div>
-									<form:form class="update" action="updateRecipe.do" method="GET"
-										modelAttribute="recipe">
-										<button type="submit" name="recipeId" value="${recipe.id}"
-											class="glyphicon glyphicon-edit">Update</button>
-
-									</form:form>
-								</div>
-								<br>
-								<div>
-									<form:form class="delete" action="deleteRecipe.do"
-										method="POST" modelAttribute="recipe">
-										<button type="submit" name="id" value="${recipe.id}"
-											class="glyphicon glyphicon-remove">Delete</button>
-
-									</form:form>
-								</div>
-
-							</div>
-							<span class="clearfix borda"></span>
-						</article>
-					</section>
-				</div>
-				<hr>
-			</c:when>
-		</c:choose>
-
-		<br>
-		<div class="container">
-			<h3>Recipe Reviews:</h3>
-			<c:choose>
-				<c:when test="${not empty recipe.reviews}">
-					<c:forEach var="review" items="${recipe.reviews}">
-						<p>Rating: ${review.rating} ${review.comment}, by
-							${review.user.firstName} ${review.user.lastName} on
-							${review.reviewDate}</p>
-					</c:forEach>
-				</c:when>
-
-				<c:otherwise>
-					<p>No reviews just yet.</p>
-
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<br>
-		<div class="container">
-			<h3>Review this recipe:</h3>
-			<c:choose>
-				<c:when test="${not empty recipe.reviews}">
-					<p>make a review in the works</p>
-				</c:when>
-
-				<c:otherwise>
-					<p>Please register or login to review this recipe.</p>
-
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<br> <br> <br>
-	</div>
-
-
+						</div>
+						<span class="clearfix borda"></span>
+					</article>
+				</section>
+			</div>
+			<hr>
+		</c:when>
+	</c:choose>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
