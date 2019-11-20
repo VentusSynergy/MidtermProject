@@ -23,7 +23,7 @@
 <title>Recipe Details: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+<link href="<c:url value="/CSS/recipeDetails.css" />" rel="stylesheet">
 
 </head>
 <body>
