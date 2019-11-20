@@ -52,7 +52,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
 									<li><i class="glyphicon glyphicon-calendar"></i> <span>${r.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>${r.prepTime}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>${r.prepTime} minutes</span></li>
 									<li><i class="glyphicon glyphicon-tags"></i> <span>${r.category.name}</span></li>
 								</ul>
 							</div>
