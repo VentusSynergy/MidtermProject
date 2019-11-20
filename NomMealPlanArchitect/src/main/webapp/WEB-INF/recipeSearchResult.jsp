@@ -34,11 +34,21 @@
 		<h1>Search Results</h1>
 		<h2 class="lead">
 			<strong class="text-danger">${fn: length(recipe)}</strong> results
-			were found for the search for <strong class="text-danger">${key}</strong>
+			were found for the search for: 
+			<c:choose>
+				<c:when test="${not empty key }">
+					 <strong class="text-danger">${key}</strong>
+				</c:when>
+				<c:when test="${not empty type}">
+					<strong class="text-danger">${type}</strong>
+				</c:when>
+				<c:when test="${not empty category}">
+					<strong class="text-danger">${category}</strong>
+				</c:when> 
+			</c:choose>
 		</h2>
 	</hgroup>
 	<c:choose>
-		<%-- 		<c:when test="${fn: length(recipe) gt 0}"> --%>
 		<c:when test="${not empty recipe}">
 			<c:forEach var="r" items="${recipe}">
 				<div class="container">

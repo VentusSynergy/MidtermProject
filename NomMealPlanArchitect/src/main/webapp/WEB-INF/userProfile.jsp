@@ -126,17 +126,16 @@
 								<div>
 									<form:form class="update" action="updateRecipe.do" method="GET"
 										modelAttribute="recipe">
-										<button type="submit" name="recipeId" value="${r.id}"
+										<button type="submit" name="recipeId" value="${fl.recipe.id}"
 											class="glyphicon glyphicon-edit">Update</button>
 
 									</form:form>
 								</div>
-								<br>
 								<div>
-									<form:form class="delete" action="deleteRecipe.do"
+									<form:form class="removeFav" action="removeFav.do"
 										method="POST" modelAttribute="recipe">
-										<button type="submit" name="id" value="${r.id}"
-											class="glyphicon glyphicon-remove">Delete</button>
+										<button type="submit" name="id" value="${fl.id}"
+											class="glyphicon glyphicon-remove">Remove From Favorites</button>
 
 									</form:form>
 								</div>
