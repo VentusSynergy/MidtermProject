@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+
+body {
+	background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("recipeDetails.jpeg");
+	background-repeat: repeat, no-repeat;
+	background-size: cover, cover;
+	
+}
+
+h2 {
+	 text-align: center;
+}
+
+.form-group label, p{
+  color: black;
+}
