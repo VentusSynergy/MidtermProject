@@ -15,12 +15,12 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <title>User Profile: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
@@ -28,17 +28,27 @@
 
 </head>
 <body>
-	<div class="container">
+	<!-- <div class="container">
 
 		<div class="row">
 			<div class="col-3"></div>
-			<div class="col-6">
-				<h3>User Profile:</h3>
-
+			<div class="col-6"> -->
 				<form:form action="loginAction.do" method="GET"
 					modelAttribute="user">
+				<h3>${loggedInUser.firstName}s Profile</h3>
+<div class="container">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="http://straitbuzz.com/wp-content/uploads/2017/11/martha-stewart-holiday-memories.jpg" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Martha_Stewart_2011_Shankbone.JPG" alt="Profile image example"/>
+        <div class="fb-profile-text">
+            <h1>${loggedInUser.firstName} ${loggedInUser.lastName }</h1>
+            <p>Life is too complicated not to be orderly.<br><i class="fa fa-envelope"></i>    ${loggedInUser.email}</p>
+        </div>
+    </div>
+</div>
+				
 
-					<!-- form-group// -->
+					<%-- <!-- form-group// -->
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i>
@@ -57,16 +67,16 @@
 						<h5>&nbsp ${loggedInUser.email}</h5>
 					</div>
 					<br>
-
+ --%>
 				</form:form>
-			</div>
+			<%-- </div>
 			<div class="col-3"></div>
 		</div>
 
 
 		<br> <br> <br>
 	</div>
-
+ --%>
 	<!-- Users Saved Recipes -->
 	<hgroup class="mb20">
 		<h1>Saved Recipes</h1>
