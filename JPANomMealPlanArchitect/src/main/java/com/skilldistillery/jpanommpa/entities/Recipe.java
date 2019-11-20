@@ -34,7 +34,7 @@ public class Recipe {
 
 	@OneToMany(mappedBy = "recipe")
 	private List<UserRecipe> userRecipies;
-	
+
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeReview> reviews;
 
@@ -44,7 +44,7 @@ public class Recipe {
 	@OneToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-	
+
 	@OneToOne
 	@JoinColumn(name = "type_id")
 	private RecipeType recipeType;
@@ -66,7 +66,6 @@ public class Recipe {
 		super();
 	}
 
-	
 	public List<RecipeReview> getReviews() {
 		return reviews;
 	}
@@ -164,10 +163,18 @@ public class Recipe {
 	}
 
 	public String getPhotoLink() {
+		if (photoLink == null || photoLink.equalsIgnoreCase("")) {
+			photoLink = "https://i.imgur.com/YvcLYGe.jpg";
+		}
+
 		return photoLink;
 	}
 
 	public void setPhotoLink(String photoLink) {
+		if (photoLink == null || photoLink.equalsIgnoreCase("")) {
+			this.photoLink = "https://i.imgur.com/YvcLYGe.jpg";
+		}
+
 		this.photoLink = photoLink;
 	}
 
@@ -195,7 +202,6 @@ public class Recipe {
 		this.webLink = webLink;
 	}
 
-
 	public RecipeType getRecipeType() {
 		return recipeType;
 	}
@@ -203,7 +209,7 @@ public class Recipe {
 	public void setRecipeType(RecipeType recipeType) {
 		this.recipeType = recipeType;
 	}
-	
+
 //	public void addrecipeIngredients(Ingredient ingredient) {
 //		if(recipeIngredients == null) {
 //			recipeIngredients = new ArrayList<>();
