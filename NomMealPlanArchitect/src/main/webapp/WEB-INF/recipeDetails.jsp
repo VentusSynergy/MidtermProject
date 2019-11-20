@@ -135,7 +135,7 @@
 							<ul>
 								<c:forEach var="review" items="${recipe.reviews}">
 									<c:if test="${review.active eq true}">
-										<li>Rating: ${review.rating}
+										<li>Rating: ${review.ratingStars(rating)}
 											<ul>
 												<li>Review: ${review.comment}</li>
 												<li>${review.user.firstName}&nbsp ${review.user.lastName}&nbsp ${review.reviewDate}</li>
