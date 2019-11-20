@@ -58,7 +58,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
 								<h3>
-									<a href="#" title="">${r.name}</a>
+									<a href="searchOneRecipe.do?recipeId=${r.id }" title="">${r.name}</a>
 								</h3>
 								<p>${r.instructions}</p>
 
