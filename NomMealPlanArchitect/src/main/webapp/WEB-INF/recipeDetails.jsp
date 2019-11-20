@@ -71,13 +71,14 @@
 									</c:when>
 
 									<c:otherwise>
-										<p>Sorry, no Ingredients just yet.</p>
+										<p>Sorry, no ingredients listed.</p>
 
 									</c:otherwise>
 								</c:choose>
 								<h4>Directions:</h4>
 								<p>${recipe.instructions}</p>
 
+								<c:if test="${loggedInUser.active eq true }">
 								<div>
 									<form:form class="update" action="updateRecipe.do" method="GET"
 										modelAttribute="recipe">
@@ -95,7 +96,7 @@
 
 									</form:form>
 								</div>
-
+								</c:if>
 							</div>
 							<span class="clearfix borda"></span>
 						</article>
@@ -113,11 +114,33 @@
 					<h3>Recipe Reviews:</h3>
 					<c:choose>
 						<c:when test="${not empty recipe.reviews}">
-							<c:forEach var="review" items="${recipe.reviews}">
-								<p>Rating: ${review.rating} ${review.comment}, by
-									${review.user.firstName} ${review.user.lastName} on
-									${review.reviewDate}</p>
-							</c:forEach>
+							<ul>
+								<c:forEach var="review" items="${recipe.reviews}">
+									<c:if test="${review.active eq true}">
+										<li>Rating: ${review.rating}
+											<ul>
+												<li>Review: ${review.comment}</li>
+												<li>Written by ${review.user.firstName}
+													${review.user.lastName} on ${review.reviewDate}</li>
+												<li><c:if test="${loggedInUser.id eq review.user.id }">
+
+														<form action="reviewDeactivate.do" method="POST">
+
+															<input type="hidden" name="id" id="review"
+																value="${review.id}" />
+
+															<button type="submit" class="btn btn-outline-danger">Remove
+																Review</button>
+
+														</form>
+
+													</c:if></li>
+											</ul>
+										</li>
+										<br>
+									</c:if>
+								</c:forEach>
+							</ul>
 						</c:when>
 
 						<c:otherwise>

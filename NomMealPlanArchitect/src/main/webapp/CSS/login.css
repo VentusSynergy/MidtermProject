@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+body {
+	background-image:
+		url('https://mersimt2.com/wp-content/uploads/2019/07/e61f8f485ed216a2b60f6746bf82a668-720x1008.jpg');
+}
+
+h1 {
+	padding-top: 110px;
+}
+
+#log {
+	padding-top: 30px;
+	padding-left: 53px;
+}
+
+#form {
+	padding-left: 60px;
+}
+
+#sorry {
+	padding-top: 50px;
+}
+
+#not {
+	padding-top: 50px;
+	padding-left: 90px;
+}

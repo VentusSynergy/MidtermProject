@@ -108,4 +108,9 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO {
 		return results;
 	}
 
+	@Override
+	public RecipeReview findReviewById(int id) {
+		return em.find(RecipeReview.class, id);
+	}
+
 }

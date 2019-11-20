@@ -26,11 +26,10 @@
 </head>
 <body>
 	<div class="container">
-
 		<div class="row">
-			<div class="col-3"></div>
-			<div class="col-6">
-				<h1 class="text-light">&nbsp &nbsp &nbsp &nbsp &nbsp Update
+			<div class="col-2"></div>
+			<div class="col-8">
+				<h1 class="text-light">Update
 					Profile Page</h1>
 				<form:form action="updateUserProfile.do" method="POST"
 					modelAttribute="user">
@@ -83,33 +82,20 @@
 					</div>
 					<br>
 					<button type="submit" name="userId" value="${user.id}"
-						class="btn btn-primary">&nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Update Item
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp</button>&nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+						class="btn btn-primary btn-block">Update Item
+						</button>
 
 				</form:form>
 				<form:form action="deactivateUser.do" method="POST"
 					modelAttribute="user">
 					<button type="submit" name="userId" value="${user.id}"
-						class="btn btn-danger">&nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Deactivate Account &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</button>
+						class="btn btn-danger btn-block">Deactivate Account</button>
 				</form:form>
 				<br>
 				<div>
-					<a href="index.do" class="btn btn-light">&nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp Cancel &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</a>
+					<a href="index.do" class="btn btn-light btn-block">Cancel</a>
 				</div>
-				<div class="col-3"></div>
+				<div class="col-2"></div>
 			</div>
 
 		</div>
