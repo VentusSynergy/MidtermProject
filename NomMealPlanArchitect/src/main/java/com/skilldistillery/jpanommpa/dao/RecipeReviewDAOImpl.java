@@ -9,21 +9,23 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-
 import com.skilldistillery.jpanommpa.entities.RecipeReview;
 
 @Transactional
 @Service
-public class RecipeReviewDAOImpl implements RecipeReviewDAO{
+public class RecipeReviewDAOImpl implements RecipeReviewDAO {
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
 	public RecipeReview createRecipeReview(RecipeReview r) {
+
+		r.setReviewDate(LocalDate.now());
+
 		em.persist(r);
-		
+
 		em.flush();
-		
+
 		return r;
 	}
 
@@ -37,7 +39,7 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 		matchingRR.setReviewDate(LocalDate.now());
 		matchingRR.setComment(r.getComment());
 		matchingRR.setActive(true);
-		
+
 		em.persist(matchingRR);
 
 		em.flush();
@@ -48,15 +50,15 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 	@Override
 	public boolean deleteRecipeReview(RecipeReview r) {
 		RecipeReview matchingRR = em.find(RecipeReview.class, r.getId());
-		
+
 		matchingRR.setActive(false);
-		
+
 		em.persist(matchingRR);
-		
+
 		em.flush();
-		
+
 		return true;
-		
+
 	}
 
 	@Override
@@ -81,7 +83,8 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 	public List<RecipeReview> selectRecipeReviewByRating(int rating) {
 		String query = "Select r from RecipeReview r where r.rating = :rating";
 
-		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("rating", rating).getResultList();
+		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("rating", rating)
+				.getResultList();
 
 		return results;
 	}
@@ -99,7 +102,8 @@ public class RecipeReviewDAOImpl implements RecipeReviewDAO{
 	public List<RecipeReview> selectRecipeReviewByRecipeName(String recipeName) {
 		String query = "Select r from RecipeReview r where r.recipe.name like :name";
 
-		List<RecipeReview> results = em.createQuery(query, RecipeReview.class).setParameter("name", "%" + recipeName + "%").getResultList();
+		List<RecipeReview> results = em.createQuery(query, RecipeReview.class)
+				.setParameter("name", "%" + recipeName + "%").getResultList();
 
 		return results;
 	}

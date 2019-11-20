@@ -62,15 +62,12 @@
 								<h4>Ingredients:</h4>
 								<c:choose>
 									<c:when test="${not empty recipe.recipeIngredients}">
-										<c:forEach var="recipeIngredients"
-											items="${recipe.recipeIngredients}">
-											<ul>
-												<li>${recipeIngredients.quantity}
-													${recipeIngredients.measurementUnit}
-													${recipeIngredients.ingredient.name}
-													${recipeIngredients.remarks}</li>
-											</ul>
-										</c:forEach>
+										<ul>
+											<c:forEach var="recipeIngredients"
+												items="${recipe.recipeIngredients}">
+												<li>${recipeIngredients.ingredient.name}</li>
+											</c:forEach>
+										</ul>
 									</c:when>
 
 									<c:otherwise>
@@ -110,35 +107,74 @@
 
 		<br>
 		<div class="container">
-			<h3>Recipe Reviews:</h3>
-			<c:choose>
-				<c:when test="${not empty recipe.reviews}">
-					<c:forEach var="review" items="${recipe.reviews}">
-						<p>Rating: ${review.rating} ${review.comment}, by
-							${review.user.firstName} ${review.user.lastName} on
-							${review.reviewDate}</p>
-					</c:forEach>
-				</c:when>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<h3>Recipe Reviews:</h3>
+					<c:choose>
+						<c:when test="${not empty recipe.reviews}">
+							<c:forEach var="review" items="${recipe.reviews}">
+								<p>Rating: ${review.rating} ${review.comment}, by
+									${review.user.firstName} ${review.user.lastName} on
+									${review.reviewDate}</p>
+							</c:forEach>
+						</c:when>
 
-				<c:otherwise>
-					<p>No reviews just yet.</p>
+						<c:otherwise>
+							<p>No reviews just yet.</p>
 
-				</c:otherwise>
-			</c:choose>
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<div class="col-1"></div>
+			</div>
 		</div>
 		<br>
 		<div class="container">
-			<h3>Review this recipe:</h3>
-			<c:choose>
-				<c:when test="${not empty recipe.reviews}">
-					<p>make a review in the works</p>
-				</c:when>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<h3>Review this recipe:</h3>
+					<c:choose>
+						<c:when test="${loggedInUser.active eq true }">
 
-				<c:otherwise>
-					<p>Please register or login to review this recipe.</p>
+							<form:form action="review.do" method="POST"
+								modelAttribute="newReview">
 
-				</c:otherwise>
-			</c:choose>
+								<label for="rating">Rating (1-5):</label>
+								<input type="number" name="rating" class="form-control"
+									placeholder="rating 1-5" required="required" min="1" max="5"
+									id="rating">
+								<br>
+								<label for="comment">Review Comment: </label>
+								<input type="text" name="comment" class="form-control"
+									placeholder="review comment" required="required" id="comment">
+								<br>
+
+								<input type="hidden" name="active" id="active" value="true" />
+								<input type="hidden" name="recipe.id" id="recipe"
+									value="${recipe.id}" />
+
+								<input type="hidden" name="user.id" id="user"
+									value="${loggedInUser.id}" />
+
+								<button type="submit" class="btn btn-light">Submit</button>
+
+							</form:form>
+						</c:when>
+
+						<c:otherwise>
+							<p>
+								Please <a href="login.do" class="badge badge-light">login</a> or
+								<a href="register.do" class="badge badge-light">register</a> to
+								review this recipe.
+							</p>
+
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<div class="col-1"></div>
+			</div>
 		</div>
 		<br> <br> <br>
 	</div>
