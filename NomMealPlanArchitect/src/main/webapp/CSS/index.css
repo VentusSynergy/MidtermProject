@@ -22,9 +22,8 @@
 	;
 
 #team {
-	background-image: url("https://newsroom.aaa.com/wp-content/uploads/2018/02/5-credit-Anthony-Tahlier-The-Catbird-Seat_6x4.jpg");
-/* 	background-image: url("https://ak1.picdn.net/shutterstock/videos/1331311/thumb/1.jpg");  */
-	background-repeat: no-repeat;
+background-image: url("Table.png");
+ background-repeat: no-repeat;
 	background-size: cover;
 }
 
