@@ -23,7 +23,7 @@
 <title>Recipe Search: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+<link href="<c:url value="/CSS/recipeSearch.css" />" rel="stylesheet">
 
 </head>
 <body>
@@ -33,7 +33,7 @@
 <br>
 <br>
 <br>
-	<h1 style="text-align: center">Recipe Search Page</h1>
+	<h2>Recipe Search Page</h2>
 
 	<br>
 	<br>
@@ -46,7 +46,7 @@
 						<label for="name">Name</label> <input type="text"
 							class="form-control" id="key" name="key" placeholder="Search Recipe Name">
 					</div>
-					<button type="submit" class="btn btn-primary">Search
+					<button type="submit" class="btn btn-primary btn-block">Search
 						Recipes by Name</button>
 				</form:form>
 			</div>
