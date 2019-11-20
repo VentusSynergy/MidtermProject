@@ -142,14 +142,14 @@ public class NomController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "searchOneRecipe.do", method = RequestMethod.GET)
-	public ModelAndView searchOneRecipes(@RequestParam("recipeId") int id) {
-		ModelAndView mv = new ModelAndView();
-		Recipe recipe = recipeDao.selectRecipeById(id);
-		mv.addObject("recipe", recipe);
-		mv.setViewName("recipeDetails");
-		return mv;
-	}
+//	@RequestMapping(path = "searchOneRecipe.do", method = RequestMethod.GET)
+//	public ModelAndView searchOneRecipes(@RequestParam("recipeId") int id) {
+//		ModelAndView mv = new ModelAndView();
+//		Recipe recipe = recipeDao.selectRecipeById(id);
+//		mv.addObject("recipe", recipe);
+//		mv.setViewName("recipeDetails");
+//		return mv;
+//	}
 
 	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
 	public ModelAndView createRecipe(HttpSession session) {
