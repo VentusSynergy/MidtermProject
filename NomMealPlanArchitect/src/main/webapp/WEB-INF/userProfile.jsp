@@ -15,7 +15,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -28,6 +27,12 @@
 
 </head>
 <body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<!-- <div class="container">
 
 		<div class="row">
@@ -35,7 +40,7 @@
 			<div class="col-6"> -->
 				<form:form action="loginAction.do" method="GET"
 					modelAttribute="user">
-				<h3>${loggedInUser.firstName}s Profile</h3>
+				<h2 style="text-align: center">${loggedInUser.firstName}'s Profile</h2>
 <div class="container">
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" src="http://straitbuzz.com/wp-content/uploads/2017/11/martha-stewart-holiday-memories.jpg" alt="Profile image example"/>
