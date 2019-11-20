@@ -119,6 +119,7 @@ public class NomController {
 	public ModelAndView searchRecipeByCategory(@RequestParam("category") String category) {
 		ModelAndView mv = new ModelAndView();
 		List<Recipe> recipeList = recipeDao.selectRecipeByCategory(category);
+		mv.addObject("category", category);
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -129,6 +130,7 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		List<Recipe> recipeList = recipeDao.selectRecipeByType(type);
 		mv.addObject("recipe", recipeList);
+		mv.addObject("type", type);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
@@ -151,100 +153,6 @@ public class NomController {
 //		return mv;
 //	}
 
-	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
-	public ModelAndView createRecipe(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		User u = (User) session.getAttribute("loggedInUser");
-		mv.addObject("categories", categoryDao.selectAllCategories());
-		mv.addObject("types", typeDao.selectAllRecipeTypes());
-		mv.addObject("ingredients", ingredientDao.selectAllIngredientObjects());
-		mv.addObject("user", u);
-		mv.addObject("date", LocalDate.now());
-		mv.setViewName("createRecipe");
-		return mv;
-	}
-
-	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		recipe.setUser((User) session.getAttribute("loggedInUser"));
-		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
-
-		for (int i = 0; i < ingredientIds.length; i++) {
-			if (ingredientIds[i] != null) {
-				Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
-				RecipeIngredient riToAdd = new RecipeIngredient();
-
-				ri[i] = riToAdd;
-
-				ri[i].setIngredient(ing);
-				ri[i].setQuantity(1);
-			} else {
-				break;
-			}
-		}
-		Recipe created = recipeDao.createRecipe(recipe, ri);
-		if (created != null) {
-			List<Recipe> recipeList = new ArrayList<>();
-			recipeList.add(created);
-			mv.addObject("recipe", recipeList);
-			mv.setViewName("recipeSearchResult");
-		} else {
-			mv.addObject("createStatus", true);
-			mv.setViewName("createRecipe");
-		}
-
-		return mv;
-	}
-
-	@RequestMapping(path = "updateRecipe.do", method = RequestMethod.GET)
-	public ModelAndView updateRecipe(@RequestParam("recipeId") int id, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		User u = (User) session.getAttribute("loggedInUser");
-		Recipe toUpdate = recipeDao.selectRecipeById(id);
-		mv.addObject("user", u);
-		mv.addObject("ingredients", ingredientDao.selectAllIngredientObjects());
-		List<RecipeIngredient> inRecipe = recipeDao.selectRecipeById(id).getRecipeIngredients();
-		List<Ingredient> ingInRecipe = new ArrayList<Ingredient>();
-		for (RecipeIngredient recipeIngredient : inRecipe) {
-			ingInRecipe.add(recipeIngredient.getIngredient());
-		}
-		mv.addObject("categories", categoryDao.selectAllCategories());
-		mv.addObject("types", typeDao.selectAllRecipeTypes());
-		mv.addObject("ingredientsIN", ingInRecipe);
-		mv.addObject("recipe", toUpdate);
-		mv.setViewName("updateRecipe");
-		return mv;
-	}
-
-	@RequestMapping(path = "recipeUpdate.do", method = RequestMethod.POST)
-	public ModelAndView UpdateRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		
-		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
-
-		for (int i = 0; i < ingredientIds.length; i++) {
-			if (ingredientIds[i] != null) {
-				Ingredient ing = ingredientDao.selectIngredientById(ingredientIds[i]);
-				RecipeIngredient riToAdd = new RecipeIngredient();
-
-				ri[i] = riToAdd;
-
-				ri[i].setIngredient(ing);
-				ri[i].setQuantity(1);
-			} else {
-				break;
-			}
-		}
-		
-		Recipe updated = recipeDao.updateRecipe(recipe, ri);
-		// return same search
-		List<Recipe> recipeList = recipeDao.selectRecipeByName(updated.getName());
-		mv.addObject("recipe", recipeList);
-		mv.setViewName("recipeSearchResult");
-		return mv;
-	}
-
 	@RequestMapping(path = "groceryList.do")
 	public ModelAndView viewGroceryList(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -265,27 +173,13 @@ public class NomController {
 		ur.setUser(user);
 		ur.setRecipe(recipeDao.selectRecipeById(id));
 		favDao.createUserRecipe(ur);
-//		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
-//		mv.addObject("favList", favList);
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
 
 		// return same search
 		List<Recipe> recipeList = recipeDao.selectRecipeByName(key);
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
-		mv.setViewName("recipeSearchResult");
-		return mv;
-	}
-	
-	@RequestMapping(path = "deleteRecipe.do", method = RequestMethod.POST)
-	public ModelAndView deleteRecipe(@RequestParam("id") int id, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		User user = (User) session.getAttribute("loggedInUser");
-		UserRecipe ur = new UserRecipe();
-		ur.setUser(user);
-		recipeDao.deleteRecipe(recipeDao.selectRecipeById(id));
-		// return same search
-		List<Recipe> recipeList = recipeDao.selectAllRecipe();
-		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}

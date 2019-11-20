@@ -43,7 +43,7 @@
 							<span class="input-group-text"> <i class="fa fa-user"></i>
 							</span>
 						</div>
-						<h5> &nbsp ${loggedInUser.firstName} ${loggedInUser.lastName }</h5>
+						<h5>&nbsp ${loggedInUser.firstName} ${loggedInUser.lastName }</h5>
 						<form:errors path="firstName" />
 					</div>
 
@@ -65,6 +65,91 @@
 
 		<br> <br> <br>
 	</div>
+
+	<!-- Users Saved Recipes -->
+	<hgroup class="mb20">
+		<h1>Saved Recipes</h1>
+		<h2 class="lead">
+			<strong class="text-danger">${fn: length(favList)}</strong> recipes
+			have been added to your profile.
+		</h2>
+	</hgroup>
+	<c:choose>
+		<c:when test="${not empty favList}">
+			<c:forEach var="fl" items="${favList}">
+				<div class="container">
+					<section class="col-xs-12 col-sm-6 col-md-12">
+						<article class="search-result row">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<a href="#" title="Lorem ipsum" class="thumbnail"><img
+									src="${fl.recipe.photoLink}" alt="Lorem ipsum" height="150px"
+									width="auto" /></a>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<ul class="meta-search">
+									<li><i class="glyphicon glyphicon-calendar"></i> <span>${fl.recipe.dateCreated}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>${fl.recipe.prepTime}</span></li>
+									<li><i class="glyphicon glyphicon-tags"></i> <span>${fl.recipe.category.name}</span></li>
+								</ul>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+								<h3>
+									<a href="searchOneRecipe.do?recipeId=${fl.recipe.id }" title="">${fl.recipe.name}</a>
+								</h3>
+								<p>${fl.recipe.instructions}</p>
+
+								<%-- <c:set var="isFavorite" value="false" />
+								<c:forEach var="fl" items="${favList}">
+									<c:if test="${fl.recipe.id == r.id}">
+										<c:set var="isFavorite" value="true" />
+									</c:if>
+								</c:forEach> --%>
+								<%-- <c:choose>
+
+									<c:when test="${isFavorite == true}">
+										<form class="plus" action="addRecipeToUser.do" method="POST">
+											<button class="glyphicon glyphicon-plus" disabled>Added</button>
+											<input type="hidden" name="id" value="${r.id}"> <input
+												type="hidden" name="key" value="${key}">
+										</form>
+									</c:when>
+
+									<c:otherwise>
+										<form class="plus" action="addRecipeToUser.do" method="POST">
+											<button class="glyphicon glyphicon-plus">Add</button>
+											<input type="hidden" name="id" value="${r.id}"> <input
+												type="hidden" name="key" value="${key}">
+										</form>
+									</c:otherwise>
+
+								</c:choose> --%>
+								<div>
+									<form:form class="update" action="updateRecipe.do" method="GET"
+										modelAttribute="recipe">
+										<button type="submit" name="recipeId" value="${fl.recipe.id}"
+											class="glyphicon glyphicon-edit">Update</button>
+
+									</form:form>
+								</div>
+								<div>
+									<form:form class="removeFav" action="removeFav.do"
+										method="POST" modelAttribute="recipe">
+										<button type="submit" name="id" value="${fl.id}"
+											class="glyphicon glyphicon-remove">Remove From Favorites</button>
+
+									</form:form>
+								</div>
+
+							</div>
+							<span class="clearfix borda"></span>
+						</article>
+					</section>
+				</div>
+				<hr>
+			</c:forEach>
+		</c:when>
+	</c:choose>
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
