@@ -23,16 +23,141 @@
 <title>Home: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
-
+<link href="<c:url value="/CSS/index.css" />" rel="stylesheet">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
-	<br>
-	<br>
-	<h1>HOME</h1>
-
-
+ 
+	<div class="top-container"><h1 class="app-title" ><em>NOM</em></h1></div>
+	<section id="team" class="pb-5">
+	<h5 class="section-title h1">This Weeks Picks</h5>
+		<div class="container">
+			<div class="row">
+				<!-- Pick One -->
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="image-flip"
+						ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card">
+									<div class="card-body text-center">
+										<p>
+											<img class=" img-fluid" src="https://i.imgur.com/jUbocnU.gif"
+												alt="card image">
+										</p>
+										<h4 class="card-title">Garlic-Butter Steak</h4>
+										<p class="card-text">This is the perfect way to add more
+											flavor to a steak. I'm not sure I can eat a steak without
+											this butter now!</p>
+										<a href="#" class="btn btn-primary btn-sm"><i
+											class="fa fa-plus"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card">
+									<div class="card-body text-center mt-4">
+										<h4 class="card-title">Ingredients</h4>
+										<ul class="card-text">
+											<li>2 tablespoons butter, softened, divided</li>
+											<li>1 teaspoon minced fresh parsley</li>
+											<li>1/2 teaspoon minced garlic</li>
+											<li>1/4 teaspoon reduced-sodium soy sauce</li>
+											<li>1 beef flat iron steak or boneless top sirloin steak
+												(3/4 pound)</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Pick Two -->
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="image-flip"
+						ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card">
+									<div class="card-body text-center">
+										<p>
+											<img class=" img-fluid"
+												src="https://media.giphy.com/media/9UQSRw0BWoJBm/giphy.gif"
+												alt="card image">
+										</p>
+										<h4 class="card-title">Greek Salad</h4>
+										<p class="card-text">Delicious! My new favorite salad -
+											simple, fresh and wonderful!</p>
+										<a href="#" class="btn btn-primary btn-sm"><i
+											class="fa fa-plus"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card">
+									<div class="card-body text-center mt-4">
+										<h4 class="card-title">Ingredients</h4>
+										<ul class="card-text">
+											<li>1 hothouse cucumber, unpeeled, seeded, and sliced
+												1/4-inch thick</li>
+											<li>1 red bell pepper, large-diced</li>
+											<li>1 yellow bell pepper, large-diced</li>
+											<li>1 pint cherry or grape tomatoes, halved</li>
+											<li>1/2 red onion, sliced in half-rounds</li>
+											<li>1/2 pound feta cheese, 1/2-inch diced (not crumbled)</li>
+											<li>1/2 cup calamata olives, pitted</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="image-flip"
+						ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card">
+									<div class="card-body text-center">
+										<p>
+											<img class=" img-fluid"
+												src="https://media3.giphy.com/media/3ohjUYRegZ09yED22Q/giphy.gif"
+												alt="card image">
+										</p>
+										<h4 class="card-title">Buttery Lemon Grilled Fish on Asparagus</h4>
+										<p class="card-text">So Easy and delicious! I make This once a week.</p>
+										<a href="#" class="btn btn-primary btn-sm"><i
+											class="fa fa-plus"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card">
+									<div class="card-body text-center mt-4">
+										<h4 class="card-title">Ingredients</h4>
+										<ul class="card-text">
+											<li>asparagus spears (ends trimmed)</li>
+											<li>cod filets (4-ounce each, rinsed and patted dry)</li>
+											<li>Juice and zest of a medium lemon</li>
+											<li>light butter with canola oil</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
