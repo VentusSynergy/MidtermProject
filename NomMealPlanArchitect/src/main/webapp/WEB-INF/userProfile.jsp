@@ -39,7 +39,7 @@
 <div class="container">
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" src="https://cms.splendidtable.org/sites/default/files/styles/w2000/public/cooks-in-kitchen_pidjoe-iStock-GettyImagesPlus-LEDE.jpg?itok=pMpz8wND" alt="Profile image example"/>
-        <img align="left" class="fb-image-profile thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Martha_Stewart_2011_Shankbone.JPG" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail" src="${loggedInUser.avatarURL }" alt="Profile image example"/>
         <div class="fb-profile-text">
             <h1>${loggedInUser.firstName} ${loggedInUser.lastName }</h1>
             <p>Life is too complicated not to be orderly.<br><i class="fa fa-envelope"></i>    ${loggedInUser.email}</p>

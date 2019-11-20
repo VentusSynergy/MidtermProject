@@ -288,10 +288,19 @@ public class User {
 	}
 
 	public String getAvatarURL() {
+
+		if (avatarURL == null || avatarURL.equalsIgnoreCase("")) {
+			avatarURL = "https://i.imgur.com/FBJi16J.jpg";
+		}
 		return avatarURL;
 	}
 
 	public void setAvatarURL(String avatarURL) {
+
+		if (avatarURL == null || avatarURL.equalsIgnoreCase("")) {
+			this.avatarURL = "https://i.imgur.com/FBJi16J.jpg";
+		}
+
 		this.avatarURL = avatarURL;
 	}
 
