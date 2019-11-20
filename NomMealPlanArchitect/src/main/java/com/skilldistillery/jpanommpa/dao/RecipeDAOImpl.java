@@ -81,7 +81,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> selectRecipeByType(String type) {
-		String query = "Select r from Recipe r where r.type.name = :word and active = :a";
+		String query = "Select r from Recipe r where r.recipeType.name = :word and active = :a";
 
 		List<Recipe> results = em.createQuery(query, Recipe.class).setParameter("a", true).setParameter("word", type).getResultList();
 
