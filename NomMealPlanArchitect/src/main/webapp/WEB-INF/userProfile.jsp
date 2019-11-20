@@ -20,10 +20,11 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <title>User Profile: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+<link href="<c:url value="/CSS/userprofile.css" />" rel="stylesheet">
 
 </head>
 <body>
