@@ -119,6 +119,7 @@ public class NomController {
 	public ModelAndView searchRecipeByCategory(@RequestParam("category") String category) {
 		ModelAndView mv = new ModelAndView();
 		List<Recipe> recipeList = recipeDao.selectRecipeByCategory(category);
+		mv.addObject("category", category);
 		mv.addObject("recipe", recipeList);
 		mv.setViewName("recipeSearchResult");
 		return mv;
@@ -129,6 +130,7 @@ public class NomController {
 		ModelAndView mv = new ModelAndView();
 		List<Recipe> recipeList = recipeDao.selectRecipeByType(type);
 		mv.addObject("recipe", recipeList);
+		mv.addObject("type", type);
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
