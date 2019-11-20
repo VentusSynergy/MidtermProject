@@ -148,5 +148,25 @@ public class RecipeReview {
 		builder.append("]");
 		return builder.toString();
 	}
-
+	public String ratingStars(int rating) {
+        String ratingStars = "";
+        switch (this.rating) {
+        case 1:
+            ratingStars = "\u2b50";
+            return ratingStars;
+        case 2:
+            ratingStars = "\u2b50\u2b50";
+            return ratingStars;
+        case 3:
+            ratingStars = "\u2b50\u2b50\u2b50";
+            return ratingStars;
+        case 4:
+            ratingStars = "\u2b50\u2b50\u2b50\u2b50";
+            return ratingStars;
+        case 5:
+            ratingStars = "\u2b50\u2b50\u2b50\u2b50\u2b50";
+            return ratingStars;
+        }
+        return ratingStars;
+    }
 }
