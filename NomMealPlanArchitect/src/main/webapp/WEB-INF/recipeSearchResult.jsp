@@ -68,7 +68,7 @@
 										<c:set var="isFavorite" value="true" />
 									</c:if>
 								</c:forEach>
-								<%-- <c:choose>
+								<c:choose>
 
 									<c:when test="${isFavorite == true}">
 										<form class="plus" action="addRecipeToUser.do" method="POST">
@@ -86,7 +86,7 @@
 										</form>
 									</c:otherwise>
 
-								</c:choose> --%>
+								</c:choose>
 								<div><form:form class="update" action="updateRecipe.do" method="GET"
 									modelAttribute="recipe" >
 										<button type="submit" name="recipeId" value="${r.id}"
