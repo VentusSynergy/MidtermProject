@@ -22,9 +22,13 @@
 <link href="<c:url value="/CSS/index.css" />" rel="stylesheet">
 </head>
 <body>
-	<div class="top-container"><h1 class="app-title" ><em>NOM</em></h1></div>
+	<div class="top-container">
+		<h1 class="app-title">
+			<em>NOM</em>
+		</h1>
+	</div>
 	<section id="team" class="pb-5">
-	<h5 class="section-title h1">This Weeks Picks</h5>
+		<h5 class="section-title h1">This Weeks Picks</h5>
 		<div class="container">
 			<div class="row">
 				<!-- Pick One -->
@@ -119,8 +123,10 @@
 												src="https://media3.giphy.com/media/3ohjUYRegZ09yED22Q/giphy.gif"
 												alt="card image">
 										</p>
-										<h4 class="card-title">Buttery Lemon Grilled Fish on Asparagus</h4>
-										<p class="card-text">So Easy and delicious! I make This once a week.</p>
+										<h4 class="card-title">Buttery Lemon Grilled Fish on
+											Asparagus</h4>
+										<p class="card-text">So Easy and delicious! I make This
+											once a week.</p>
 										<a href="#" class="btn btn-primary btn-sm"><i
 											class="fa fa-plus"></i></a>
 									</div>
@@ -144,8 +150,44 @@
 				</div>
 			</div>
 		</div>
+		<h1 class="text-center">Developed by:</h1>
 	</section>
-	
+	<div class="row" id="team">
+		<div class="col-lg-4 col-md-6 col-sm-12 text-center">
+			<a href="https://www.linkedin.com/in/kullen-kee/" target="_blank">
+				<img class="rounded-circle" alt="140x140"
+				style="width: 140px; height: 140px;"
+				src="https://media.licdn.com/dms/image/C5603AQExW_jbu9a9qQ/profile-displayphoto-shrink_200_200/0?e=1578528000&v=beta&t=pe47hQjOPBQCycWAnhuuDnppBQ3jxBstV85lzeuNas8"
+				data-holder-rendered="true">
+			</a>
+			<h3 class="text-dark">Kullen</h3>
+		</div>
+		<div class="col-lg-4 col-md-6 col-sm-12 text-center">
+
+			<img class="rounded-circle" alt="140x140"
+				style="width: 140px; height: 140px;"
+				src="https://avatars3.githubusercontent.com/u/49958931?s=460&v=4"
+				data-holder-rendered="true">
+			<h3 class="text-dark">Vinton</h3>
+
+
+			<img class="rounded-circle" alt="140x140"
+				style="width: 140px; height: 140px;"
+				src="https://avatars2.githubusercontent.com/u/53097987?s=460&v=4"
+				data-holder-rendered="true"></a>
+			<h3 class="text-dark">Travis</h3>
+		</div>
+		<div class="col-lg-4 col-md-6 col-sm-12 text-center">
+
+			<img class="rounded-circle" alt="140x140"
+				style="width: 140px; height: 140px;"
+				src="file:///Users/ventus/Downloads/Image%20from%20iOS.jpg"
+				data-holder-rendered="true"></a>
+			<h3 class="text-dark">Kelly</h3>
+		</div>
+	</div>
+	<div class="row"></div>
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
