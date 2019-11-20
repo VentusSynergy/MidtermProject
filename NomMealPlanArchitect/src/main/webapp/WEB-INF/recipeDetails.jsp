@@ -79,23 +79,35 @@
 								<p>${recipe.instructions}</p>
 
 								<c:if test="${loggedInUser.active eq true }">
-								<div>
-									<form:form class="update" action="updateRecipe.do" method="GET"
-										modelAttribute="recipe">
-										<button type="submit" name="recipeId" value="${recipe.id}"
-											class="glyphicon glyphicon-edit">Update</button>
+									<div>
+										<form:form class="update" action="updateRecipe.do"
+											method="GET" modelAttribute="recipe">
+											<button type="submit" name="recipeId" value="${recipe.id}"
+												class="glyphicon glyphicon-edit">Update</button>
 
-									</form:form>
-								</div>
+										</form:form>
+									</div>
+								</c:if>
 								<br>
-								<div>
-									<form:form class="delete" action="deleteRecipe.do"
-										method="POST" modelAttribute="recipe">
-										<button type="submit" name="id" value="${recipe.id}"
-											class="glyphicon glyphicon-remove">Delete</button>
+								<c:if test="${loggedInUser.admin eq true }">
+									<div>
+										<form:form class="delete" action="deleteRecipe.do"
+											method="POST" modelAttribute="recipe">
+											<button type="submit" name="id" value="${recipe.id}"
+												class="glyphicon glyphicon-remove">ADMIN: Delete</button>
 
-									</form:form>
-								</div>
+										</form:form>
+									</div>
+								</c:if>
+								<c:if test="${loggedInUser.id eq recipe.user.id }">
+									<div>
+										<form:form class="delete" action="deleteRecipe.do"
+											method="POST" modelAttribute="recipe">
+											<button type="submit" name="id" value="${recipe.id}"
+												class="glyphicon glyphicon-remove">Delete</button>
+
+										</form:form>
+									</div>
 								</c:if>
 							</div>
 							<span class="clearfix borda"></span>
@@ -131,6 +143,19 @@
 
 															<button type="submit" class="btn btn-outline-danger">Remove
 																Review</button>
+
+														</form>
+
+													</c:if></li>
+												<li><c:if test="${loggedInUser.admin eq true }">
+
+														<form action="reviewDeactivate.do" method="POST">
+
+															<input type="hidden" name="id" id="review"
+																value="${review.id}" />
+
+															<button type="submit" class="btn btn-outline-danger">ADMIN:
+																Remove Review</button>
 
 														</form>
 
