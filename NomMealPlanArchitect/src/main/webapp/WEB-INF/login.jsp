@@ -24,7 +24,7 @@
 <title>Login: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
-<link href="<c:url value="/CSS/main.css" />" rel="stylesheet">
+<link href="<c:url value="/CSS/login.css" />" rel="stylesheet">
 
 </head>
 <body>
@@ -33,15 +33,15 @@
 		<div class="row">
 			<div class="col-3"></div>
 			<div class="col-6">
-				<h1>Login</h1>
-				<form:form action="loginAction.do" method="GET">
+				<h1 class="text-light" id="log">Login</h1>
+				<form:form action="loginAction.do" method="GET" id="form">
 					<div class="form-group" >
-						<label for="exampleInputEmail1">Email address</label> <input
+						<label for="exampleInputEmail1" class="text-light">Email address</label> <input
 							type="email" class="form-control" id="exampleInputEmail1"
 							aria-describedby="emailHelp" placeholder="Enter email" name="email">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Password</label> <input
+						<label for="exampleInputPassword1" class="text-light">Password</label> <input
 							type="password" class="form-control" id="exampleInputPassword1"
 							placeholder="Password" name="password">
 					</div>
