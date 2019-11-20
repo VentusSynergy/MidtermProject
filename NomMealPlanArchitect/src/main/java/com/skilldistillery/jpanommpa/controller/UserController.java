@@ -1,5 +1,8 @@
 package com.skilldistillery.jpanommpa.controller;
 
+import java.nio.channels.SeekableByteChannel;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
+import com.skilldistillery.jpanommpa.dao.RecipeDAO;
+import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
+import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.User;
+import com.skilldistillery.jpanommpa.entities.UserRecipe;
 
 @Controller
 public class UserController {
@@ -20,6 +27,9 @@ public class UserController {
 	@Autowired
 	private AuthenticationDAO userDao;
 
+	@Autowired
+	private UserRecipeFavoritesDAO favDao;
+	
 	@RequestMapping(path = "login.do")
 	public ModelAndView login(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -35,8 +45,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User user = userDao.lookUp(email, password);
-
-		System.out.println("in controller: " + user);
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 
 		if (user.getActive() == false) {
 			mv.setViewName("loginDeactive");
@@ -49,7 +58,7 @@ public class UserController {
 		}
 
 		session.setAttribute("loggedInUser", user);
-
+		mv.addObject("favList", favList);
 		mv.addObject("user", user);
 		mv.setViewName("userProfile");
 
@@ -115,7 +124,13 @@ public class UserController {
 	@RequestMapping(path = "userProfile.do")
 	public ModelAndView userProfile(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-
+//		User loggedInUser = (User) session.getAttribute("loggedInUser");
+//		System.err.println(loggedInUser);
+//		List<Recipe> favList = loggedInUser.getRecipes();
+//		for (Recipe userRecipe : favList) {
+//			System.out.println(userRecipe);
+//		}
+		
 		mv.setViewName("userProfile");
 		return mv;
 	}
@@ -152,6 +167,16 @@ public class UserController {
 		session.removeAttribute("loggedInUser");
 
 		mv.setViewName("index");
+		return mv;
+	}
+	@RequestMapping(path = "removeFav.do", params = "id", method = RequestMethod.POST)
+	public ModelAndView removeFavRecipe(@RequestParam("id") int id, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		favDao.deleteUserRecipe(id);
+		
+		
+		mv.setViewName("userProfile");
 		return mv;
 	}
 
