@@ -34,11 +34,21 @@
 		<h1>Search Results</h1>
 		<h2 class="lead">
 			<strong class="text-danger">${fn: length(recipe)}</strong> results
-			were found for the search for <strong class="text-danger">${key}</strong>
+			were found for the search for: 
+			<c:choose>
+				<c:when test="${not empty key }">
+					 <strong class="text-danger">${key}</strong>
+				</c:when>
+				<c:when test="${not empty type}">
+					<strong class="text-danger">${type}</strong>
+				</c:when>
+				<c:when test="${not empty category}">
+					<strong class="text-danger">${category}</strong>
+				</c:when> 
+			</c:choose>
 		</h2>
 	</hgroup>
 	<c:choose>
-		<%-- 		<c:when test="${fn: length(recipe) gt 0}"> --%>
 		<c:when test="${not empty recipe}">
 			<c:forEach var="r" items="${recipe}">
 				<div class="container">
@@ -52,7 +62,8 @@
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
 									<li><i class="glyphicon glyphicon-calendar"></i> <span>${r.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>${r.prepTime}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>${r.prepTime}
+											minutes</span></li>
 									<li><i class="glyphicon glyphicon-tags"></i> <span>${r.category.name}</span></li>
 								</ul>
 							</div>
@@ -68,7 +79,7 @@
 										<c:set var="isFavorite" value="true" />
 									</c:if>
 								</c:forEach>
-								<%-- <c:choose>
+								<c:choose>
 
 									<c:when test="${isFavorite == true}">
 										<form class="plus" action="addRecipeToUser.do" method="POST">
@@ -79,27 +90,37 @@
 									</c:when>
 
 									<c:otherwise>
-										<form class="plus" action="addRecipeToUser.do" method="POST">
-											<button class="glyphicon glyphicon-plus">Add</button>
-											<input type="hidden" name="id" value="${r.id}"> <input
-												type="hidden" name="key" value="${key}">
-										</form>
+										<c:if test="${!empty loggedInUser.email}">
+											<form class="plus" action="addRecipeToUser.do" method="POST">
+												<button class="glyphicon glyphicon-plus">Add</button>
+												<input type="hidden" name="id" value="${r.id}"> <input
+													type="hidden" name="key" value="${key}">
+											</form>
+										</c:if>
 									</c:otherwise>
 
-								</c:choose> --%>
-								<div><form:form class="update" action="updateRecipe.do" method="GET"
-									modelAttribute="recipe" >
-										<button type="submit" name="recipeId" value="${r.id}"
-											class="glyphicon glyphicon-edit">Update</button>
+								</c:choose>
+								<c:if test="${!empty loggedInUser.email}">
+									<div>
+										<form:form class="update" action="updateRecipe.do"
+											method="GET" modelAttribute="recipe">
+											<button type="submit" name="recipeId" value="${r.id}"
+												class="glyphicon glyphicon-edit">Update</button>
 
-								</form:form></div>
+										</form:form>
+									</div>
+								</c:if>
 								<br>
-								<div><form:form class="delete" action="deleteRecipe.do" method="POST"
-									modelAttribute="recipe" >
-										<button type="submit" name="id" value="${r.id}"
-											class="glyphicon glyphicon-remove">Delete</button>
+								<c:if test="${!empty loggedInUser.email}">
+									<div>
+										<form:form class="delete" action="deleteRecipe.do"
+											method="POST" modelAttribute="recipe">
+											<button type="submit" name="id" value="${r.id}"
+												class="glyphicon glyphicon-remove">Delete</button>
 
-								</form:form></div>
+										</form:form>
+									</div>
+								</c:if>
 
 							</div>
 							<span class="clearfix borda"></span>

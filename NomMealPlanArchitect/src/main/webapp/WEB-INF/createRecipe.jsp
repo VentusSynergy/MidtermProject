@@ -11,6 +11,7 @@
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="CSS/CRURecipe.css">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -54,20 +55,11 @@
 						<label for="title">Recipe Name</label> <input type="text" name="name"
 							class="form-control" placeholder="Recipe Name" required="required">
 						<br> 
-						
-						<%-- <input type="hidden" id="dateCreated" name="dateCreated" value="${date}"> --%>
-	
+							
 							 <input type="hidden" id="active" name="active" value="true">
-							
-							 <%-- <input type="hidden" id="user" name="user" value="${user}"> --%>
-							
+														
 							<input type="hidden" id="isPublic" name="isPublic" value="true">
-							<!-- <select class="form-control dropdown-info" id="isPublic"
-							name="isPublic" required="required">
-							<option disabled selected value="">Choose Public/Private</option>
-								<option value="true">Public Recipe</option>
-								<option value="false">Private Recipe</option>
-							</select> -->
+
 							<br>
 							
 						<label for="prepTime">Prep Time</label>
@@ -82,7 +74,7 @@
 							<br> 
 							
 							<label for="ingredients">Recipe Ingredients</label>
-							<select class="custom-select" multiple name="ingredientIds">
+							<select class="custom-select" multiple name="ingredientIds" size="8">
   							<!-- <option disabled selected value="">Choose Recipe Ingredients</option> -->
   							<c:forEach var="i" items="${ingredients}">
  							 	<option value="${i.id}">${i.name}</option>
