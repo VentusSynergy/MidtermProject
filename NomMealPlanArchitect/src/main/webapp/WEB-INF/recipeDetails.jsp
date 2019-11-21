@@ -21,7 +21,7 @@
 	crossorigin="anonymous">
 
 
-<title>Recipe Details: Nom! Meal Plan Architect</title>
+<title>Recipe Details: Nom!</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/recipeDetails.css" />" rel="stylesheet">
@@ -44,20 +44,22 @@
 						<article class="search-result row">
 							<c:if test="${not empty recipe.photoLink}">
 								<div class="col-xs-12 col-sm-12 col-md-3">
-									<a href="#" title="Lorem ipsum" class="thumbnail"><img
-										src="${recipe.photoLink}" alt="Lorem ipsum" height="150px"
-										width="auto" /></a>
+									<a href="#" title="recipe.photoLink" class="thumbnail"><img
+										src="${recipe.photoLink}" alt="recipe.photoLink"
+										height="150px" width="auto" /></a>
 								</div>
 							</c:if>
 
-							<div class="col-xs-12 col-sm-12 col-md-2">
+							<div class="col-xs-12 col-sm-12 col-md-3">
 								<ul class="meta-search">
-									<li><i class="glyphicon glyphicon-calendar"></i> <span>Date Created: ${recipe.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>Prep Time: ${recipe.prepTime} minutes</span></li>
-									<li><i class="glyphicon glyphicon-tags"></i> <span>Category: ${recipe.category.name}</span></li>
+									<li><i class="glyphicon glyphicon-calendar"></i> <span>Created: ${recipe.dateCreated}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>Prep
+											Time: ${recipe.prepTime} minutes</span></li>
+									<li><i class="glyphicon glyphicon-tags"></i> <span>Category:
+											${recipe.category.name}</span></li>
 								</ul>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+							<div class="col-xs-12 col-sm-12 col-md-6 excerpet">
 								<h3>${recipe.name}</h3>
 
 								<h4>Ingredients:</h4>
@@ -84,7 +86,7 @@
 										<form:form class="update" action="updateRecipe.do"
 											method="GET" modelAttribute="recipe">
 											<button type="submit" name="recipeId" value="${recipe.id}"
-												class="btn btn-outline-dark">Update</button>
+												class="btn btn-warning">Update</button>
 
 										</form:form>
 									</div>
@@ -95,7 +97,7 @@
 										<form:form class="delete" action="deleteRecipe.do"
 											method="POST" modelAttribute="recipe">
 											<button type="submit" name="id" value="${recipe.id}"
-												class="btn btn-outline-danger">ADMIN: Delete</button>
+												class="btn btn-danger">ADMIN: Delete</button>
 
 										</form:form>
 									</c:if>
@@ -103,7 +105,7 @@
 										<form:form class="delete" action="deleteRecipe.do"
 											method="POST" modelAttribute="recipe">
 											<button type="submit" name="id" value="${recipe.id}"
-												class="btn btn-outline-danger">Delete</button>
+												class="btn btn-danger">Delete</button>
 
 										</form:form>
 									</c:if>
@@ -122,6 +124,15 @@
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
+					<%-- <c:choose>
+						<c:when test="${not empty recipe.reviews}"> 
+							<h3>Average Rating:</h3>
+							<h3>put the stars right here**************************</h3>
+							<h3> ${recipereview.ratingStars(averageRating)} </h3>
+							
+							<br>
+						</c:when>
+					</c:choose>  --%>
 					<h3>Recipe Reviews:</h3>
 					<c:choose>
 						<c:when test="${not empty recipe.reviews}">
@@ -139,7 +150,7 @@
 														<input type="hidden" name="id" id="review"
 															value="${review.id}" />
 
-														<button type="submit" class="btn btn-outline-danger">Remove
+														<button type="submit" class="btn btn-danger">Remove
 															Review</button>
 
 													</form>
@@ -152,7 +163,7 @@
 														<input type="hidden" name="id" id="review"
 															value="${review.id}" />
 
-														<button type="submit" class="btn btn-outline-danger">ADMIN:
+														<button type="submit" class="btn btn-danger">ADMIN:
 															Remove Review</button>
 
 													</form>
@@ -204,7 +215,7 @@
 								<input type="hidden" name="user.id" id="user"
 									value="${loggedInUser.id}" />
 
-								<button type="submit" class="btn btn-outline-dark">Submit</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
 
 							</form:form>
 						</c:when>
