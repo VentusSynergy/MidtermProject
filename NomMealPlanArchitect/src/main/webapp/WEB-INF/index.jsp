@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<section id="team" class="pb-5">
-		<h5 class="section-title h1">This Weeks Picks</h5>
+		<h5 class="section-title h1">This Week's Picks</h5>
 		<div class="container">
 			<div class="row">
 				<!-- Pick One -->
