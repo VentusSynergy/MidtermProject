@@ -5,8 +5,8 @@
 		url("https://media0.giphy.com/media/nqtA5obHo3CSelfeKS/source.gif");
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: center;
 	height: 600px;
-	width: auto;
 }
 
 .app-title{
@@ -14,7 +14,38 @@
 	color: #007b5e;
 	text-transform: uppercase;
 	font-family: fantasy;
-	font-size: 50ex;
+}
+
+
+@media (min-width:568px) {
+  .app-title {
+    font-size: 28ex;
+  }
+}
+
+@media (min-width:700px) {
+  .app-title {
+    font-size: 30ex;
+  }
+}
+
+@media (min-width:800px) {
+  .app-title {
+    font-size: 35ex;
+  }
+}
+
+@media (min-width:900px) {
+  .app-title {
+    font-size: 40ex;
+  }
+}
+
+@media (min-width:1000px) {
+  .app-title {
+    /* Never get larger than this */
+    font-size: 50ex;
+  }
 }
 
 @import
