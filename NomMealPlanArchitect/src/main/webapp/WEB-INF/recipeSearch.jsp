@@ -43,7 +43,7 @@
 			<div class="col-8">
 				<form:form action="searchRecipe.do" method="GET">
 					<div class="form-group">
-						<label for="name">Name</label> <input type="text"
+						<label for="name"></label> <input type="text"
 							class="form-control" id="key" name="key" placeholder="Search Recipe Name">
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Search
