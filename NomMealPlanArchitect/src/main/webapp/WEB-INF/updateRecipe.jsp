@@ -86,7 +86,7 @@
 							<br> 
 							
 							<label for="ingredients">Recipe Ingredients</label> 
-							<select class="custom-select" multiple name="ingredientIds">
+							<select class="custom-select" size="8" multiple name="ingredientIds">
   							<!-- <option selected>Ingredients Currently in Recipe</option> -->
   							<c:forEach var="i" items="${ingredientsIN}">
  							 	<option selected value="${i.id}">${i.name}</option>
