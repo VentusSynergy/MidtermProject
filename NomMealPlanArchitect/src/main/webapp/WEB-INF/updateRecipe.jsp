@@ -76,17 +76,17 @@
 							
 						<label for="prepTime">Prep Time</label>
 						<input type="text" name="prepTime"
-							class="form-control" value="${recipe.prepTime}"> 
+							class="form-control" required="required" value="${recipe.prepTime}"> 
 							<br>
 							
 						<label for="instructions">Recipe Instructions</label> 
 						<input
-							type="text" name="instructions" class="form-control"
+							type="text" name="instructions" required="required" class="form-control"
 							value="${recipe.instructions}"> 
 							<br> 
 							
 							<label for="ingredients">Recipe Ingredients</label> 
-							<select class="custom-select" size="8" multiple name="ingredientIds">
+							<select class="custom-select" size="8" required="required" multiple name="ingredientIds">
   							<!-- <option selected>Ingredients Currently in Recipe</option> -->
   							<c:forEach var="i" items="${ingredientsIN}">
  							 	<option selected value="${i.id}">${i.name}</option>

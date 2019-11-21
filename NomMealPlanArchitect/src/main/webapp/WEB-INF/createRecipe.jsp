@@ -69,12 +69,12 @@
 							
 						<label for="prepTime">Prep Time</label>
 						<input type="text" name="prepTime"
-							class="form-control" placeholder="Prep Time in Minutes"> 
+							class="form-control" required="required" placeholder="Prep Time in Minutes"> 
 							<br>
 							
 						<label for="instructions">Recipe Instructions</label> 
 						<input
-							type="text" name="instructions" class="form-control"
+							type="text" name="instructions" required="required" class="form-control"
 							placeholder="Step 1...Step 2..."> 
 							<br> 
 							
