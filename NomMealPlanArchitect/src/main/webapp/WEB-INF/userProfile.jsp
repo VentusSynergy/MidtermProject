@@ -44,7 +44,7 @@
 					class="fb-image-profile thumbnail" src="${loggedInUser.avatarURL }"
 					alt="Profile image example" />
 				<div class="fb-profile-text">
-					<h1>${loggedInUser.firstName}${loggedInUser.lastName }</h1>
+					<h1>${loggedInUser.firstName}&nbsp${loggedInUser.lastName }</h1>
 					<p>
 						“If more of us valued food and cheer and song above hoarded gold,
 						it would be a merrier world.” -J.R.R. Tolkien<br> <i
