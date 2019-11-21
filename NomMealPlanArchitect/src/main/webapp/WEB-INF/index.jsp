@@ -23,9 +23,15 @@
 </head>
 <body>
 	<div class="top-container">
+		<div class="row">
+		<div class="col-1"></div>
+		<div class="col-10">
 		<h1 class="app-title">
 			<em>NOM</em>
 		</h1>
+		</div>
+		<div class="col-1"></div>
+		</div>
 	</div>
 	<section id="team" class="pb-5">
 		<h5 class="section-title h1">This Weeks Picks</h5>
