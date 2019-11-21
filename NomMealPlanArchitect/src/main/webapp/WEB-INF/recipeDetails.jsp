@@ -92,7 +92,7 @@
 									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
 										<c:choose>
 											<c:when test="${isFavorite == true}">
-												<form class="plus" action="addToRecipeDetail.do" method="POST">
+												<form class="plus" action="searchOneRecipePost.do" method="POST">
 													<button class="btn btn-outline-info" disabled>Added</button>
 													<input type="hidden" name="id" value="${recipe.id}"> <input
 														type="hidden" name="key" value="${key}">
@@ -101,7 +101,7 @@
 
 											<c:otherwise>
 												<c:if test="${loggedInUser.active eq true}">
-													<form class="plus" action="addToRecipeDetail.do"
+													<form class="plus" action="searchOneRecipePost.do"
 														method="POST">
 														<button class="btn btn-info">Add</button>
 														<input type="hidden" name="id" value="${recipe.id}"> <input
