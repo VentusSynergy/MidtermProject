@@ -36,12 +36,12 @@ public class RecipeDetailsController {
 		Recipe recipe = recipeDao.selectRecipeById(id);
 
 		User user = (User) session.getAttribute("loggedInUser");
-		
+
 		if (user != null) {
 			List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
-			mv.addObject("favList", favList);	
+			mv.addObject("favList", favList);
 		}
-		
+
 		mv.addObject("recipe", recipe);
 		mv.setViewName("recipeDetails");
 		return mv;
@@ -72,11 +72,10 @@ public class RecipeDetailsController {
 	public ModelAndView addReview(@ModelAttribute("newReview") RecipeReview newReview, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		
 		User user = (User) session.getAttribute("loggedInUser");
 		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 		mv.addObject("favList", favList);
-		
+
 		reviewDao.createRecipeReview(newReview);
 		Recipe recipe = recipeDao.selectRecipeById(newReview.getRecipe().getId());
 		mv.addObject("recipe", recipe);
@@ -92,8 +91,7 @@ public class RecipeDetailsController {
 		User user = (User) session.getAttribute("loggedInUser");
 		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 		mv.addObject("favList", favList);
-		
-		
+
 		reviewDao.deleteRecipeReview(deactivateReview);
 		Recipe recipe = recipeDao.selectRecipeById(deactivateReview.getRecipe().getId());
 
