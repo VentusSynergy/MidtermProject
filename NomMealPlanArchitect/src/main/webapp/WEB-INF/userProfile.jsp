@@ -70,8 +70,8 @@
 						<article class="search-result row">
 							<div class="col-xs-12 col-sm-12 col-md-3">
 								<a href="#" title="Lorem ipsum" class="thumbnail"><img
-									src="${fl.recipe.photoLink}" alt="Lorem ipsum" height="150px"
-									width="auto" /></a>
+									src="${fl.recipe.photoLink}" alt="Lorem ipsum" height="200px"
+									width="220" /></a>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
