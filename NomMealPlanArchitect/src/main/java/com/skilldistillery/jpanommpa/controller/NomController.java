@@ -143,7 +143,7 @@ public class NomController {
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
-	
+
 //	@RequestMapping(path = "searchOneRecipe.do", method = RequestMethod.GET)
 //	public ModelAndView searchOneRecipes(@RequestParam("recipeId") int id) {
 //		ModelAndView mv = new ModelAndView();
@@ -181,6 +181,28 @@ public class NomController {
 		mv.addObject("recipe", recipeList);
 		mv.addObject("key", key);
 		mv.setViewName("recipeSearchResult");
+		return mv;
+	}
+
+	@RequestMapping(path = "addToRecipeDetail.do", method = RequestMethod.POST)
+	public ModelAndView addToRecipeDetail(@RequestParam("id") int id, @RequestParam("key") String key,
+			HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("loggedInUser");
+		UserRecipe ur = new UserRecipe();
+		ur.setUser(user);
+		ur.setRecipe(recipeDao.selectRecipeById(id));
+		favDao.createUserRecipe(ur);
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
+
+		// return same search
+		Recipe recipe = recipeDao.selectRecipeById(id);
+
+		int num = 5;
+		mv.addObject("averageRating", num);
+		mv.addObject("recipe", recipe);
+		mv.setViewName("recipeDetails");
 		return mv;
 	}
 }
