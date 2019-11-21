@@ -33,7 +33,7 @@
 <br>
 <br>
 <br>
-	<h2>Search for Delicious Recipe: </h2>
+	<h2>Search for a delicious recipe(s): </h2>
 
 	<br>
 	<br>
