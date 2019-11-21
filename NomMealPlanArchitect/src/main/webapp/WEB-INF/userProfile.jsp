@@ -27,33 +27,40 @@
 
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-				<form:form action="loginAction.do" method="POST"
-					modelAttribute="user">
-				<h2 style="text-align: center">${loggedInUser.firstName}'s Profile</h2>
-<div class="container">
-    <div class="fb-profile">
-        <img align="left" class="fb-image-lg" src="https://cms.splendidtable.org/sites/default/files/styles/w2000/public/cooks-in-kitchen_pidjoe-iStock-GettyImagesPlus-LEDE.jpg?itok=pMpz8wND" alt="Profile image example"/>
-        <img align="left" class="fb-image-profile thumbnail" src="${loggedInUser.avatarURL }" alt="Profile image example"/>
-        <div class="fb-profile-text">
-            <h1>${loggedInUser.firstName} ${loggedInUser.lastName }</h1>
-            <p>“If more of us valued food and cheer and song above hoarded gold, it would be a merrier world.” -J.R.R. Tolkien<br><i class="fa fa-envelope"></i>    ${loggedInUser.email}</p>
-        </div>
-    </div>
-</div>
-				</form:form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form:form action="loginAction.do" method="POST" modelAttribute="user">
+		<h2 style="text-align: center">${loggedInUser.firstName}'s
+			Profile</h2>
+		<div class="container">
+			<div class="fb-profile">
+				<img align="left" class="fb-image-lg"
+					src="https://cms.splendidtable.org/sites/default/files/styles/w2000/public/cooks-in-kitchen_pidjoe-iStock-GettyImagesPlus-LEDE.jpg?itok=pMpz8wND"
+					alt="Profile image example" /> <img align="left"
+					class="fb-image-profile thumbnail" src="${loggedInUser.avatarURL }"
+					alt="Profile image example" />
+				<div class="fb-profile-text">
+					<h1>${loggedInUser.firstName}${loggedInUser.lastName }</h1>
+					<p>
+						“If more of us valued food and cheer and song above hoarded gold,
+						it would be a merrier world.” -J.R.R. Tolkien<br> <i
+							class="fa fa-envelope"></i> ${loggedInUser.email}
+					</p>
+				</div>
+			</div>
+		</div>
+	</form:form>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<hr>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<hr>
 	<!-- Users Saved Recipes -->
 	<hgroup class="mb20">
 		<h1 style="text-align: center">Saved Recipes</h1>
@@ -112,21 +119,24 @@
 									</c:otherwise>
 
 								</c:choose> --%>
-								<div>
-									<form:form class="update" action="updateRecipe.do" method="GET"
-										modelAttribute="recipe">
-										<button type="submit" name="recipeId" value="${fl.recipe.id}"
-											class="btn btn-warning">Update</button>
 
-									</form:form>
-								</div>
-								<div>
-									<form:form class="removeFav" action="removeFav.do"
-										method="POST" modelAttribute="recipe">
-										<button type="submit" name="id" value="${fl.id}"
-											class="btn btn-danger">Remove From Favorites</button>
+								<div class="row">
+									<div class="col-xs-6">
+										<form:form class="update" action="updateRecipe.do"
+											method="GET" modelAttribute="recipe">
+											<button type="submit" name="recipeId" value="${fl.recipe.id}"
+												class="btn btn-warning">Update</button>
 
-									</form:form>
+										</form:form>
+									</div>
+									<div class="col-xs-6">
+										<form:form class="removeFav" action="removeFav.do"
+											method="POST" modelAttribute="recipe">
+											<button type="submit" name="id" value="${fl.id}"
+												class="btn btn-danger">Remove From Favorites</button>
+
+										</form:form>
+									</div>
 								</div>
 
 							</div>
