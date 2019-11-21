@@ -33,7 +33,7 @@
 <br>
 <br>
 <br>
-				<form:form action="loginAction.do" method="GET"
+				<form:form action="loginAction.do" method="POST"
 					modelAttribute="user">
 				<h2 style="text-align: center">${loggedInUser.firstName}'s Profile</h2>
 <div class="container">
