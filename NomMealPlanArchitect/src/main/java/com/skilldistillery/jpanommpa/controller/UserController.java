@@ -136,7 +136,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User userToUpdate = (User) session.getAttribute("loggedInUser");
-
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(userToUpdate.getId());
+		mv.addObject("favList", favList);
 		mv.addObject("user", userToUpdate);
 		mv.setViewName("updateProfile");
 		return mv;
@@ -149,7 +150,8 @@ public class UserController {
 		User display = userDao.updateUser(userId, user);
 
 		session.setAttribute("loggedInUser", display);
-
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(display.getId());
+		mv.addObject("favList", favList);
 		mv.setViewName("userProfile");
 		return mv;
 	}
