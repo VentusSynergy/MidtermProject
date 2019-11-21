@@ -46,7 +46,7 @@
 							</span>
 						</div>
 
-						<form:input class="form-control" path="firstName"
+						<form:input class="form-control" required="required" path="firstName"
 							placeholder="First Name" type="text" />
 						<form:errors path="firstName" />
 					</div>
@@ -58,7 +58,7 @@
 							<span class="input-group-text"> <i class="fa fa-user"></i>
 							</span>
 						</div>
-						<form:input class="form-control" path="lastName"
+						<form:input class="form-control" required="required" path="lastName"
 							placeholder="Last Name" type="text" />
 						<form:errors path="lastName" />
 					</div>
