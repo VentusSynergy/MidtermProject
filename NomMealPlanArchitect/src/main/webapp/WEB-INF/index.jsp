@@ -132,7 +132,7 @@
 										</p>
 										<h4 class="card-title">Buttery Lemon Grilled Fish on
 											Asparagus</h4>
-										<p class="card-text">So Easy and delicious! I make This
+										<p class="card-text">So Easy and delicious! I make this
 											once a week.</p>
 										<a href="#" class="btn btn-primary btn-sm"><i
 											class="fa fa-plus"></i></a>
