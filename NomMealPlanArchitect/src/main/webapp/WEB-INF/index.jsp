@@ -152,8 +152,9 @@
 		</div>
 		<h1 class="text-center">Developed by:</h1>
 	</section>
+
 	<div class="row" id="team">
-		<div class="col-lg-4 col-md-6 col-sm-12 text-center">
+		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
 			<a href="https://www.linkedin.com/in/kullen-kee/" target="_blank">
 				<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
@@ -162,28 +163,28 @@
 			</a>
 			<h3 class="text-dark">Kullen</h3>
 		</div>
-		<div class="col-lg-4 col-md-6 col-sm-12 text-center">
-
+		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
+<a href="https://www.linkedin.com/in/vintonlee/" target="_blank">
 			<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
 				src="https://avatars3.githubusercontent.com/u/49958931?s=460&v=4"
 				data-holder-rendered="true">
-			<h3 class="text-dark">Vinton</h3>
-
-
+			</a><h3 class="text-dark">Vinton</h3>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
+			<a href="https://www.linkedin.com/in/tduplantis83" target="_blank">
 			<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
 				src="https://avatars2.githubusercontent.com/u/53097987?s=460&v=4"
-				data-holder-rendered="true"></a>
-			<h3 class="text-dark">Travis</h3>
+				data-holder-rendered="true">
+			</a><h3 class="text-dark">Travis</h3>
 		</div>
-		<div class="col-lg-4 col-md-6 col-sm-12 text-center">
-
+		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
+			<a href="https://github.com/Kvothik?tab=repositories" target="_blank">
 			<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
-				src="file:///Users/ventus/Downloads/Image%20from%20iOS.jpg"
-				data-holder-rendered="true"></a>
-			<h3 class="text-dark">Kelly</h3>
+				src="https://i.imgur.com/TgWJzQ1.jpg" data-holder-rendered="true">
+			</a><h3 class="text-dark">Kelly</h3>
 		</div>
 	</div>
 	<div class="row"></div>
