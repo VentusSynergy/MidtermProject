@@ -1,5 +1,6 @@
 package com.skilldistillery.jpanommpa.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,8 @@ public class IngredientDAOImpl implements IngredientDAO{
 		String query = "Select i.name from Ingredient i";
 
 		List<String> results = em.createQuery(query, String.class).getResultList();
+		
+		Collections.sort(results);
 
 		return results;
 	}
@@ -39,7 +42,7 @@ public class IngredientDAOImpl implements IngredientDAO{
 		String query = "Select i from Ingredient i where i.name like :name";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("name", "%" + name + "%").getResultList();
-
+		
 		return results;
 	}
 
@@ -48,7 +51,7 @@ public class IngredientDAOImpl implements IngredientDAO{
 		String query = "Select i from Ingredient i where i.brand like :brand";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("brand", "%" + brand + "%").getResultList();
-
+		
 		return results;
 	}
 
@@ -57,7 +60,7 @@ public class IngredientDAOImpl implements IngredientDAO{
 		String query = "Select i from Ingredient i where i.category = :category";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).setParameter("category", category).getResultList();
-
+		
 		return results;
 	}
 
@@ -96,9 +99,11 @@ public class IngredientDAOImpl implements IngredientDAO{
 
 	@Override
 	public List<Ingredient> selectAllIngredientObjects() {
-		String query = "Select i from Ingredient i";
+		String query = "Select i from Ingredient i where i.name <> '' and i.name <> 'tbsp' and i.name not like '%b1less%' and i.name not like 'h1y' and i.name not like '%10derloin%' and i.name not like '%seas1d%' order by i.name";
 
 		List<Ingredient> results = em.createQuery(query, Ingredient.class).getResultList();
+		
+		
 
 		return results;
 	}
