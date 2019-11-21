@@ -41,7 +41,7 @@
 				<p class="text-light" id="sorry">Sorry, email and password did
 					not match our database. Please try again.</p>
 				<h1 class="text-light">Login</h1>
-				<form:form action="loginAction.do" method="GET">
+				<form:form action="loginAction.do" method="POST">
 					<div class="form-group">
 						<label for="exampleInputEmail1" class="text-light">Email
 							address</label> <input type="email" class="form-control"
