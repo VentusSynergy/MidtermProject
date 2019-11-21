@@ -20,6 +20,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+
 <title>Recipe Details: Nom! Meal Plan Architect</title>
 
 <!-- CSS -->
@@ -48,18 +49,12 @@
 										width="auto" /></a>
 								</div>
 							</c:if>
-							<%-- 	<c:if test="${ empty recipe.photoLink}">
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<a href="#" title="Lorem ipsum" class="thumbnail"><img
-									src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwih7uykk_nlAhVUKH0KHZrUB00QjRx6BAgBEAQ&url=https%3A%2F%2Fwww.myrecipes.com%2Fhow-to%2Fgood-kitchen-habits&psig=AOvVaw1Hy7puwdsfh1FRq14GxIuK&ust=1574351682486173"
-									alt="Lorem ipsum" height="150px" width="auto" /></a>
-							</div>
-						</c:if> --%>
+
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
-									<li><i class="glyphicon glyphicon-calendar"></i> <span>${recipe.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>${recipe.prepTime}</span></li>
-									<li><i class="glyphicon glyphicon-tags"></i> <span>${recipe.category.name}</span></li>
+									<li><i class="glyphicon glyphicon-calendar"></i> <span>Date Created: ${recipe.dateCreated}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>Prep Time: ${recipe.prepTime} minutes</span></li>
+									<li><i class="glyphicon glyphicon-tags"></i> <span>Category: ${recipe.category.name}</span></li>
 								</ul>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
@@ -89,32 +84,30 @@
 										<form:form class="update" action="updateRecipe.do"
 											method="GET" modelAttribute="recipe">
 											<button type="submit" name="recipeId" value="${recipe.id}"
-												class="glyphicon glyphicon-edit">Update</button>
+												class="btn btn-outline-dark">Update</button>
 
 										</form:form>
 									</div>
 								</c:if>
-								<br>
-								<c:if test="${loggedInUser.admin eq true }">
-									<div>
+								<div>
+									<br>
+									<c:if test="${loggedInUser.admin eq true }">
 										<form:form class="delete" action="deleteRecipe.do"
 											method="POST" modelAttribute="recipe">
 											<button type="submit" name="id" value="${recipe.id}"
-												class="glyphicon glyphicon-remove">ADMIN: Delete</button>
+												class="btn btn-outline-danger">ADMIN: Delete</button>
 
 										</form:form>
-									</div>
-								</c:if>
-								<c:if test="${loggedInUser.id eq recipe.user.id }">
-									<div>
+									</c:if>
+									<c:if test="${loggedInUser.id eq recipe.user.id }">
 										<form:form class="delete" action="deleteRecipe.do"
 											method="POST" modelAttribute="recipe">
 											<button type="submit" name="id" value="${recipe.id}"
-												class="glyphicon glyphicon-remove">Delete</button>
+												class="btn btn-outline-danger">Delete</button>
 
 										</form:form>
-									</div>
-								</c:if>
+									</c:if>
+								</div>
 							</div>
 							<span class="clearfix borda"></span>
 						</article>
@@ -138,33 +131,33 @@
 										<li>Rating: ${review.ratingStars(rating)}
 											<ul>
 												<li>Review: ${review.comment}</li>
-												<li>${review.user.firstName}&nbsp ${review.user.lastName}&nbsp ${review.reviewDate}</li>
-												<li><c:if test="${loggedInUser.id eq review.user.id }">
+												<li>${review.user.firstName}&nbsp${review.user.lastName}&nbsp${review.reviewDate}</li>
+												<c:if test="${loggedInUser.id eq review.user.id }">
 
-														<form action="reviewDeactivate.do" method="POST">
+													<form action="reviewDeactivate.do" method="POST">
 
-															<input type="hidden" name="id" id="review"
-																value="${review.id}" />
+														<input type="hidden" name="id" id="review"
+															value="${review.id}" />
 
-															<button type="submit" class="btn btn-outline-danger">Remove
-																Review</button>
+														<button type="submit" class="btn btn-outline-danger">Remove
+															Review</button>
 
-														</form>
+													</form>
 
-													</c:if></li>
-												<li><c:if test="${loggedInUser.admin eq true }">
+												</c:if>
+												<c:if test="${loggedInUser.admin eq true }">
 
-														<form action="reviewDeactivate.do" method="POST">
+													<form action="reviewDeactivate.do" method="POST">
 
-															<input type="hidden" name="id" id="review"
-																value="${review.id}" />
+														<input type="hidden" name="id" id="review"
+															value="${review.id}" />
 
-															<button type="submit" class="btn btn-outline-danger">ADMIN:
-																Remove Review</button>
+														<button type="submit" class="btn btn-outline-danger">ADMIN:
+															Remove Review</button>
 
-														</form>
+													</form>
 
-													</c:if></li>
+												</c:if>
 											</ul>
 										</li>
 										<br>
@@ -211,15 +204,15 @@
 								<input type="hidden" name="user.id" id="user"
 									value="${loggedInUser.id}" />
 
-								<button type="submit" class="btn btn-light">Submit</button>
+								<button type="submit" class="btn btn-outline-dark">Submit</button>
 
 							</form:form>
 						</c:when>
 
 						<c:otherwise>
 							<p>
-								Please <a href="login.do" class="badge badge-light">login</a> or
-								<a href="register.do" class="badge badge-light">register</a> to
+								Please <a href="login.do" class="badge badge-dark">login</a> or
+								<a href="register.do" class="badge badge-dark">register</a> to
 								review this recipe.
 							</p>
 
