@@ -61,10 +61,12 @@
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
-									<li><i class="glyphicon glyphicon-calendar"></i> <span>Created: ${r.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>Prep Time: ${r.prepTime}
-											minutes</span></li>
-									<li><i class="glyphicon glyphicon-tags"></i> <span>Category: ${r.category.name}</span></li>
+									<li><i class="glyphicon glyphicon-calendar"></i> <span>Created:
+											${r.dateCreated}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>Prep
+											Time: ${r.prepTime} minutes</span></li>
+									<li><i class="glyphicon glyphicon-tags"></i> <span>Category:
+											${r.category.name}</span></li>
 								</ul>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
@@ -115,30 +117,30 @@
 											</div>
 										</c:if>
 									</div>
-								</div>
-								<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
-									<c:if test="${loggedInUser.id eq r.user.id}">
-										<div>
-											<form:form class="delete" action="deleteRecipe.do"
-												method="POST" modelAttribute="recipe">
-												<button type="submit" name="id" value="${r.id}"
-													class="btn btn-danger">Delete</button>
+									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
+										<c:if test="${loggedInUser.id eq r.user.id}">
+											<div>
+												<form:form class="delete" action="deleteRecipe.do"
+													method="POST" modelAttribute="recipe">
+													<button type="submit" name="id" value="${r.id}"
+														class="btn btn-danger">Delete</button>
 
-											</form:form>
-										</div>
-									</c:if>
-								</div>
-								<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
-									<c:if test="${loggedInUser.admin eq true }">
-										<div>
-											<form:form class="delete" action="deleteRecipe.do"
-												method="POST" modelAttribute="recipe">
-												<button type="submit" name="id" value="${r.id}"
-													class="btn btn-danger">ADMIN: Delete</button>
+												</form:form>
+											</div>
+										</c:if>
+									</div>
+									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
+										<c:if test="${loggedInUser.admin eq true }">
+											<div>
+												<form:form class="delete" action="deleteRecipe.do"
+													method="POST" modelAttribute="recipe">
+													<button type="submit" name="id" value="${r.id}"
+														class="btn btn-danger">ADMIN: Delete</button>
 
-											</form:form>
-										</div>
-									</c:if>
+												</form:form>
+											</div>
+										</c:if>
+									</div>
 								</div>
 							</div>
 							<span class="clearfix borda"></span>

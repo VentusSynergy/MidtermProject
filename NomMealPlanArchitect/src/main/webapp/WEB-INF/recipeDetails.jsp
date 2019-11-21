@@ -124,7 +124,6 @@
 									</div>
 								</c:if>
 								<div>
-									<br>
 									<c:if test="${loggedInUser.admin eq true }">
 										<form:form class="delete" action="deleteRecipe.do"
 											method="POST" modelAttribute="recipe">
