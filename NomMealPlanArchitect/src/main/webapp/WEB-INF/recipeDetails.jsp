@@ -52,7 +52,8 @@
 
 							<div class="col-xs-12 col-sm-12 col-md-3">
 								<ul class="meta-search">
-									<li><i class="glyphicon glyphicon-calendar"></i> <span>Created: ${recipe.dateCreated}</span></li>
+									<li><i class="glyphicon glyphicon-calendar"></i> <span>Created:
+											${recipe.dateCreated}</span></li>
 									<li><i class="glyphicon glyphicon-time"></i> <span>Prep
 											Time: ${recipe.prepTime} minutes</span></li>
 									<li><i class="glyphicon glyphicon-tags"></i> <span>Category:
@@ -80,6 +81,37 @@
 								</c:choose>
 								<h4>Directions:</h4>
 								<p>${recipe.instructions}</p>
+
+								<c:set var="isFavorite" value="false" />
+								<c:forEach var="fl" items="${favList}">
+									<c:if test="${fl.recipe.id == recipe.id}">
+										<c:set var="isFavorite" value="true" />
+									</c:if>
+								</c:forEach>
+								<div class="row">
+									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
+										<c:choose>
+											<c:when test="${isFavorite == true}">
+												<form class="plus" action="addToRecipeDetail.do" method="POST">
+													<button class="btn btn-outline-info" disabled>Added</button>
+													<input type="hidden" name="id" value="${recipe.id}"> <input
+														type="hidden" name="key" value="${key}">
+												</form>
+											</c:when>
+
+											<c:otherwise>
+												<c:if test="${loggedInUser.active eq true}">
+													<form class="plus" action="addToRecipeDetail.do"
+														method="POST">
+														<button class="btn btn-info">Add</button>
+														<input type="hidden" name="id" value="${recipe.id}"> <input
+															type="hidden" name="key" value="${key}">
+													</form>
+												</c:if>
+											</c:otherwise>
+
+										</c:choose>
+									</div>
 
 								<c:if test="${loggedInUser.active eq true }">
 									<div>
