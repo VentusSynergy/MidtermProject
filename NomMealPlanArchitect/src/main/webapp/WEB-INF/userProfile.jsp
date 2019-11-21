@@ -75,9 +75,10 @@
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-2">
 								<ul class="meta-search">
-									<li><i class="glyphicon glyphicon-calendar"></i> <span>${fl.recipe.dateCreated}</span></li>
-									<li><i class="glyphicon glyphicon-time"></i> <span>${fl.recipe.prepTime}</span></li>
-									<li><i class="glyphicon glyphicon-tags"></i> <span>${fl.recipe.category.name}</span></li>
+									<li><i class="glyphicon glyphicon-calendar"></i> <span>Created: ${fl.recipe.dateCreated}</span></li>
+									<li><i class="glyphicon glyphicon-time"></i> <span>Prep
+											Time: ${fl.recipe.prepTime}</span></li>
+									<li><i class="glyphicon glyphicon-tags"></i> <span>Category: ${fl.recipe.category.name}</span></li>
 								</ul>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
