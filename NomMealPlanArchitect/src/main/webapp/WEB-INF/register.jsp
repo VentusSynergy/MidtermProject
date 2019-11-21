@@ -79,7 +79,7 @@
 							<span class="input-group-text"> <i class="fa fa-envelope"></i>
 							</span>
 						</div>
-						<form:input class="form-control" path="email"
+						<form:input class="form-control" required="required" path="email"
 							placeholder="Email address" type="email" />
 						<form:errors path="email" />
 					</div>
@@ -89,7 +89,7 @@
 							<span class="input-group-text"> <i class="fa fa-lock"></i>
 							</span>
 						</div>
-						<form:input class="form-control" path="password"
+						<form:input class="form-control" required="required" path="password"
 							placeholder="Create password" minlength="8" maxlength="16" type="password" min="8" max="16"/>
 					<form:errors path="password" />
 					</div>
