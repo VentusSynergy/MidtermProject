@@ -26,6 +26,9 @@ public class RecipeDetailsController {
 	public ModelAndView searchOneRecipes(@RequestParam("recipeId") int id) {
 		ModelAndView mv = new ModelAndView();
 		Recipe recipe = recipeDao.selectRecipeById(id);
+		
+		int num = 5;
+		mv.addObject("averageRating", num);
 		mv.addObject("recipe", recipe);
 		mv.setViewName("recipeDetails");
 		return mv;
