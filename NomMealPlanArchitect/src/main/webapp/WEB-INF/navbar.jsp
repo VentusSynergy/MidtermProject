@@ -27,7 +27,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.do"><i
-				class="fas fa-utensils"></i> NOM! Meal Plan Architect</a>
+				class="fas fa-utensils"></i> NOM!</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
