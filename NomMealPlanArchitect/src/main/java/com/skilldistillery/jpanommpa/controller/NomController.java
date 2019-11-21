@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.CategoryDAO;
-import com.skilldistillery.jpanommpa.dao.GroceryListDAO;
 import com.skilldistillery.jpanommpa.dao.IngredientDAO;
-import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.dao.TypeDAO;
 import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
