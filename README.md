@@ -14,7 +14,7 @@ This was a week long sprint use Agile Wed Development Methodologies to exceed th
 
 ### Overview:
 
-This program is designed to be a full stack website application that creates, reads, updates and deletes user and recipe data from a database using Java Database Connectivity.
+This program is designed to be a full stack website application that creates, reads, updates and deletes user and recipe data from a database we built using MySQL Workbench and connecting with using Java Database Connectivity.
 
 ### How to run:
 
