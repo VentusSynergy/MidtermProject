@@ -58,11 +58,11 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result h3 > a, .search-result i { color: #248dc1 !important; }
 .search-result p { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; } 
 .search-result form.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; } 
-.search-result form.update { position: static; right: 0; top: 126px; }
+/*.search-result form.update { position: static; right: 0; top: 126px; }
 .search-result form.update button { background-color: #248dc1; padding: 5px 5px 3px 5px; color: white; }
 .search-result form.update button:hover { background-color: #414141; }
 .search-result form.update button i { color: #fff !important; }
 .search-result form.removeFav { position: static; right: 0; top: 126px; }
 .search-result form.removeFav button { background-color: red; padding: 5px 5px 3px 5px; color: white; }
 .search-result form.removeFav button:hover { background-color: #411004; }
-
+ */
