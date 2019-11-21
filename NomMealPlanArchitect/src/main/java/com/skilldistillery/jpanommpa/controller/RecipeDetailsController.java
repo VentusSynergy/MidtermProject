@@ -36,6 +36,20 @@ public class RecipeDetailsController {
 		Recipe recipe = recipeDao.selectRecipeById(id);
 
 		User user = (User) session.getAttribute("loggedInUser");
+		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+		mv.addObject("favList", favList);
+		
+		mv.addObject("recipe", recipe);
+		mv.setViewName("recipeDetails");
+		return mv;
+	}
+
+	@RequestMapping(path = "searchOneRecipePost.do", method = RequestMethod.POST)
+	public ModelAndView searchOneRecipesPost(@RequestParam("recipeId") int id, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Recipe recipe = recipeDao.selectRecipeById(id);
+
+		User user = (User) session.getAttribute("loggedInUser");
 		UserRecipe ur = new UserRecipe();
 		ur.setUser(user);
 		ur.setRecipe(recipeDao.selectRecipeById(id));
@@ -55,14 +69,11 @@ public class RecipeDetailsController {
 	public ModelAndView addReview(@ModelAttribute("newReview") RecipeReview newReview, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
+		
 		User user = (User) session.getAttribute("loggedInUser");
-		UserRecipe ur = new UserRecipe();
-		ur.setUser(user);
-		ur.setRecipe(recipeDao.selectRecipeById(newReview.getRecipe().getId()));
-		favDao.createUserRecipe(ur);
 		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 		mv.addObject("favList", favList);
-
+		
 		reviewDao.createRecipeReview(newReview);
 		Recipe recipe = recipeDao.selectRecipeById(newReview.getRecipe().getId());
 		mv.addObject("recipe", recipe);
@@ -75,16 +86,13 @@ public class RecipeDetailsController {
 		ModelAndView mv = new ModelAndView();
 		RecipeReview deactivateReview = reviewDao.findReviewById(id);
 
-		reviewDao.deleteRecipeReview(deactivateReview);
-		Recipe recipe = recipeDao.selectRecipeById(deactivateReview.getRecipe().getId());
-
 		User user = (User) session.getAttribute("loggedInUser");
-		UserRecipe ur = new UserRecipe();
-		ur.setUser(user);
-		ur.setRecipe(recipeDao.selectRecipeById(recipe.getId()));
-		favDao.createUserRecipe(ur);
 		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
 		mv.addObject("favList", favList);
+		
+		
+		reviewDao.deleteRecipeReview(deactivateReview);
+		Recipe recipe = recipeDao.selectRecipeById(deactivateReview.getRecipe().getId());
 
 		mv.addObject("recipe", recipe);
 		mv.setViewName("recipeDetails");
