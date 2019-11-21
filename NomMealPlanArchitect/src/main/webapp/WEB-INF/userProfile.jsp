@@ -115,7 +115,7 @@
 									<form:form class="update" action="updateRecipe.do" method="GET"
 										modelAttribute="recipe">
 										<button type="submit" name="recipeId" value="${fl.recipe.id}"
-											class="glyphicon glyphicon-edit">Update</button>
+											class="btn btn-warning">Update</button>
 
 									</form:form>
 								</div>
@@ -123,7 +123,7 @@
 									<form:form class="removeFav" action="removeFav.do"
 										method="POST" modelAttribute="recipe">
 										<button type="submit" name="id" value="${fl.id}"
-											class="glyphicon glyphicon-remove">Remove From Favorites</button>
+											class="btn btn-danger">Remove From Favorites</button>
 
 									</form:form>
 								</div>
