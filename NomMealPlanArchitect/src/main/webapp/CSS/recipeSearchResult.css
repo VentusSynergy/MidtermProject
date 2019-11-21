@@ -20,16 +20,16 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result h3 { font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif; margin-top: 0 !important; margin-bottom: 10px !important; }
 .search-result h3 > a, .search-result i { color: #248dc1 !important; }
 .search-result p { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; } 
-.search-result form.plus { position: static; right: 0; top: 126px; }
+/* .search-result form.plus { position: static; right: 0; top: 126px; }
 .search-result form.update { position: static; right: 0; top: 126px; }
-.search-result form.delete { position: static; right: 0; top: 126px; }
+.search-result form.delete { position: static; right: 0; top: 126px; } */
+/* .search-result form.update button { background-color: #ff9300; padding: 5px 5px 3px 5px; color: white; }
 .search-result form.plus button { background-color: #248dc1; padding: 5px 5px 3px 5px; color: white; }
-.search-result form.delete button { background-color: red; padding: 5px 5px 3px 5px; color: white; }
-.search-result form.plus button:hover { background-color: #414141; }
+.search-result form.delete button { background-color: red; padding: 5px 5px 3px 5px; color: white; } */
+/* .search-result form.plus button:hover { background-color: #414141; }
 .search-result form.delete button:hover { background-color: #411004; }
-.search-result form.plus button i { color: #fff !important; }
-.search-result form.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; } 
-.search-result form.update button { background-color: #248dc1; padding: 5px 5px 3px 5px; color: white; }
-.search-result form.update button:hover { background-color: #414141; }
-.search-result form.update button i { color: #fff !important; }
+.search-result form.plus button i { color: #fff !important; } */
+/* .search-result form.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }  */
+/* .search-result form.update button:hover { background-color: #414141; }
+.search-result form.update button i { color: #fff !important; } */
 

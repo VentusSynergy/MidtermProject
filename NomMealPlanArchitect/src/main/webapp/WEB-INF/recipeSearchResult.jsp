@@ -23,28 +23,28 @@
 	rel="stylesheet">
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<h1>Recipe Search Results Page</h1>
 	<hgroup class="mb20">
 		<h1>Search Results</h1>
 		<h2 class="lead">
 			<strong class="text-danger">${fn: length(recipe)}</strong> results
-			were found for the search for: 
+			were found for the search for:
 			<c:choose>
 				<c:when test="${not empty key }">
-					 <strong class="text-danger">${key}</strong>
+					<strong class="text-danger">${key}</strong>
 				</c:when>
 				<c:when test="${not empty type}">
 					<strong class="text-danger">${type}</strong>
 				</c:when>
 				<c:when test="${not empty category}">
 					<strong class="text-danger">${category}</strong>
-				</c:when> 
+				</c:when>
 			</c:choose>
 		</h2>
 	</hgroup>
@@ -79,49 +79,55 @@
 										<c:set var="isFavorite" value="true" />
 									</c:if>
 								</c:forEach>
-								<c:choose>
+								<div class="row">
+									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
+										<c:choose>
+											<c:when test="${isFavorite == true}">
+												<form class="plus" action="addRecipeToUser.do" method="POST">
+													<button class="btn btn-outline-info" disabled>Added</button>
+													<input type="hidden" name="id" value="${r.id}"> <input
+														type="hidden" name="key" value="${key}">
+												</form>
+											</c:when>
 
-									<c:when test="${isFavorite == true}">
-										<form class="plus" action="addRecipeToUser.do" method="POST">
-											<button class="glyphicon glyphicon-plus" disabled>Added</button>
-											<input type="hidden" name="id" value="${r.id}"> <input
-												type="hidden" name="key" value="${key}">
-										</form>
-									</c:when>
+											<c:otherwise>
+												<c:if test="${!empty loggedInUser.email}">
+													<form class="plus" action="addRecipeToUser.do"
+														method="POST">
+														<button class="btn btn-info">Add</button>
+														<input type="hidden" name="id" value="${r.id}"> <input
+															type="hidden" name="key" value="${key}">
+													</form>
+												</c:if>
+											</c:otherwise>
 
-									<c:otherwise>
+										</c:choose>
+									</div>
+									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
 										<c:if test="${!empty loggedInUser.email}">
-											<form class="plus" action="addRecipeToUser.do" method="POST">
-												<button class="glyphicon glyphicon-plus">Add</button>
-												<input type="hidden" name="id" value="${r.id}"> <input
-													type="hidden" name="key" value="${key}">
-											</form>
+											<div>
+												<form:form class="update" action="updateRecipe.do"
+													method="GET" modelAttribute="recipe">
+													<button type="submit" name="recipeId" value="${r.id}"
+														class="btn btn-warning">Update</button>
+
+												</form:form>
+											</div>
 										</c:if>
-									</c:otherwise>
-
-								</c:choose>
-								<c:if test="${!empty loggedInUser.email}">
-									<div>
-										<form:form class="update" action="updateRecipe.do"
-											method="GET" modelAttribute="recipe">
-											<button type="submit" name="recipeId" value="${r.id}"
-												class="glyphicon glyphicon-edit">Update</button>
-
-										</form:form>
 									</div>
-								</c:if>
-								<br>
-								<c:if test="${!empty loggedInUser.email}">
-									<div>
-										<form:form class="delete" action="deleteRecipe.do"
-											method="POST" modelAttribute="recipe">
-											<button type="submit" name="id" value="${r.id}"
-												class="glyphicon glyphicon-remove">Delete</button>
+								</div>
+								<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
+									<c:if test="${!empty loggedInUser.email}">
+										<div>
+											<form:form class="delete" action="deleteRecipe.do"
+												method="POST" modelAttribute="recipe">
+												<button type="submit" name="id" value="${r.id}"
+													class="btn btn-danger">Delete</button>
 
-										</form:form>
-									</div>
-								</c:if>
-
+											</form:form>
+										</div>
+									</c:if>
+								</div>
 							</div>
 							<span class="clearfix borda"></span>
 						</article>
