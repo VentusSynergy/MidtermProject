@@ -79,7 +79,7 @@
 							<br> 
 							
 							<label for="ingredients">Recipe Ingredients</label>
-							<select class="custom-select" multiple name="ingredientIds" size="8">
+							<select class="custom-select" multiple name="ingredientIds" size="8" required="required">
   							<!-- <option disabled selected value="">Choose Recipe Ingredients</option> -->
   							<c:forEach var="i" items="${ingredients}">
  							 	<option value="${i.id}">${i.name}</option>
