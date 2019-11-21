@@ -122,6 +122,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		managedUser.setEmail(updatedUser.getEmail());
 		managedUser.setUsername(updatedUser.getUsername());
 		managedUser.setPassword(updatedUser.getPassword());
+		managedUser.setAvatarURL(updatedUser.getAvatarURL());
 
 		return managedUser;
 	}

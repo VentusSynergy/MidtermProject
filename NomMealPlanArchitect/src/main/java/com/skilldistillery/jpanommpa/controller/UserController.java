@@ -39,7 +39,7 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(path = "loginAction.do", method = RequestMethod.GET)
+	@RequestMapping(path = "loginAction.do", method = RequestMethod.POST)
 	public ModelAndView loginDo(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
