@@ -23,6 +23,10 @@ First, the user enters the index page. The user can choose to:
 * Login if already a user
 * Search recipes (logged in or not logged in)
 
+Demo Account:
+* Email: marthaStewart@gmail.com,
+* Password: marthaStewart
+
 A logged in user can:
 * Update their profile
 * Deactivate their profile
@@ -33,9 +37,13 @@ A logged in user can:
 * Update any recipe
 * Deactivate a recipe they have created
 
-The Admin user can:
+The admin user can:
 * Remove a review even if they did not create the review
 * Remove any recipe even if they did not create the recipe
+
+Admin Account:
+* Email: admin@nom.com,
+* Password: admin
 
 ### Technologies used:
 
