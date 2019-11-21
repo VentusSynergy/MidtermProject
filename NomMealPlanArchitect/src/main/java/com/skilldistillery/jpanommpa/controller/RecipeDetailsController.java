@@ -36,8 +36,11 @@ public class RecipeDetailsController {
 		Recipe recipe = recipeDao.selectRecipeById(id);
 
 		User user = (User) session.getAttribute("loggedInUser");
-		List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
-		mv.addObject("favList", favList);
+		
+		if (user != null) {
+			List<UserRecipe> favList = favDao.selectAllUserRecipe(user.getId());
+			mv.addObject("favList", favList);	
+		}
 		
 		mv.addObject("recipe", recipe);
 		mv.setViewName("recipeDetails");
