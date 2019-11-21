@@ -75,7 +75,7 @@
 							<br>
 							
 						<label for="prepTime">Prep Time</label>
-						<input type="text" name="prepTime"
+						<input type="number" min="1" max="1000" name="prepTime"
 							class="form-control" required="required" value="${recipe.prepTime}"> 
 							<br>
 							
@@ -111,25 +111,6 @@
 							value="${recipe.photoLink}"> 
 							<br> 
 							
-							<label
-							for="cookbook">Cookbook Name</label> 
-							<input
-							type="text" name="cookbook" class="form-control"
-							value="${recipe.cookbook}"> 
-							<br> 
-							
-							<label
-							for="cookbookPageNumber">Cookbook Page #</label> 
-							<input type="text"
-							name="cookbookPageNumber" class="form-control"
-							value="${recipe.cookbookPageNumber}"> 
-							<br> 
-							
-							<label
-							for="webLink">URL Web Link to Recipe</label> 
-							<input type="text" name="webLink"
-							class="form-control" value="${recipe.webLink}">
-							<br>
 							
 							<label
 							for="category.id">Recipe Category</label>
@@ -155,6 +136,25 @@
 					</div>
 					<button type="submit" class="btn btn-warning btn-block">Update
 						Recipe</button>
+							<label
+							for="cookbook"><!-- Cookbook Name --></label> 
+							<input
+							type="hidden" name="cookbook" class="form-control"
+							value="${recipe.cookbook}"> 
+							<br> 
+							
+							<label
+							for="cookbookPageNumber"><!-- Cookbook Page # --></label> 
+							<input type="hidden"
+							name="cookbookPageNumber" class="form-control"
+							value="${recipe.cookbookPageNumber}"> 
+							<br> 
+							
+							<label
+							for="webLink"><!-- URL Web Link to Recipe --></label> 
+							<input type="hidden" name="webLink"
+							class="form-control" value="${recipe.webLink}">
+							<br>
 				</form:form>
 				<div class="col-2"></div>
 			</div>
