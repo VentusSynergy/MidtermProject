@@ -46,7 +46,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-3">
 									<a href="#" title="recipe.photoLink" class="thumbnail"><img
 										src="${recipe.photoLink}" alt="recipe.photoLink"
-										height="150px" width="auto" /></a>
+										height="200px" width="220" /></a>
 								</div>
 							</c:if>
 
@@ -92,10 +92,11 @@
 									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
 										<c:choose>
 											<c:when test="${isFavorite == true}">
-												<form class="plus" action="searchOneRecipePost.do" method="POST">
+												<form class="plus" action="searchOneRecipePost.do"
+													method="POST">
 													<button class="btn btn-outline-info" disabled>Added</button>
-													<input type="hidden" name="recipeId" value="${recipe.id}"> <input
-														type="hidden" name="key" value="${key}">
+													<input type="hidden" name="recipeId" value="${recipe.id}">
+													<input type="hidden" name="key" value="${key}">
 												</form>
 											</c:when>
 
@@ -104,8 +105,8 @@
 													<form class="plus" action="searchOneRecipePost.do"
 														method="POST">
 														<button class="btn btn-info">Add</button>
-														<input type="hidden" name="recipeId" value="${recipe.id}"> <input
-															type="hidden" name="key" value="${key}">
+														<input type="hidden" name="recipeId" value="${recipe.id}">
+														<input type="hidden" name="key" value="${key}">
 													</form>
 												</c:if>
 											</c:otherwise>
@@ -113,36 +114,36 @@
 										</c:choose>
 									</div>
 
-								<c:if test="${loggedInUser.active eq true }">
+									<c:if test="${loggedInUser.active eq true }">
+										<div>
+											<form:form class="update" action="updateRecipe.do"
+												method="GET" modelAttribute="recipe">
+												<button type="submit" name="recipeId" value="${recipe.id}"
+													class="btn btn-warning">Update</button>
+
+											</form:form>
+										</div>
+									</c:if>
 									<div>
-										<form:form class="update" action="updateRecipe.do"
-											method="GET" modelAttribute="recipe">
-											<button type="submit" name="recipeId" value="${recipe.id}"
-												class="btn btn-warning">Update</button>
+										<c:if test="${loggedInUser.admin eq true }">
+											<form:form class="delete" action="deleteRecipe.do"
+												method="POST" modelAttribute="recipe">
+												<button type="submit" name="id" value="${recipe.id}"
+													class="btn btn-danger">ADMIN: Delete</button>
 
-										</form:form>
+											</form:form>
+										</c:if>
+										<c:if test="${loggedInUser.id eq recipe.user.id }">
+											<form:form class="delete" action="deleteRecipe.do"
+												method="POST" modelAttribute="recipe">
+												<button type="submit" name="id" value="${recipe.id}"
+													class="btn btn-danger">Delete</button>
+
+											</form:form>
+										</c:if>
 									</div>
-								</c:if>
-								<div>
-									<c:if test="${loggedInUser.admin eq true }">
-										<form:form class="delete" action="deleteRecipe.do"
-											method="POST" modelAttribute="recipe">
-											<button type="submit" name="id" value="${recipe.id}"
-												class="btn btn-danger">ADMIN: Delete</button>
-
-										</form:form>
-									</c:if>
-									<c:if test="${loggedInUser.id eq recipe.user.id }">
-										<form:form class="delete" action="deleteRecipe.do"
-											method="POST" modelAttribute="recipe">
-											<button type="submit" name="id" value="${recipe.id}"
-												class="btn btn-danger">Delete</button>
-
-										</form:form>
-									</c:if>
 								</div>
-							</div>
-							<span class="clearfix borda"></span>
+								<span class="clearfix borda"></span>
 						</article>
 					</section>
 				</div>
