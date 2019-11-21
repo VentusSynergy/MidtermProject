@@ -37,7 +37,6 @@ public class RecipeCUDController {
 	@Autowired
 	private TypeDAO typeDao;
 
-	
 	@RequestMapping(path = "createRecipe.do", method = RequestMethod.GET)
 	public ModelAndView createRecipe(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -52,10 +51,11 @@ public class RecipeCUDController {
 	}
 
 	@RequestMapping(path = "recipeCreate.do", method = RequestMethod.POST)
-	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView AddRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session,
+			RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		recipe.setUser((User) session.getAttribute("loggedInUser"));
-		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
+		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length + 1];
 
 		for (int i = 0; i < ingredientIds.length; i++) {
 			if (ingredientIds[i] != null) {
@@ -70,7 +70,7 @@ public class RecipeCUDController {
 				break;
 			}
 		}
-		
+
 		Recipe created = recipeDao.createRecipe(recipe, ri);
 		if (created != null) {
 			List<Recipe> recipeList = new ArrayList<>();
@@ -108,8 +108,8 @@ public class RecipeCUDController {
 	@RequestMapping(path = "recipeUpdate.do", method = RequestMethod.POST)
 	public ModelAndView UpdateRecipe(@Valid Recipe recipe, Integer[] ingredientIds, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
-		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length+1];
+
+		RecipeIngredient[] ri = new RecipeIngredient[ingredientIds.length + 1];
 
 		for (int i = 0; i < ingredientIds.length; i++) {
 			if (ingredientIds[i] != null) {
@@ -124,7 +124,7 @@ public class RecipeCUDController {
 				break;
 			}
 		}
-		
+
 		Recipe updated = recipeDao.updateRecipe(recipe, ri);
 		// return same search
 		List<Recipe> recipeList = recipeDao.selectRecipeByName(updated.getName());
@@ -146,5 +146,5 @@ public class RecipeCUDController {
 		mv.setViewName("recipeSearchResult");
 		return mv;
 	}
-	
+
 }

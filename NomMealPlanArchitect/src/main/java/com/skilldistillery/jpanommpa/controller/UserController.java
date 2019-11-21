@@ -1,6 +1,5 @@
 package com.skilldistillery.jpanommpa.controller;
 
-import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.jpanommpa.dao.AuthenticationDAO;
-import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
-import com.skilldistillery.jpanommpa.entities.Recipe;
 import com.skilldistillery.jpanommpa.entities.User;
 import com.skilldistillery.jpanommpa.entities.UserRecipe;
 
