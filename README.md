@@ -1,16 +1,16 @@
-#### Nom! Meal Plan Architect
+# Nom! Meal Plan Architect
 
 ## JPA Full Stack Midterm Project
 
 ### Week 11 Midterm Project at Skill Distillery
 
 Built by:
-* Vinton Lee
-* Kelly
-* Kullen
-* Travis
+* [Kelly Cromeans](https://github.com/Kvothik)
+* [Kullen Kee](https://github.com/VentusSynergy)
+* [Travis Duplantis](https://github.com/tduplantis83)
+* [Vinton Lee](https://github.com/vintonl)
 
-This was a week long Sprint use Agile Wed Development Methodologies to exceed the minimum viable product for our midterm  [assignment](https://github.com/VentusSynergy/MidtermProject/blob/master/Assignment.md).
+This was a week long sprint use Agile Wed Development Methodologies to exceed the minimum viable product for our midterm  [assignment](https://github.com/VentusSynergy/MidtermProject/blob/master/Assignment.md).
 
 ### Overview:
 
