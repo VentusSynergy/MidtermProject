@@ -2,7 +2,7 @@
 
 ## JPA Full Stack Midterm Project
 
-### Week 11 Midterm Project at Skill Distillery
+### Week 11 Midterm Project at Skill Distillery - November 22, 2019
 
 Built by:
 * [Kelly Cromeans](https://github.com/Kvothik)
@@ -10,7 +10,7 @@ Built by:
 * [Travis Duplantis](https://github.com/tduplantis83)
 * [Vinton Lee](https://github.com/vintonl)
 
-This was a week long sprint use Agile Wed Development Methodologies to exceed the minimum viable product for our midterm  [assignment](https://github.com/VentusSynergy/MidtermProject/blob/master/Assignment.md).
+This was a week-long sprint use Agile Methodologies to exceed the minimum viable product for our midterm  [assignment](https://github.com/VentusSynergy/MidtermProject/blob/master/Assignment.md).
 
 ### Overview:
 
@@ -19,18 +19,27 @@ This program is designed to be a full stack website application that creates, re
 ### How to run:
 
 First, the user enters the index page. The user can choose to:
-1. Search the list using a keyword or phrase searching the item name, description, or store.
-2. Add an item.
-3. Mark item as purchased.
-4. Edit an item.
-5. See the item details.
-6. Delete an item from the purchased list.
+* Register as a user
+* Login if already a user
+* Search recipes (logged in or not logged in)
 
-The website application will then start the search process of the database and return the result of the search with all of the list data. The user will then have the option to either update the user attributes and recipe information.
+A logged in user can:
+* Update their profile
+* Deactivate their profile
+* Add or remove recipes to their favorites list
+* Rate and make a review comment about a recipe
+* Remove the recipe review that they have made
+* Add a new recipe
+* Update any recipe
+* Deactivate a recipe they have created
+
+The Admin user can:
+* Remove a review even if they did not create the review
+* Remove any recipe even if they did not create the recipe
 
 ### Technologies used:
 
-Java, Java Persistence API, Spring MVC & STS, Gradle, SQL, MySQL Workbench, HTML, CSS, Bootstrap, Apache, Tomcat, AWS, Atom, Git, Github, and Trello.
+Java, Java Persistence API, Spring MVC & STS, Gradle, SQL, MySQL Workbench, HTML, CSS, Bootstrap, Apache, Tomcat, AWS, Atom, Git, GitHub, and Trello.
 
 ### Topics implemented:
 
@@ -55,10 +64,10 @@ Test Driven Development using JUNIT Juniper.
 ### Lessons learned:
 
 This project helped us better grasp the capabilities of Dynamic Web Applications by allowing us to better learn how to:
-1. Build a database using MySQL Workbench.
-2. Understand Spring Application Contexts.
-3. Use the Java Persistence API to generate HTML.
-4. Build a Dynamic Web Applications using Spring MVC.
-
-### Stretch Goals
+* Build a multi-table database using MySQL Workbench.
+* Be an Agile development team
+* Use branching on Git/GitHub
+* Understand Spring Application Contexts.
+* Use the Java Persistence API to generate HTML.
+* Build a Dynamic Web Applications using Spring MVC.
 * CCS and Bootstrap to make it web and mobile-friendly.
