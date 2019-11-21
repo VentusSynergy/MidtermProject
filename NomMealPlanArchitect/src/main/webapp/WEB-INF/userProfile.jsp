@@ -20,7 +20,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<title>User Profile: Nom! Meal Plan Architect</title>
+<title>User Profile: Nom!</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/userprofile.css" />" rel="stylesheet">

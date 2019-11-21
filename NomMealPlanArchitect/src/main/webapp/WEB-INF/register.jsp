@@ -25,7 +25,7 @@
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<title>Register: new user</title>
+<title>Register User: NOM!</title>
 
 <!-- CSS -->
 <link href="<c:url value="/CSS/register.css" />" rel="stylesheet"> 
