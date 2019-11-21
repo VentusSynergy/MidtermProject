@@ -68,7 +68,7 @@
 							<br>
 							
 						<label for="prepTime">Prep Time</label>
-						<input type="text" name="prepTime"
+						<input type="number" min="1" max="1000" name="prepTime"
 							class="form-control" required="required" placeholder="Prep Time in Minutes"> 
 							<br>
 							
@@ -94,25 +94,6 @@
 							placeholder="URL Link to Recipe Photo"> 
 							<br> 
 							
-							<label
-							for="cookbook">Cookbook Name</label> 
-							<input
-							type="text" name="cookbook" class="form-control"
-							placeholder="Cookbook Name"> 
-							<br> 
-							
-							<label
-							for="cookbookPageNumber">Cookbook Page #</label> 
-							<input type="text"
-							name="cookbookPageNumber" class="form-control"
-							placeholder="Cookbook Page Number"> 
-							<br> 
-							
-							<label
-							for="webLink">URL Web Link to Recipe</label> 
-							<input type="text" name="webLink"
-							class="form-control" placeholder="Additional Comments">
-							<br>
 							
 							<select class="form-control dropdown-info" id="category.id"
 							name="category.id" required="required">
@@ -136,6 +117,25 @@
 					</div>
 					<button type="submit" class="btn btn-success btn-block">Create
 						Recipe</button>
+							<label
+							for="cookbook"><!-- Cookbook Name --></label> 
+							<input
+							type="hidden" name="cookbook" class="form-control"
+							placeholder="Cookbook Name"> 
+							<br> 
+							
+							<label
+							for="cookbookPageNumber"><!-- Cookbook Page # --></label> 
+							<input type="hidden"
+							name="cookbookPageNumber" class="form-control"
+							placeholder="Cookbook Page Number"> 
+							<br> 
+							
+							<label
+							for="webLink"><!-- URL Web Link to Recipe --></label> 
+							<input type="hidden" name="webLink"
+							class="form-control" placeholder="Additional Comments">
+							<br>
 				</form:form>
 				<div class="col-2"></div>
 			</div>
