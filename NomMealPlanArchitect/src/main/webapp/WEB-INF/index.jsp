@@ -23,21 +23,15 @@
 </head>
 <body>
 	<div class="top-container">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+		<br> <br> <br> <br> <br> <br> <br>
 		<div class="row">
-		<div class="col-1"></div>
-		<div class="col-10">
-		<h1 class="app-title">
-			<em>NOM</em>
-		</h1>
-		</div>
-		<div class="col-1"></div>
+			<div class="col-1"></div>
+			<div class="col-10">
+				<h1 class="app-title">
+					<em>NOM</em>
+				</h1>
+			</div>
+			<div class="col-1"></div>
 		</div>
 	</div>
 	<section id="team" class="pb-5">
@@ -177,30 +171,34 @@
 			<h3 class="text-dark">Kullen</h3>
 		</div>
 		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
-<a href="https://www.linkedin.com/in/vintonlee/" target="_blank">
-			<img class="rounded-circle" alt="140x140"
+			<a href="https://www.linkedin.com/in/vintonlee/" target="_blank">
+				<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
 				src="https://avatars3.githubusercontent.com/u/49958931?s=460&v=4"
 				data-holder-rendered="true">
-			</a><h3 class="text-dark">Vinton</h3>
+			</a>
+			<h3 class="text-dark">Vinton</h3>
 		</div>
 		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
 			<a href="https://www.linkedin.com/in/tduplantis83" target="_blank">
-			<img class="rounded-circle" alt="140x140"
+				<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
 				src="https://avatars2.githubusercontent.com/u/53097987?s=460&v=4"
 				data-holder-rendered="true">
-			</a><h3 class="text-dark">Travis</h3>
+			</a>
+			<h3 class="text-dark">Travis</h3>
 		</div>
 		<div class="col-lg-3 col-md-6 col-sm-12 text-center">
 			<a href="https://github.com/Kvothik?tab=repositories" target="_blank">
-			<img class="rounded-circle" alt="140x140"
+				<img class="rounded-circle" alt="140x140"
 				style="width: 140px; height: 140px;"
 				src="https://i.imgur.com/TgWJzQ1.jpg" data-holder-rendered="true">
-			</a><h3 class="text-dark">Kelly</h3>
+			</a>
+			<h3 class="text-dark">Kelly</h3>
 		</div>
+		<div class="row"></div>
+
 	</div>
-	<div class="row"></div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
