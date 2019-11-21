@@ -17,32 +17,44 @@
 }
 
 
-@media (min-width:568px) {
+@media (min-width:500px) {
   .app-title {
+  text-align: center;
     font-size: 28ex;
+  }
+}
+
+@media (min-width:600px) {
+  .app-title {
+  text-align: center;
+    font-size: 30ex;
   }
 }
 
 @media (min-width:700px) {
   .app-title {
-    font-size: 30ex;
+  text-align: center;
+    font-size: 32ex;
   }
 }
 
 @media (min-width:800px) {
   .app-title {
+  text-align: center;
     font-size: 35ex;
   }
 }
 
 @media (min-width:900px) {
   .app-title {
-    font-size: 40ex;
+  text-align: center;
+    font-size: 43ex;
   }
 }
 
 @media (min-width:1000px) {
   .app-title {
+  text-align: center;
     /* Never get larger than this */
     font-size: 50ex;
   }
