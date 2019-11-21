@@ -27,7 +27,6 @@ public class MealPlanController {
 		User userPlan = (User) session.getAttribute("loggedInUser");
 		List<MealPlan> mp = mpDao.selectMealPlanByUser(userPlan);
 
-		
 		System.err.println("Before sent in controller");
 		mv.addObject("mealPlan", mp);
 
@@ -35,16 +34,5 @@ public class MealPlanController {
 
 		return mv;
 	}
-
-//	@RequestMapping(path = "userMealPlan.do")
-//	public ModelAndView userMealPlan() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName(viewName);
-//		
-//		
-//		
-//		
-//		return mv;
-//	}
 
 }

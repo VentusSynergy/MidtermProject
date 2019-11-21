@@ -1,12 +1,9 @@
 package com.skilldistillery.jpanommpa.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,23 +20,15 @@ import com.skilldistillery.jpanommpa.dao.MealPlanDAO;
 import com.skilldistillery.jpanommpa.dao.RecipeDAO;
 import com.skilldistillery.jpanommpa.dao.TypeDAO;
 import com.skilldistillery.jpanommpa.dao.UserRecipeFavoritesDAO;
-import com.skilldistillery.jpanommpa.entities.Ingredient;
 import com.skilldistillery.jpanommpa.entities.Recipe;
-import com.skilldistillery.jpanommpa.entities.RecipeIngredient;
 import com.skilldistillery.jpanommpa.entities.User;
 import com.skilldistillery.jpanommpa.entities.UserRecipe;
 
 @Controller
 public class NomController {
 
-//	@Autowired
-//	private AuthenticationDAO userDao;
-	@Autowired
-	private GroceryListDAO groceryDao;
 	@Autowired
 	private IngredientDAO ingredientDao;
-	@Autowired
-	private MealPlanDAO mealPlanDao;
 	@Autowired
 	private RecipeDAO recipeDao;
 	@Autowired
@@ -144,21 +133,11 @@ public class NomController {
 		return mv;
 	}
 
-//	@RequestMapping(path = "searchOneRecipe.do", method = RequestMethod.GET)
-//	public ModelAndView searchOneRecipes(@RequestParam("recipeId") int id) {
-//		ModelAndView mv = new ModelAndView();
-//		Recipe recipe = recipeDao.selectRecipeById(id);
-//		mv.addObject("recipe", recipe);
-//		mv.setViewName("recipeDetails");
-//		return mv;
-//	}
-
 	@RequestMapping(path = "groceryList.do")
 	public ModelAndView viewGroceryList(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User u = new User();
 		mv.addObject("user", u);
-//		TODO needs grocery list to function
 
 		mv.setViewName("groceryList");
 		return mv;
