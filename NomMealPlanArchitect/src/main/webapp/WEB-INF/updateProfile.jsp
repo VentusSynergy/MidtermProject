@@ -64,6 +64,19 @@
 					</div>
 					<!-- form-group// -->
 					
+					<!-- form-group// -->
+										<h5 class="text-white bg-dark">User Image URL</h5>
+					
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-link"></i>
+							</span>
+						</div>
+						<form:input class="form-control" path="avatarURL"
+							placeholder="https://www..." type="text" />
+					</div>
+					<!-- form-group// -->
+					
 										<h5 class="text-white bg-dark">EMAIL</h5>
 					<div class="form-group input-group">
 						<div class="input-group-prepend">

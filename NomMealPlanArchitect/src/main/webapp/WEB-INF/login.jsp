@@ -40,7 +40,7 @@
 			<div class="col-3"></div>
 			<div class="col-6">
 				<h1 class="text-light" id="log">Login</h1>
-				<form:form action="loginAction.do" method="GET" id="form">
+				<form:form action="loginAction.do" method="POST" id="form">
 					<div class="form-group" >
 						<label for="exampleInputEmail1" class="text-light">Email address</label> <input
 							type="email" class="form-control" id="exampleInputEmail1"
