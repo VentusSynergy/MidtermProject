@@ -24,7 +24,7 @@ First, the user enters the index page. The user can choose to:
 * Search recipes (logged in or not logged in)
 
 Demo Account:
-* Email: marthaStewart@gmail.com,
+* Email: marthaStewart@gmail.com
 * Password: marthaStewart
 
 A logged in user can:
@@ -42,7 +42,7 @@ The admin user can:
 * Remove any recipe even if they did not create the recipe
 
 Admin Account:
-* Email: admin@nom.com,
+* Email: admin@nom.com
 * Password: admin
 
 ### Technologies used:
