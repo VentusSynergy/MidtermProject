@@ -94,7 +94,7 @@
 											<c:when test="${isFavorite == true}">
 												<form class="plus" action="searchOneRecipePost.do" method="POST">
 													<button class="btn btn-outline-info" disabled>Added</button>
-													<input type="hidden" name="id" value="${recipe.id}"> <input
+													<input type="hidden" name="recipeId" value="${recipe.id}"> <input
 														type="hidden" name="key" value="${key}">
 												</form>
 											</c:when>
@@ -104,7 +104,7 @@
 													<form class="plus" action="searchOneRecipePost.do"
 														method="POST">
 														<button class="btn btn-info">Add</button>
-														<input type="hidden" name="id" value="${recipe.id}"> <input
+														<input type="hidden" name="recipeId" value="${recipe.id}"> <input
 															type="hidden" name="key" value="${key}">
 													</form>
 												</c:if>
