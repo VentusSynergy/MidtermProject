@@ -17,7 +17,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<title>Recipe Search Results: Nom! Meal Plan Architect</title>
+<title>Recipe Search Results: Nom!</title>
 <!-- CSS -->
 <link href="<c:url value="/CSS/recipeSearchResult.css" />"
 	rel="stylesheet">
@@ -91,7 +91,7 @@
 											</c:when>
 
 											<c:otherwise>
-												<c:if test="${!empty loggedInUser.email}">
+												<c:if test="${loggedInUser.active eq true}">
 													<form class="plus" action="addRecipeToUser.do"
 														method="POST">
 														<button class="btn btn-info">Add</button>
@@ -104,7 +104,7 @@
 										</c:choose>
 									</div>
 									<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
-										<c:if test="${!empty loggedInUser.email}">
+										<c:if test="${loggedInUser.active eq true}">
 											<div>
 												<form:form class="update" action="updateRecipe.do"
 													method="GET" modelAttribute="recipe">
@@ -117,12 +117,24 @@
 									</div>
 								</div>
 								<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
-									<c:if test="${!empty loggedInUser.email}">
+									<c:if test="${loggedInUser.id eq r.user.id}">
 										<div>
 											<form:form class="delete" action="deleteRecipe.do"
 												method="POST" modelAttribute="recipe">
 												<button type="submit" name="id" value="${r.id}"
 													class="btn btn-danger">Delete</button>
+
+											</form:form>
+										</div>
+									</c:if>
+								</div>
+								<div class="col-xs-4 col-xs-4 col-xs-6 text-center">
+									<c:if test="${loggedInUser.admin eq true }">
+										<div>
+											<form:form class="delete" action="deleteRecipe.do"
+												method="POST" modelAttribute="recipe">
+												<button type="submit" name="id" value="${r.id}"
+													class="btn btn-danger">ADMIN: Delete</button>
 
 											</form:form>
 										</div>
