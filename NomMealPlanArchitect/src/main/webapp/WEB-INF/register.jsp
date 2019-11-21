@@ -90,7 +90,7 @@
 							</span>
 						</div>
 						<form:input class="form-control" path="password"
-							placeholder="Create password" type="password" />
+							placeholder="Create password" minlength="8" maxlength="16" type="password" min="8" max="16"/>
 					<form:errors path="password" />
 					</div>
 					<!-- form-group// -->
