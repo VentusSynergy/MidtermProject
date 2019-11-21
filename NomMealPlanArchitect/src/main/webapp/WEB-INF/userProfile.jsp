@@ -42,7 +42,7 @@
         <img align="left" class="fb-image-profile thumbnail" src="${loggedInUser.avatarURL }" alt="Profile image example"/>
         <div class="fb-profile-text">
             <h1>${loggedInUser.firstName} ${loggedInUser.lastName }</h1>
-            <p>Life is too complicated not to be orderly.<br><i class="fa fa-envelope"></i>    ${loggedInUser.email}</p>
+            <p>“If more of us valued food and cheer and song above hoarded gold, it would be a merrier world.” -J.R.R. Tolkien<br><i class="fa fa-envelope"></i>    ${loggedInUser.email}</p>
         </div>
     </div>
 </div>
