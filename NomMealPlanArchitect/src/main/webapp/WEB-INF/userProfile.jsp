@@ -94,32 +94,6 @@
 								</h3>
 								<p>${fl.recipe.instructions}</p>
 
-								<%-- <c:set var="isFavorite" value="false" />
-								<c:forEach var="fl" items="${favList}">
-									<c:if test="${fl.recipe.id == r.id}">
-										<c:set var="isFavorite" value="true" />
-									</c:if>
-								</c:forEach> --%>
-								<%-- <c:choose>
-
-									<c:when test="${isFavorite == true}">
-										<form class="plus" action="addRecipeToUser.do" method="POST">
-											<button class="glyphicon glyphicon-plus" disabled>Added</button>
-											<input type="hidden" name="id" value="${r.id}"> <input
-												type="hidden" name="key" value="${key}">
-										</form>
-									</c:when>
-
-									<c:otherwise>
-										<form class="plus" action="addRecipeToUser.do" method="POST">
-											<button class="glyphicon glyphicon-plus">Add</button>
-											<input type="hidden" name="id" value="${r.id}"> <input
-												type="hidden" name="key" value="${key}">
-										</form>
-									</c:otherwise>
-
-								</c:choose> --%>
-
 								<div class="row">
 									<div class="col-xs-6">
 										<form:form class="update" action="updateRecipe.do"
